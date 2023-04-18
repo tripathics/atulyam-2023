@@ -1,0 +1,39 @@
+.nav {
+    height: var(--nav-height);
+    position: fixed;
+    left: 0;
+    width: 100%;
+    padding: 1.8rem;
+    display: flex;
+    top: 0;
+    z-index: 100;
+
+    .logo {
+        flex-grow: 1;
+    }
+
+    .router-links {
+        .router-link {
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+            margin-left: 2rem;
+        }
+        .router-link::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            transform: scaleX(1);
+            background-color: currentColor;
+            transition: .4s;
+            transform-origin: left;
+            background: #000;
+        }
+        .router-link:hover::after {
+            transform: scaleX(0);
+        }
+    }
+}

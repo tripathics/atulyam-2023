@@ -1,0 +1,33 @@
+:root {
+    --white2: #d8d8d8;
+    --nav-height: 4.1425rem;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    padding: 0 1.8rem; 
+    margin: auto;
+}
+
+.page {
+    position: relative;
+}
+
+.hero {
+    opacity: 0.8;
+    background: url('https://olgaprudka.com/wp-content/uploads/2022/07/Singularity-6-698x475.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    width: 100%;
+}
+
+.intro-section {
+    padding-top: var(--nav-height);
+}

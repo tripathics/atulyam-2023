@@ -1,10 +1,20 @@
+import { Route, Routes } from "react-router";
+import Layout from "./layouts/Layout";
+import Home from "./pages/Home";
+import { BrowserRouter } from "react-router-dom";
+import './styles/index.scss';
+
 function App() {
   return (
-    <div>
-      <header>
-        <h1>Hello Atulyam 2023</h1>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={
+            <Home />
+          } />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
