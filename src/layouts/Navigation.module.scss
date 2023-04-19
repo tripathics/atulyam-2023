@@ -1,0 +1,28 @@
+.nav {
+    display: flex;
+    align-items: center;
+    height: var(--nav-height);
+    position: fixed;
+    left: 0;
+    width: 100%;
+    padding: 0 1.8rem;
+    top: 0;
+    z-index: 100;
+
+    .logo {
+        flex-grow: 1;
+    }
+
+    .router-links {
+        .router-link {
+            margin-left: 2rem;
+            font-size: 0.75rem;
+        }
+        .router-link.active {
+            color: #f00;
+        }
+        .router-link.active::after {
+            background: #f00;
+        }
+    }
+}

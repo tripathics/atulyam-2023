@@ -1,27 +1,29 @@
 import { NavLink } from "react-router-dom";
-import './Navigation.scss';
+import styles from './Navigation.module.scss';
+import cx from 'classnames';
 
 const links = [
   { link: '/events', name: 'What\'s on' },
   { link: '/register', name: 'Register' },
 ]
 
-const NavItem = ({name, link}) => (
-  <NavLink to={link} className='router-link'>
+const NavItem = ({ name, link }) => (
+  <NavLink to={link} className={state => cx(
+    styles['router-link'], 'link',
+    { [styles.active]: state.isActive }
+  )}>
     {name}
   </NavLink>
 )
 
-const Navigation = () => {
+const Navigation = () => {  
   return (
-    <nav className="nav" id="nav">
-      <div className="logo">
-        <NavLink to={'/'}>
-          <span>ATULYAM</span>
-        </NavLink>
+    <nav className={styles.nav} id="nav">
+      <div className={styles.logo}>
+        <NavLink to={'/'}>ATULYAM</NavLink>
       </div>
-      <div className="router-links">
-        <div className="desktop">
+      <div className={styles["router-links"]}>
+        <div className={styles.desktop}>
           {links.map(link => <NavItem key={link.name} {...link} />)}
         </div>
       </div>
