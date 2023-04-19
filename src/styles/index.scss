@@ -18,16 +18,32 @@
     position: relative;
 }
 
-.hero {
-    opacity: 0.8;
-    background: url('https://olgaprudka.com/wp-content/uploads/2022/07/Singularity-6-698x475.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 90vh;
-    width: 100%;
+.link {
+    color: black;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
 }
-
-.intro-section {
-    padding-top: var(--nav-height);
+.link::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(1);
+    background-color: currentColor;
+    transition: .4s;
+    transform-origin: left;
+    background: #000;
+}
+.link:hover::after {
+    transform: scaleX(0);
+}
+.link.active {
+    color: #f00;
+}
+.link.active::after {
+    background: #f00;
 }
