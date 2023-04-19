@@ -14,7 +14,7 @@ const Layout = ({children}) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           navEl.style.position = 'absolute';
-          navEl.style.top = '90vh';
+          navEl.style.top = '100vh';
         } else {
           navEl.style.position = 'fixed';
           navEl.style.top = '0';

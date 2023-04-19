@@ -1,5 +1,5 @@
 .hero {
-    height: 90vh;
+    height: 100vh;
     position: relative;
     overflow: hidden;
 
@@ -20,6 +20,7 @@
 
             >span {
                 margin-right: 1rem;
+                // transform: translate3d(0, 0, 0);
             }
             >span:last-child {
                 margin-right: 0;
@@ -30,21 +31,40 @@
             display: flex;
             flex-direction: column;
             position: absolute;
-            padding: 2rem 1rem;
+            padding: 4.5rem 1rem;
             bottom: 0;
             width: 100%;
             margin: auto;
             font-family: "Antonio";
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             color: #ddd;
             text-shadow: 0 1px 0 #3335;
-            font-weight: 300;
+            font-weight: 600;
             align-items: center;
+        }
+    }
 
-            .dates {
-                font-weight: 600;
-                margin-bottom: 1rem;
-            }
+    .scrollDown {
+        position: absolute;
+        width: fit-content;
+        height: fit-content;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+
+        svg {
+            width: 16px;
+            height: 34px;
+            fill: #fff;
+            animation: 2s ease-in-out scrollDownAnimate infinite;
+        }
+    }
+    @keyframes scrollDownAnimate {
+        50% {
+            transform: translateY(-8px);
+        }
+        100% {
+            transform: translateY(0);
         }
     }
 }

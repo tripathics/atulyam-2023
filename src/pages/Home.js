@@ -2,6 +2,7 @@ import CountdownTimer from '../components/CountdownTimer';
 import styles from '../styles/Home.module.scss';
 import cx from 'classnames';
 import HeroVideo from '../media/medium.mp4';
+import { ReactComponent as ScrollDown } from '../media/icons/down.svg';
 import { useEffect } from 'react';
 
 const Home = () => {
@@ -9,13 +10,17 @@ const Home = () => {
     const parallaxEls = document.getElementsByClassName('shouldAnimate');
     const parallaxAnimate = () => {
       const offsetTop = parallaxEls[0].offsetTop;
-      const speed = 0.02;
+      const speed = 0.04;
       for (let i = 0; i < parallaxEls.length; i++) {
         /** @type {HTMLElement} */
         let el = parallaxEls[i];
-        const shift = (i) * speed * (offsetTop - el.getBoundingClientRect().top);
-        el.style.transform = 'translateY(-' + shift + 'px)';
+        const shift = Math.abs(3 - i) * speed * (offsetTop - el.getBoundingClientRect().top);
+        el.style.transform = 'translate3d(0, '+ shift +'px, 0)';
       }
+      const scrollDownIcon = document.getElementById('scrollDownIcon');
+
+      let scrollDownIconTopOffset = scrollDownIcon.getBoundingClientRect().top
+      if (scrollDownIconTopOffset >= 0) scrollDownIcon.style.opacity = (scrollDownIconTopOffset / window.innerHeight).toFixed(2);
     }
 
     if (parallaxEls.length > 0) {
@@ -52,13 +57,12 @@ const Home = () => {
             <span className='shouldAnimate'>m</span>
           </h1>
           <div className={styles.timeline}>
-            <p className={styles.dates}>
-              The dates for ATULYAM 2k23 are:<br />
-              03-05 May 2023
-            </p>
             <p>The countdown begins!</p>
             <CountdownTimer countdownDate={'May 3, 2023 9:00:00'} />
           </div>
+        </div>
+        <div className={styles.scrollDown} aria-hidden='true'>
+          <ScrollDown id='scrollDownIcon' />
         </div>
       </div>
       <section className={cx('container', styles["intro-section"])}>

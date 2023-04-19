@@ -97,6 +97,14 @@ footer
     
 }
 
+.LogoContainer {
+    > img {
+        width: 400px;
+        filter: invert(100%);
+        max-width: 100%;
+    } 
+}
+
 .Registerbtn 
 {
   padding:0.5rem;
