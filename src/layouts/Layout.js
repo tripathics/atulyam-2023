@@ -21,37 +21,13 @@ const Layout = ({children}) => {
         }
       })
     })
-
     
-
-
-    // const translateNav = () => {
-    //   const heroEl = document.getElementById('hero');
-    //   const navEl = document.getElementById('nav');
-    //   if (!heroEl) {
-    //     navEl.style.position = 'absolute';
-    //     navEl.style.top = '0';
-    //     return;
-    //   }
-    //   const heroOffset = heroEl.getBoundingClientRect().bottom;
-    //   if (heroOffset > 0) {
-    //     navEl.style.position = 'absolute';
-    //     navEl.style.top = '90vh';
-    //   } else {
-    //     navEl.style.position = 'fixed';
-    //     navEl.style.top = '0';
-    //   }
-    // }
-
-    // translateNav();
     if (location.pathname === '/') {
-      observer.observe(heroEl)
-      // window.addEventListener('scroll', translateNav);
+      observer.observe(heroEl);
     } else {
       observer.disconnect()
       navEl.style.position = 'fixed';
       navEl.style.top = '0';
-      // window.removeEventListener('scroll', translateNav);
     }
   }, [location.pathname])
 
@@ -61,7 +37,6 @@ const Layout = ({children}) => {
       <main className="page">
         {children}
       </main>
-      {/* Footer */}
       <Footer/>
     </div>
   )
