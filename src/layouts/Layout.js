@@ -6,20 +6,51 @@ const Layout = ({children}) => {
   const location = useLocation();
 
   useEffect(() => {
-    const heroEl = document.getElementById('hero');
     const navEl = document.getElementById('nav');
-    const translateNav = () => {
-      const navOffset = heroEl.getBoundingClientRect().bottom;
-      navEl.style.transform = navOffset <= 0
-        ? 'translate3d(0px, 0px, 0px)'
-        : 'translate3d(0px, ' + navOffset + 'px, 0px)'
-    }
+    const heroEl = document.getElementById('hero');
 
-    if (heroEl) {
-      translateNav();
-      window.addEventListener('scroll', translateNav)
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navEl.style.position = 'absolute';
+          navEl.style.top = '90vh';
+        } else {
+          navEl.style.position = 'fixed';
+          navEl.style.top = '0';
+        }
+      })
+    })
+
+    
+
+
+    // const translateNav = () => {
+    //   const heroEl = document.getElementById('hero');
+    //   const navEl = document.getElementById('nav');
+    //   if (!heroEl) {
+    //     navEl.style.position = 'absolute';
+    //     navEl.style.top = '0';
+    //     return;
+    //   }
+    //   const heroOffset = heroEl.getBoundingClientRect().bottom;
+    //   if (heroOffset > 0) {
+    //     navEl.style.position = 'absolute';
+    //     navEl.style.top = '90vh';
+    //   } else {
+    //     navEl.style.position = 'fixed';
+    //     navEl.style.top = '0';
+    //   }
+    // }
+
+    // translateNav();
+    if (location.pathname === '/') {
+      observer.observe(heroEl)
+      // window.addEventListener('scroll', translateNav);
     } else {
-      navEl.style.transform = 'translate3d(0px, 0px, 0px)';
+      observer.disconnect()
+      navEl.style.position = 'fixed';
+      navEl.style.top = '0';
+      // window.removeEventListener('scroll', translateNav);
     }
   }, [location.pathname])
 

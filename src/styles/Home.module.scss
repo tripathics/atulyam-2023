@@ -1,27 +1,45 @@
 .hero {
-    height: 85vh;
-    width: 100%;
+    height: 90vh;
     position: relative;
     overflow: hidden;
 
     .content {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        height: 100%;
+        width: 100%;
 
         .logo {
             text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size: 3rem;
+            color: #333;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            >span {
+                margin-right: 1rem;
+            }
+            >span:last-child {
+                margin-right: 0;
+            }
         }
 
         .timeline {
+            display: flex;
+            flex-direction: column;
             position: absolute;
+            padding: 2rem 1rem;
+            bottom: 0;
             width: 100%;
-            font-family: 'Antonio';
+            margin: auto;
+            font-family: "Antonio";
             font-size: 1.4rem;
             color: #ddd;
             text-shadow: 0 1px 0 #3335;
             font-weight: 300;
+            align-items: center;
 
             .dates {
                 font-weight: 600;
@@ -35,21 +53,14 @@
     padding-top: var(--nav-height);
 }
 
-.logo {
-    // font-family: 'Antonio', sans-serif;
-    // font-family: 'Open Sans', sans-serif;
-    // font-family: 'Roboto Mono', monospace;
-    // font-family: 'Staatliches', cursive;
-    // font-family: 'Yeseva One', cursive;
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: 1rem;
-    font-size: 3rem;
-    color: #333;
-    margin: 0 0 2.2rem;
-}
+// font-family: 'Antonio', sans-serif;
+// font-family: 'Open Sans', sans-serif;
+// font-family: 'Roboto Mono', monospace;
+// font-family: 'Staatliches', cursive;
+// font-family: 'Yeseva One', cursive;
 
 .grain {
-    background: transparent url(https://atlas-bespoke.com/grain-new.gif) repeat;
+    background: transparent url(../media/grain-new.gif) repeat;
     opacity: .075;
     pointer-events: none;
     position: fixed;

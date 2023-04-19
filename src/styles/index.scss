@@ -10,8 +10,13 @@
 }
 
 .container {
-    padding: 0 1.8rem; 
+    padding-left: 1.8rem;
+    padding-right: 1.8rem; 
     margin: auto;
+}
+
+.__layout {
+    position: relative;
 }
 
 .page {

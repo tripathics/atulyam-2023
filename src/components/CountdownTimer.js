@@ -2,44 +2,55 @@ import { useState, useEffect } from "react";
 import styles from './CountdownTimer.module.scss';
 
 const CountdownTimer = ({countdownDate: toDate}) => {
-  const [distance, setDistance] = useState(null);
-
+  const [seconds, setSeconds] = useState(6);
+  const [minutes, setMinutes] = useState(69);
+  const [hours, setHours] = useState(49);
+  const [day, setDay] = useState(23);
+  
   useEffect(() => {
+    const countdownDate = new Date(toDate).getTime();
     const updateTimer = () => {
       if (!toDate) return;
-      const countdownDate = new Date(toDate).getTime();
       const now = new Date().getTime();
-      setDistance(countdownDate - now)
-      console.log('update timer')
+      const distance = countdownDate - now;
+      const newSeconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const newMinutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const newHours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const newDay = Math.floor(distance / (1000 * 60 * 60 * 24));
+      if (newSeconds !== seconds) setSeconds(newSeconds);
+      if (newMinutes !== minutes) setMinutes(newMinutes);
+      if (newHours !== hours) setHours(newHours);
+      if (newDay !== day) setDay(newDay);
+      setTimeout(updateTimer, 1000);
     }
-
     updateTimer();
-    const updateInterval = setInterval(() => {
-      updateTimer();
-    }, 1000)
-
-    return () => {
-      clearInterval(updateInterval);
-    }
+    // eslint-disable-next-line 
   }, [toDate])
 
   return (
-    distance &&
       <div className={styles.timer}>
         <div className={styles['counter-wrapper']}>
-          <div className={styles.counter}>{Math.floor(distance / (1000 * 60 * 60 * 24)).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}</div>
+          <div className={styles.counter}>
+            {day.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}
+          </div>
           <div className={styles.label}>Days</div>
         </div>
         <div className={styles['counter-wrapper']}>
-          <div className={styles.counter}>{Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}</div>
+          <div className={styles.counter}>
+            {hours.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}
+          </div>
           <div className={styles.label}>Hours</div>
         </div>
         <div className={styles['counter-wrapper']}>
-          <div className={styles.counter}>{Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}</div>
+          <div className={styles.counter}>
+            {minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}
+          </div>
           <div className={styles.label}>Minutes</div>
         </div>
         <div className={styles['counter-wrapper']}>
-          <div className={styles.counter}>{Math.floor((distance % (1000 * 60)) / 1000).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}</div>
+          <div className={styles.counter}>
+            {seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}
+          </div>
           <div className={styles.label}>Seconds</div>
         </div>
       </div>
