@@ -10,8 +10,8 @@
 }
 
 .container {
-    padding-left: 1.8rem;
-    padding-right: 1.8rem; 
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
     margin: auto;
 }
 
@@ -32,6 +32,7 @@
     font-family: 'Staatliches', cursive;
     font-family: 'Open Sans';
 }
+
 .link::after {
     content: "";
     position: absolute;
@@ -45,47 +46,49 @@
     transform-origin: left;
     background: #000;
 }
+
 .link:hover::after {
     transform: scaleX(0);
 }
+
 .link.active {
     color: #f00;
 }
+
 .link.active::after {
     background: #f00;
 }
+
 .intro-section {
     padding-top: var(--nav-height);
 }
 
-footer 
-{
+footer {
     background-color: rgb(39, 39, 39);
-    color:#FFFF;
-    padding:30px;
-    height:100%;
+    color: #FFFF;
+    padding: 30px;
+    height: 100%;
 
     .link {
         color: white;
     }
+
     .link::after {
         background: white;
     }
 }
 
-.quotes 
-{
-    color:#00FFFF;
+.quotes {
+    color: #00FFFF;
     font-weight: bold;
 }
-.footerContent 
-{
+
+.footerContent {
     display: flex;
     justify-content: space-around;
 }
-  
-.footerItems
-{
+
+.footerItems {
     display: flex;
     flex-grow: 1;
     flex-direction: row;
@@ -93,47 +96,43 @@ footer
     align-items: center;
     font-size: 1rem;
     justify-content: space-between;
-    gap:30px;
-    
+    gap: 30px;
+
 }
 
 .LogoContainer {
-    > img {
+    >img {
         width: 400px;
         filter: invert(100%);
         max-width: 100%;
-    } 
+    }
 }
 
-.Registerbtn 
-{
-  padding:0.5rem;
-  border-radius: 0.3rem;
-  background-color: rgb(190, 3, 3);
-  color:white;
-  font-size: large;
-  margin-top: 10px;
-  border: none;
+.Registerbtn {
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    background-color: rgb(190, 3, 3);
+    color: white;
+    font-size: large;
+    margin-top: 10px;
+    border: none;
 }
 
-.SocialHandles
-{
-  display: flex;
-  padding:20px;
-  gap:30px;
+.SocialHandles {
+    display: flex;
+    padding: 20px;
+    gap: 30px;
 }
 
-.MainFooterContent
-{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-between;
+.MainFooterContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
 }
 
-@media screen  and (max-width:900px) {
-    .footerContent 
-    {
+@media screen and (max-width:900px) {
+    .footerContent {
         flex-direction: column;
     }
 }

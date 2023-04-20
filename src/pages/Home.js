@@ -7,23 +7,31 @@ import { useEffect } from 'react';
 
 const Home = () => {
   useEffect(() => {
-    const parallaxEls = document.getElementsByClassName('shouldAnimate');
-    const parallaxAnimate = () => {
-      const offsetTop = parallaxEls[0].offsetTop;
-      const speed = 0.04;
-      for (let i = 0; i < parallaxEls.length; i++) {
-        /** @type {HTMLElement} */
-        let el = parallaxEls[i];
-        const shift = Math.abs(3 - i) * speed * (offsetTop - el.getBoundingClientRect().top);
-        el.style.transform = 'translate3d(0, '+ shift +'px, 0)';
-      }
-      const scrollDownIcon = document.getElementById('scrollDownIcon');
+    const heroLogoLetters = document.getElementsByClassName('shouldAnimate');
+    const scrollDownIcon = document.getElementById('scrollDownIcon');
+    const coordinatorNames = document.getElementById('coordinatorsList');
 
-      let scrollDownIconTopOffset = scrollDownIcon.getBoundingClientRect().top
-      if (scrollDownIconTopOffset >= 0) scrollDownIcon.style.opacity = (scrollDownIconTopOffset / window.innerHeight).toFixed(2);
+    const parallaxAnimate = () => {
+      // animate hero logo letters
+      const offsetTop = heroLogoLetters[0].offsetTop;
+      const speed = 0.04;
+      for (let i = 0; i < heroLogoLetters.length; i++) {
+        /** @type {HTMLElement} */
+        let el = heroLogoLetters[i];
+        const shift = Math.abs(3 - i) * speed * (offsetTop - el.getBoundingClientRect().top);
+        el.style.transform = 'translate3d(0, ' + shift.toFixed(3) + 'px, 0)';
+      }
+
+      // parallax animate scroll icon
+      let scrollDownIconTopOffset = scrollDownIcon.getBoundingClientRect();
+      if (scrollDownIconTopOffset >= 0) scrollDownIcon.style.opacity = (scrollDownIconTopOffset / window.innerHeight).top.toFixed(3);
+
+      // parallax animate coordinators
+      let coordNamesTopOffset = coordinatorNames.getBoundingClientRect().top;
+      coordinatorNames.style.transform = 'translate3d(0, ' + speed*coordNamesTopOffset.toFixed(3) + 'px, 0)';
     }
 
-    if (parallaxEls.length > 0) {
+    if (heroLogoLetters.length > 0) {
       window.addEventListener('scroll', parallaxAnimate)
     }
 
@@ -34,6 +42,7 @@ const Home = () => {
 
   return (
     <div>
+      <div className={styles.grain}></div>
       <div className={styles.hero} id="hero">
         <video style={{
           position: 'absolute',
@@ -45,7 +54,6 @@ const Home = () => {
         }} autoPlay={true} muted={true} loop={true}>
           <source src={HeroVideo} />
         </video>
-        <div className={styles.grain}></div>
         <div className={styles.content}>
           <h1 className={styles.logo}>
             <span className='shouldAnimate'>A</span>
@@ -65,18 +73,36 @@ const Home = () => {
           <ScrollDown id='scrollDownIcon' />
         </div>
       </div>
-      <section className={cx('container', styles["intro-section"])}>
-        <h1>Hello Atulyam 2023</h1>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, id sequi error vitae recusandae, temporibus tempora eligendi sed fugiat quibusdam ab ipsam! Est temporibus quaerat magni placeat rerum vitae minus, consequatur libero in distinctio voluptas amet vero sequi rem ipsa pariatur tenetur fugiat dolorem blanditiis soluta officia, consectetur illum sit. Perferendis, deleniti veritatis quam atque nihil dignissimos officiis cumque. Dicta, atque. Numquam, magni hic excepturi autem, facere nobis quidem ducimus maiores, repudiandae distinctio error quibusdam molestias? Consequuntur quasi autem illum ex tenetur temporibus, magni pariatur iusto possimus inventore nam, saepe est, modi nostrum sunt non rem numquam. Perferendis asperiores, fugiat laboriosam minima eligendi sapiente. Quidem esse repudiandae laudantium harum dolore sequi quae, officiis possimus nesciunt similique magnam fugiat aperiam architecto impedit, eos soluta maxime placeat voluptates. Excepturi perspiciatis ipsam, possimus, fugit nesciunt beatae dolor quia, molestiae repellat voluptates officia quod iste natus illo. Veniam aut error eligendi vel incidunt ea sint cupiditate libero voluptatum eos quasi possimus consequuntur minus, placeat molestiae, dolorum quod nihil animi excepturi quae nostrum, beatae consequatur totam! Optio quas eos odit pariatur esse aut similique. Repellendus vero beatae doloribus veritatis consequuntur quibusdam aliquid? Vero voluptatem culpa aliquid ipsa? Magni, dolores! Accusantium nulla blanditiis, cupiditate officiis cumque excepturi perferendis soluta tenetur temporibus, veniam alias eos maxime doloribus labore, commodi sapiente ducimus! Mollitia sit laboriosam illo consequuntur dicta maxime maiores quis minima porro vitae. Possimus, illum repudiandae! Sequi deleniti aut vel veniam quis voluptatibus cum praesentium maxime, quasi ipsa. Dicta asperiores expedita consequatur tempore earum sapiente eligendi vero velit rem quam, magni modi nam debitis rerum id saepe porro. Non dolor aliquam sit quaerat numquam voluptate nostrum a soluta natus, laudantium quam aliquid distinctio consequatur inventore! Ex, deleniti nobis. Enim odio dicta quos amet nesciunt veniam at voluptatum reiciendis obcaecati repudiandae, nisi, possimus itaque dolorem ipsam sequi nam?
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, id sequi error vitae recusandae, temporibus tempora eligendi sed fugiat quibusdam ab ipsam! Est temporibus quaerat magni placeat rerum vitae minus, consequatur libero in distinctio voluptas amet vero sequi rem ipsa pariatur tenetur fugiat dolorem blanditiis soluta officia, consectetur illum sit. Perferendis, deleniti veritatis quam atque nihil dignissimos officiis cumque. Dicta, atque. Numquam, magni hic excepturi autem, facere nobis quidem ducimus maiores, repudiandae distinctio error quibusdam molestias? Consequuntur quasi autem illum ex tenetur temporibus, magni pariatur iusto possimus inventore nam, saepe est, modi nostrum sunt non rem numquam. Perferendis asperiores, fugiat laboriosam minima eligendi sapiente. Quidem esse repudiandae laudantium harum dolore sequi quae, officiis possimus nesciunt similique magnam fugiat aperiam architecto impedit, eos soluta maxime placeat voluptates. Excepturi perspiciatis ipsam, possimus, fugit nesciunt beatae dolor quia, molestiae repellat voluptates officia quod iste natus illo. Veniam aut error eligendi vel incidunt ea sint cupiditate libero voluptatum eos quasi possimus consequuntur minus, placeat molestiae, dolorum quod nihil animi excepturi quae nostrum, beatae consequatur totam! Optio quas eos odit pariatur esse aut similique. Repellendus vero beatae doloribus veritatis consequuntur quibusdam aliquid? Vero voluptatem culpa aliquid ipsa? Magni, dolores! Accusantium nulla blanditiis, cupiditate officiis cumque excepturi perferendis soluta tenetur temporibus, veniam alias eos maxime doloribus labore, commodi sapiente ducimus! Mollitia sit laboriosam illo consequuntur dicta maxime maiores quis minima porro vitae. Possimus, illum repudiandae! Sequi deleniti aut vel veniam quis voluptatibus cum praesentium maxime, quasi ipsa. Dicta asperiores expedita consequatur tempore earum sapiente eligendi vero velit rem quam, magni modi nam debitis rerum id saepe porro. Non dolor aliquam sit quaerat numquam voluptate nostrum a soluta natus, laudantium quam aliquid distinctio consequatur inventore! Ex, deleniti nobis. Enim odio dicta quos amet nesciunt veniam at voluptatum reiciendis obcaecati repudiandae, nisi, possimus itaque dolorem ipsam sequi nam?
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, id sequi error vitae recusandae, temporibus tempora eligendi sed fugiat quibusdam ab ipsam! Est temporibus quaerat magni placeat rerum vitae minus, consequatur libero in distinctio voluptas amet vero sequi rem ipsa pariatur tenetur fugiat dolorem blanditiis soluta officia, consectetur illum sit. Perferendis, deleniti veritatis quam atque nihil dignissimos officiis cumque. Dicta, atque. Numquam, magni hic excepturi autem, facere nobis quidem ducimus maiores, repudiandae distinctio error quibusdam molestias? Consequuntur quasi autem illum ex tenetur temporibus, magni pariatur iusto possimus inventore nam, saepe est, modi nostrum sunt non rem numquam. Perferendis asperiores, fugiat laboriosam minima eligendi sapiente. Quidem esse repudiandae laudantium harum dolore sequi quae, officiis possimus nesciunt similique magnam fugiat aperiam architecto impedit, eos soluta maxime placeat voluptates. Excepturi perspiciatis ipsam, possimus, fugit nesciunt beatae dolor quia, molestiae repellat voluptates officia quod iste natus illo. Veniam aut error eligendi vel incidunt ea sint cupiditate libero voluptatum eos quasi possimus consequuntur minus, placeat molestiae, dolorum quod nihil animi excepturi quae nostrum, beatae consequatur totam! Optio quas eos odit pariatur esse aut similique. Repellendus vero beatae doloribus veritatis consequuntur quibusdam aliquid? Vero voluptatem culpa aliquid ipsa? Magni, dolores! Accusantium nulla blanditiis, cupiditate officiis cumque excepturi perferendis soluta tenetur temporibus, veniam alias eos maxime doloribus labore, commodi sapiente ducimus! Mollitia sit laboriosam illo consequuntur dicta maxime maiores quis minima porro vitae. Possimus, illum repudiandae! Sequi deleniti aut vel veniam quis voluptatibus cum praesentium maxime, quasi ipsa. Dicta asperiores expedita consequatur tempore earum sapiente eligendi vero velit rem quam, magni modi nam debitis rerum id saepe porro. Non dolor aliquam sit quaerat numquam voluptate nostrum a soluta natus, laudantium quam aliquid distinctio consequatur inventore! Ex, deleniti nobis. Enim odio dicta quos amet nesciunt veniam at voluptatum reiciendis obcaecati repudiandae, nisi, possimus itaque dolorem ipsam sequi nam?
-        </p>
+      <section className={cx('container', styles["intro-section"], styles['home-section'])}>
+        <header className={cx(styles.introContent, styles.sectionHeader)}>
+          <h2 className={styles.heading}>
+            <span style={{ marginRight: '3ch' }}>Atulyam</span>
+            <span className={styles._ar}>2023</span>
+          </h2>
+          <p className={styles.subtitle}>
+            Atulyam is the annual cultural festival of NIT Arunachal Pradesh. A splendid idea realised by a group of students in 2012 at NITAP giving birth to Atulyam as we know it today.<br />
+            After three years, we return with a more niwe and creative community than ever.
+          </p>
+        </header>
       </section>
+      <section className={cx(styles['home-section'], 'container', styles.coordinators)}>
+        <header className={styles.sectionHeader}>
+          <h2 className={styles.heading}>
+            <span style={{ marginRight: '3ch' }}>Our</span>
+            <span className={styles._ar}>Team</span>
+          </h2>
+          <p className={styles.subtitle} id='coordinatorsList'>
+            <span>
+              Isabel Moranta Amelie Maia Victor Costa Simon D’haenens Mathieu Ducharme & Jérémy Minié Claudio Guglieri JP Burcks & Mia Pratevito Parker Peterson Adriano Esteves Rhodi Iliadou & Peter Ha Filippo Cipriani Pablo Stanley
+            </span>
+            <span>
+              Franco Arza & Clément Roche Ali Hosseini Josh Kirk Diana Varma Vitaly Friedman Femke van Schoonhoven Nicolas Brassard-Ferron 
+            </span>
+          </p>
+        </header>
+      </section>
+
+
     </div>
   )
 }

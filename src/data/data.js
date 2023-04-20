@@ -1,0 +1,21 @@
+export const coordinators = [
+  'Joni Nomuk',
+  'Nich Talo',
+  'Kamin Pajing',
+  'Rikto Padu',
+  'Mekruk Waii Sonam',
+  'Gamjum Laye',
+  'Likha Tassam',
+  'Daknya Bam',
+  'Chandrashekhar Tripathi',
+  'Pursottam Sah',
+  'Bomge Yinyo',
+  'Lily Bagbi',
+  'Louich Taid',
+  'Habu Akia',
+  'Novaneel Mandal',
+  'Piyush Pratap Singh',
+  'Rebeka Pertin',
+  'Gaggam Taggu',
+  'Eshaan Srivastava'
+]

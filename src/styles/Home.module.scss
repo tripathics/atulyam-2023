@@ -1,3 +1,16 @@
+// Grain filter on homepage
+.grain {
+    background: transparent url(../media/grain-new.gif) repeat;
+    opacity: .075;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+// Hero section
 .hero {
     height: 100vh;
     position: relative;
@@ -17,10 +30,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            user-select: none;
 
             >span {
+                will-change: transform;
                 margin-right: 1rem;
-                // transform: translate3d(0, 0, 0);
             }
             >span:last-child {
                 margin-right: 0;
@@ -45,6 +59,8 @@
     }
 
     .scrollDown {
+        will-change: transform;
+        display: block;
         position: absolute;
         width: fit-content;
         height: fit-content;
@@ -67,10 +83,86 @@
             transform: translateY(0);
         }
     }
+
+    @media screen and (max-width: 576px) {
+        .scrollDown {
+            display: none;
+        }
+    }
 }
 
+// ----- All sections ----- COMMON
+.home-section {
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+    --heading-font-size: 16vw;
+
+    .sectionHeader {
+        position: relative;
+
+        span {
+            text-align: left;
+        }
+        ._ar {
+            text-align: right;
+        }
+        ._ac {
+            text-align: center;
+        }
+    }
+
+    .heading {
+        font-family: "Antonio", sans-serif;
+        display: flex;
+        flex-direction: column;
+        font-size: var(--heading-font-size);
+        font-weight: 200;
+        letter-spacing: -0.15ch;
+        line-height: 0.9;
+        text-transform: uppercase;
+        width: 100%;
+        max-width: fit-content;
+    }
+    @media screen and (max-width: 999px) {
+        --heading-font-size: 20vw;
+    }
+    @media screen and (max-width: 760px) {
+        --heading-font-size: 24vw;
+    }
+}
+
+// ----- First section
 .intro-section {
-    padding-top: var(--nav-height);
+    padding-top: calc(var(--nav-height) + 3rem);
+    --heading-font-size: 18vw;
+    @media screen and (max-width: 999px) {
+        --heading-font-size: 22vw;
+    }
+    @media screen and (max-width: 760px) {
+        --heading-font-size: 25.6vw;
+    }
+
+    .introContent {
+        margin-bottom: 4rem;
+    }
+
+    .subtitle {
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        font-weight: 500;
+        position: absolute;
+        width: 300px;
+        bottom: calc(((0.6 * var(--heading-font-size)) - 96px) / 2);
+        left: calc((1.14 * var(--heading-font-size)) - 150px);
+    }
+    @media screen and (max-width: 700px) {
+        .subtitle {
+            position: static;
+            margin: 4.5rem auto;
+            width: 75%;        
+            font-size: 1rem;
+        }
+    }
 }
 
 // font-family: 'Antonio', sans-serif;
@@ -79,13 +171,49 @@
 // font-family: 'Staatliches', cursive;
 // font-family: 'Yeseva One', cursive;
 
-.grain {
-    background: transparent url(../media/grain-new.gif) repeat;
-    opacity: .075;
-    pointer-events: none;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+// Last section -- Our team
+.coordinators {
+    .subtitle {
+        will-change: transform;
+        color: #666;
+        display: flex;
+        flex-direction: column;
+        font-family: "Antonio", sans-serif;
+        font-family: 'Roboto';
+        font-size: 3.2rem;
+        font-weight: 600;
+        letter-spacing: -0.05rem;
+        line-height: 0.9;
+        position: absolute;
+        bottom: 4.4rem;
+        bottom: calc(0.4 * var(--heading-font-size));
+        left: calc(1.4 * var(--heading-font-size));
+
+        > span {
+            margin-bottom: 0.8rem;
+        }
+        > span:last-child {
+            margin-left: var(--heading-font-size);
+        }
+        @media screen and (max-width: 1366px) {
+            font-size: 2.4rem;
+        }
+        @media screen and (max-width: 1150px) {
+            font-size: 2.1rem;
+        }
+        @media screen and (max-width: 999px) {
+            font-size: 1.8rem;
+        }
+        @media screen and (max-width: 800px) {
+            font-size: 1.6rem;
+            bottom: 1.6rem;
+        }
+        @media screen and (max-width: 650px) {
+            font-size: 1.4rem;
+        }
+        @media screen and (max-width: 500px) {
+            font-size: 1rem;
+            bottom: 0;
+        }
+    }
 }
