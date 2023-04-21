@@ -1,4 +1,5 @@
 .nav {
+    --nav-color: #fff;
     display: flex;
     align-items: center;
     height: var(--nav-height);
@@ -7,24 +8,33 @@
     width: 100%;
     padding: 0 1.2rem;
     top: 0;
-    z-index: 100;
+    z-index: 9999999;
+    color: #fff;
+    mix-blend-mode: difference;
+
+    a {
+        color: var(--nav-color);
+    }
 
     .logo {
         flex-grow: 1;
         a {
             font-family: 'Roboto', sans-serif;
             font-size: 1.2rem;
+            font-weight: 500;
             letter-spacing: 0.3ch;
             text-decoration: none;
-            color: black;
         }
-
     }
 
     .router-links {
         .router-link {
             margin-left: 2rem;
             font-size: 0.75rem;
+            font-weight: 450;
+        }
+        .router-link::after {
+            background: var(--nav-color);
         }
         .router-link.active {
             color: #f00;

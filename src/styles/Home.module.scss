@@ -36,6 +36,7 @@
                 will-change: transform;
                 margin-right: 1rem;
             }
+
             >span:last-child {
                 margin-right: 0;
             }
@@ -75,10 +76,12 @@
             animation: 2s ease-in-out scrollDownAnimate infinite;
         }
     }
+
     @keyframes scrollDownAnimate {
-        50% {
+        60% {
             transform: translateY(-8px);
         }
+
         100% {
             transform: translateY(0);
         }
@@ -99,13 +102,16 @@
 
     .sectionHeader {
         position: relative;
+        margin-bottom: 3rem;
 
         span {
             text-align: left;
         }
+
         ._ar {
             text-align: right;
         }
+
         ._ac {
             text-align: center;
         }
@@ -123,9 +129,11 @@
         width: 100%;
         max-width: fit-content;
     }
+
     @media screen and (max-width: 999px) {
         --heading-font-size: 20vw;
     }
+
     @media screen and (max-width: 760px) {
         --heading-font-size: 24vw;
     }
@@ -133,11 +141,17 @@
 
 // ----- First section
 .intro-section {
+    width: fit-content;
+    max-width: 100%;
+    margin: auto;
+
     padding-top: calc(var(--nav-height) + 3rem);
     --heading-font-size: 18vw;
+
     @media screen and (max-width: 999px) {
         --heading-font-size: 22vw;
     }
+
     @media screen and (max-width: 760px) {
         --heading-font-size: 25.6vw;
     }
@@ -155,11 +169,12 @@
         bottom: calc(((0.6 * var(--heading-font-size)) - 96px) / 2);
         left: calc((1.14 * var(--heading-font-size)) - 150px);
     }
+
     @media screen and (max-width: 700px) {
         .subtitle {
             position: static;
             margin: 4.5rem auto;
-            width: 75%;        
+            width: 75%;
             font-size: 1rem;
         }
     }
@@ -170,12 +185,149 @@
 // font-family: 'Roboto Mono', monospace;
 // font-family: 'Staatliches', cursive;
 // font-family: 'Yeseva One', cursive;
+// 94364 05098
+.highlights {
+    .hlgallery {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+
+        .row {
+            display: grid;
+            width: 100%;
+            gap: 0.625rem;
+        }
+
+        .row:nth-child(odd) {
+            grid-template-columns: 1fr 1.5fr 1fr;
+        }
+
+        .row:nth-child(even) {
+            grid-template-columns: 1fr 1fr 1.5fr;
+        }
+
+        .btn-wrapper {
+            height: 18vw;
+            min-height: 18.75rem;
+        }
+
+
+        @media screen and (max-width: 999px) {
+            .row:nth-child(n) {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .card.rt {
+                transform: translate3d(0, 10vw, 0);
+            }
+
+            .spacer {
+                display: none;
+            }
+        }
+    }
+}
+
+.card {
+    position: relative;
+    border-top-right-radius: 3rem;
+    overflow: hidden;
+    height: 25rem;
+
+    >figure {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        >img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    >figure::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(31, 31, 31, 0) 0%, rgba(31, 31, 31, 0.6) 100%);
+        z-index: 20;
+        transition: opacity .3s cubic-bezier(0.215, 0.61, 0.355, 1);
+        opacity: 1;
+    }
+
+    >figure:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(255, 147, 173, 0) 0%, rgba(255, 147, 173, 0.6) 100%);
+        z-index: 21;
+        transition: opacity .3s cubic-bezier(0.215, 0.61, 0.355, 1);
+        opacity: 0;
+    }
+
+
+    >main {
+        position: absolute;
+        bottom: 0;
+        padding: 1.25rem .9375rem;
+        z-index: 22;
+        color: white;
+        font-family: "Roboto", sans-serif;
+
+        .cardTitle {
+            font-size: 2.2rem;
+            font-weight: 450;
+            letter-spacing: -0.08rem;
+        }
+        .cardSubtitle {
+            font-size: 0.75rem;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        height: 18.75rem;
+
+        >main {
+            .cardTitle {
+                font-size: 20px;
+            }
+            .cardSubtitle {
+                font-size: 0.75rem;
+            }
+        }
+    }
+
+    @media screen and (min-width: 1000px) {
+        height: 40vw;
+    }
+}
+
+.card:hover {
+    >figure::after {
+        opacity: 1;
+    }
+}
 
 // Last section -- Our team
 .coordinators {
     .subtitle {
         will-change: transform;
-        color: #666;
+        color: #565656;
         display: flex;
         flex-direction: column;
         font-family: "Antonio", sans-serif;
@@ -189,28 +341,35 @@
         bottom: calc(0.4 * var(--heading-font-size));
         left: calc(1.4 * var(--heading-font-size));
 
-        > span {
+        >span {
             margin-bottom: 0.8rem;
         }
-        > span:last-child {
+
+        >span:last-child {
             margin-left: var(--heading-font-size);
         }
+
         @media screen and (max-width: 1366px) {
             font-size: 2.4rem;
         }
+
         @media screen and (max-width: 1150px) {
             font-size: 2.1rem;
         }
+
         @media screen and (max-width: 999px) {
             font-size: 1.8rem;
         }
+
         @media screen and (max-width: 800px) {
             font-size: 1.6rem;
             bottom: 1.6rem;
         }
+
         @media screen and (max-width: 650px) {
             font-size: 1.4rem;
         }
+
         @media screen and (max-width: 500px) {
             font-size: 1rem;
             bottom: 0;
