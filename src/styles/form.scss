@@ -1,11 +1,11 @@
 
 @font-face {
     font-family: Kathycox;
-    src: url(../../public/fonts/KathyCox.ttf);
+    src: url(../fonts/KathyCox.ttf);
 }
 @font-face {
     font-family: Neuemetana;
-    src :url(../../public/fonts/NeueMetana-Regular.otf)
+    src :url(../fonts/NeueMetana-Regular.otf)
 }
 
 .MainFormComponent
@@ -23,13 +23,26 @@
 }
 
 .formHeading
-{
-    font-size: 3rem;
+{   font-family: "Antonio", sans-serif;
+    font-size: 20px;
     text-align: center;
-    padding-top: 30px;
-    font-family: Kathycox,sans-serif;
+    padding-top: 40px;
+    // font-family: Kathycox,sans-serif;
 }
 
+
+@media screen and (max-width:670px) {
+  .formHeading{
+    padding-top:50px;
+  }
+}
+
+.sectionHeading
+{
+  font-family: Kathycox ,sans-serif;
+
+  font-size: 16px;
+}
 
 .formColumn 
 {
@@ -73,7 +86,20 @@
 .DoubleInputBox
 {
     display: flex;
+    flex-direction: row;
     gap:30px;
+
+    > div {
+      flex-grow: 1;
+    }
+}
+
+@media  screen and (max-width:550px) {
+  .DoubleInputBox
+  {
+    flex-direction: column;
+    gap: 0;
+  }
 }
 
 .option-group {
@@ -164,7 +190,7 @@
   }
   
   .option__label {
-    font-family:Neuemetana,sans-serif;
+    font-family: "Antonio", sans-serif;
     display: block;
     width: 100%;
     text-transform: uppercase;
@@ -222,22 +248,56 @@
   
   .submitButton
   {
-    padding:4px;
+    position: relative;
+    padding: 4px;
     width: 100px;
-    font-family: Kathycox,sans-serif;
+    font-family: Kathycox, sans-serif;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 550;
+    letter-spacing: 0.025rem;
+    font-size: 0.75rem;
     background-color: #ff414b;
+    background-color: #000;
     color: white;
+    overflow: hidden;
+    border: 0;
+    margin-bottom: 30px;
     cursor: pointer;
+    z-index: 2;
+    padding: 0.625rem;
+    border-radius: 0.5rem;
+  }
+  .submitButton::before {
+    content: '';
+    background-color: #ff414b;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate3d(0, 101%, 0);
+    transition: transform 0.2s;
+    z-index: -1;
+  }
+  .submitButton:hover::before {
+    transform: translate3d((0, 0, 0));
   }
 
-  .submitButton::before
+  .signInBtn
+  { display: flex;
+    align-items: center;
+    padding: 5px;
+    border:1px solid gray;
+    background: #FFFF;
+    border-radius: 8px;
+  }
+
+  #output {
+    padding: 20px;
+    background: #dadada;
+  }
+ 
+  select
   {
-    background-color: black;
+    font-family: Neuemetana,sans-serif ;
   }
-
-
-#submit :hover 
-{
-    background-color: blacks;
-}
-   

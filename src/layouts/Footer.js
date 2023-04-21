@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../media/logo/atulyambg.png'
+import logo from '../media/logo/updated_logo-removebg-preview.png'
 
 const LinkComponent = ({ linkName, linkSrc }) => {
   return (
