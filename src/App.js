@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router";
 import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
-import Register from "./form/Register";
+import Profile from "./form/Profile";
 import SignIn from "./form/SignIn";
 import EventRegistration from "./form/EventRegistration";
 import { BrowserRouter } from "react-router-dom";
@@ -15,15 +15,15 @@ function App() {
           <Route path="/" element={
             <Home />
           } />
-          <Route path="/register" element={
-            <Register />
+          <Route path="/profile" element={
+            <Profile />
           } />
 
           <Route path="/signin" element={
             <SignIn />
           } />
 
-          <Route path="/eventregistation" element={
+          <Route path="/register" element={
             <EventRegistration/>
           } />
 
