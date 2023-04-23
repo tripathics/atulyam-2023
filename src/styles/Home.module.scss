@@ -99,6 +99,7 @@
     padding-top: 4rem;
     padding-bottom: 6rem;
     --heading-font-size: 16vw;
+    overflow-x: hidden;
 
     .sectionHeader {
         position: relative;
@@ -294,6 +295,7 @@
             font-weight: 450;
             letter-spacing: -0.08rem;
         }
+
         .cardSubtitle {
             font-size: 0.75rem;
         }
@@ -306,6 +308,7 @@
             .cardTitle {
                 font-size: 20px;
             }
+
             .cardSubtitle {
                 font-size: 0.75rem;
             }
@@ -325,54 +328,56 @@
 
 // Last section -- Our team
 .coordinators {
-    .subtitle {
-        will-change: transform;
-        color: #565656;
-        display: flex;
-        flex-direction: column;
-        font-family: "Antonio", sans-serif;
-        font-family: 'Roboto';
-        font-size: 3.2rem;
-        font-weight: 600;
-        letter-spacing: -0.05rem;
-        line-height: 0.9;
-        position: absolute;
-        bottom: 4.4rem;
-        bottom: calc(0.4 * var(--heading-font-size));
-        left: calc(1.4 * var(--heading-font-size));
+    .sectionHeader> {
+        .subtitle {
+            will-change: transform;
+            color: #565656;
+            display: flex;
+            flex-direction: column;
+            font-family: "Antonio", sans-serif;
+            font-family: 'Roboto';
+            font-size: 3.2rem;
+            font-weight: 600;
+            letter-spacing: -0.05rem;
+            line-height: 0.9;
+            position: absolute;
+            bottom: 4.4rem;
+            bottom: calc(0.4 * var(--heading-font-size));
+            left: calc(1.4 * var(--heading-font-size));
 
-        >span {
-            margin-bottom: 0.8rem;
-        }
+            >span {
+                margin-bottom: 0.8rem;
+            }
 
-        >span:last-child {
-            margin-left: var(--heading-font-size);
-        }
+            >span:last-child {
+                margin-left: var(--heading-font-size);
+            }
 
-        @media screen and (max-width: 1366px) {
-            font-size: 2.4rem;
-        }
+            @media screen and (max-width: 1366px) {
+                font-size: 2.4rem;
+            }
 
-        @media screen and (max-width: 1150px) {
-            font-size: 2.1rem;
-        }
+            @media screen and (max-width: 1150px) {
+                font-size: 2.1rem;
+            }
 
-        @media screen and (max-width: 999px) {
-            font-size: 1.8rem;
-        }
+            @media screen and (max-width: 999px) {
+                font-size: 1.8rem;
+            }
 
-        @media screen and (max-width: 800px) {
-            font-size: 1.6rem;
-            bottom: 1.6rem;
-        }
+            @media screen and (max-width: 800px) {
+                font-size: 1.6rem;
+                bottom: 1.6rem;
+            }
 
-        @media screen and (max-width: 650px) {
-            font-size: 1.4rem;
-        }
+            @media screen and (max-width: 650px) {
+                font-size: 1.4rem;
+            }
 
-        @media screen and (max-width: 500px) {
-            font-size: 1rem;
-            bottom: 0;
+            @media screen and (max-width: 500px) {
+                font-size: 1rem;
+                bottom: 0;
+            }
         }
     }
 }

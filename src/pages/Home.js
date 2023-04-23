@@ -1,24 +1,26 @@
-import CountdownTimer from '../components/CountdownTimer';
-import styles from '../styles/Home.module.scss';
-import cx from 'classnames';
-import HeroVideo from '../media/medium.mp4';
-import { ReactComponent as ScrollDownIcon } from '../media/icons/down.svg';
-import { ReactComponent as ScheduleIcon } from '../media/icons/schedule.svg';
 import { useEffect } from 'react';
-
-import cosplayImg from '../media/cosplay.jpeg'
-import filmMakingImg from '../media/film-making.jpeg'
-import soloSinger from '../media/singing.jpeg'
-import dj from '../media/dj.jpeg'
-import peasantry from '../media/peasantry.jpeg'
-import dance from '../media/dance.jpeg'
 import { NavLink } from 'react-router-dom';
+import cx from 'classnames';
+import styles from '../styles/Home.module.scss';
+import CountdownTimer from '../components/CountdownTimer';
+import HeroVideo from '../media/medium.mp4';
+
+import { ReactComponent as ScheduleIcon } from '../media/icons/schedule.svg';
+import { ReactComponent as ScrollDownIcon } from '../media/icons/down.svg';
+import cosplayImg from '../media/cosplay.jpeg'
+import dance from '../media/dance.jpeg'
+import dj from '../media/dj.jpeg'
+import filmMakingImg from '../media/film-making.jpeg'
+import peasantry from '../media/peasantry.jpeg'
+import soloSinger from '../media/singing.jpeg'
+import Carousel from '../components/Carousel';
+
+import { mainCoordinators } from '../data/data'
 
 const Home = () => {
   useEffect(() => {
-    const heroLogoLetters = document.getElementsByClassName('shouldAnimate');
+    const heroLogoLetters = document.querySelectorAll('.shouldAnimate');
     const coordinatorNames = document.getElementById('coordinatorsList');
-
     const parallaxAnimate = () => {
       // animate hero logo letters
       const offsetTop = heroLogoLetters[0].offsetTop;
@@ -36,11 +38,11 @@ const Home = () => {
     }
 
     if (heroLogoLetters.length > 0) {
-      window.addEventListener('scroll', parallaxAnimate)
+      window.addEventListener('scroll', parallaxAnimate);
     }
 
     return () => {
-      window.removeEventListener('scroll', parallaxAnimate)
+      window.removeEventListener('scroll', parallaxAnimate);
     }
   }, [])
 
@@ -97,7 +99,7 @@ const Home = () => {
           </h2>
         </header>
 
-        <div>
+        <main>
           <div className={styles.hlgallery}>
             <div className={styles.row}>
               <article className={styles.card}>
@@ -179,16 +181,16 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
+        </main>
       </section>
 
-      <section className={cx(styles['home-section'], 'container', styles.coordinators)}>
-        <header className={styles.sectionHeader}>
+      <section className={cx(styles['home-section'], styles.coordinators)}>
+        <header className={cx(styles.sectionHeader, 'container')}>
           <h2 className={styles.heading}>
             <span style={{ marginRight: '3ch' }}>Our</span>
             <span className={styles._ar}>Team</span>
           </h2>
-          <p className={styles.subtitle} id='coordinatorsList'>
+          <p className={cx(styles.subtitle, 'container')} id='coordinatorsList'>
             <span>
               Isabel Moranta Amelie Maia Victor Costa Simon D’haenens Mathieu Ducharme & Jérémy Minié Claudio Guglieri JP Burcks & Mia Pratevito Parker Peterson Adriano Esteves Rhodi Iliadou & Peter Ha Filippo Cipriani Pablo Stanley
             </span>
@@ -197,6 +199,9 @@ const Home = () => {
             </span>
           </p>
         </header>
+        <main>
+          <Carousel cardsList={mainCoordinators} />
+        </main>
       </section>
     </div>
   )

@@ -11,8 +11,10 @@
     z-index: 9999999;
     color: #fff;
     mix-blend-mode: difference;
+    pointer-events: none;
 
     a {
+        pointer-events: auto;
         color: var(--nav-color);
     }
 
@@ -20,7 +22,7 @@
         flex-grow: 1;
         a {
             font-family: 'Roboto', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 500;
             letter-spacing: 0.3ch;
             text-decoration: none;
