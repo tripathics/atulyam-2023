@@ -25,8 +25,7 @@ export const mainCoordinators = [
     name: 'Designing for complex UIs',
     imgSrc: 'https://conference.awwwards.com/uploads/speakers/speaker_vitaly-friedman-sepia-light-960x960.jpg',
     roles: ['Developer', 'UI/UX', 'Nerd']
-  },
-  {
+  }, {
     name: 'Designing for complex UIs',
     imgSrc: 'https://conference.awwwards.com/uploads/speakers/speaker-isabel-moranta-sepia-light-960x960.jpg',
     roles: ['Developer', 'UI/UX', 'Nerd']
@@ -52,3 +51,5 @@ export const mainCoordinators = [
     roles: ['Developer', 'UI/UX', 'Nerd']
   }
 ]
+
+export const eventStartDate = 'May 5, 2023 9:00:00';
