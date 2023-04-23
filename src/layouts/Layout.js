@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 
-const Layout = ({children}) => {
+const Layout = ({children,user}) => {
   const location = useLocation();
 
   useEffect(() => {
