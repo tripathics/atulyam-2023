@@ -38,11 +38,14 @@
         .router-link::after {
             background: var(--nav-color);
         }
-        .router-link.active {
-            color: #f00;
+        .router-link:active::after {
+            transform: scaleX(100%);
         }
         .router-link.active::after {
-            background: #f00;
+            top: 50%;
+        }
+        .router-link.active:hover::after {
+            transform: scaleX(100%);
         }
     }
 }

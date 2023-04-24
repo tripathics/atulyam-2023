@@ -1,0 +1,97 @@
+
+.card {
+    position: relative;
+    border-top-right-radius: 3rem;
+    overflow: hidden;
+    height: 25rem;
+
+    >figure {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        >img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    >figure::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(31, 31, 31, 0) 0%, rgba(31, 31, 31, 0.6) 100%);
+        z-index: 20;
+        transition: opacity .3s cubic-bezier(0.215, 0.61, 0.355, 1);
+        opacity: 1;
+    }
+
+    >figure:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(255, 147, 173, 0) 0%, rgba(255, 147, 173, 0.6) 100%);
+        z-index: 21;
+        transition: opacity .3s cubic-bezier(0.215, 0.61, 0.355, 1);
+        opacity: 0;
+    }
+
+
+    >main {
+        position: absolute;
+        bottom: 0;
+        padding: 1.25rem .9375rem;
+        z-index: 22;
+        color: white;
+        font-family: "Roboto", sans-serif;
+
+        .cardTitle {
+            font-size: 2.2rem;
+            font-weight: 450;
+            letter-spacing: -0.08rem;
+        }
+
+        .cardSubtitle {
+            font-size: 0.75rem;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        height: 18.75rem;
+
+        >main {
+            .cardTitle {
+                font-size: 20px;
+            }
+
+            .cardSubtitle {
+                font-size: 0.75rem;
+            }
+        }
+    }
+
+    @media screen and (min-width: 1000px) {
+        height: 40vw;
+    }
+}
+
+.card:hover {
+    >figure::after {
+        opacity: 1;
+    }
+}

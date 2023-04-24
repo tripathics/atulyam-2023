@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router";
 import React, { useEffect, useState } from "react";
 import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
+import Events from './pages/Events';
 import Profile from "./form/Profile";
 import SignIn from "./form/SignIn";
 import EventRegistration from "./form/EventRegistration";
@@ -42,6 +43,9 @@ function App() {
         <Routes>
           <Route path="/" element={
             <Home />
+          } />
+          <Route path="/events" element={
+            <Events />
           } />
           <Route path="/profile" element={
             // <Profile user={user} loginUser={handleLogin} logoutUser={handleLogout} />
