@@ -1,7 +1,8 @@
 // ----- All sections ----- COMMON
 .home-section {
-    padding-top: 4rem;
-    padding-bottom: 6rem;
+    padding-top: 6rem;
+    padding-bottom: 8rem;
+    min-height: 100vh;
     --heading-font-size: 16vw;
     overflow-x: hidden;
 
@@ -93,36 +94,35 @@
 // 94364 05098
 .highlights {
     .hlgallery {
-        display: flex;
-        flex-direction: column;
+        display: grid;
         gap: 0.625rem;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-areas:
+            'a a b b b c c'
+            'd d e e f f f'
+            'g g h h h i i';
 
-        .row {
-            display: grid;
-            width: 100%;
-            gap: 0.625rem;
-        }
-
-        .row:nth-child(odd) {
-            grid-template-columns: 1fr 1.5fr 1fr;
-        }
-
-        .row:nth-child(even) {
-            grid-template-columns: 1fr 1fr 1.5fr;
-        }
-
+        > :nth-child(1) { grid-area: a; }
+        > :nth-child(2) { grid-area: b; }
+        > :nth-child(3) { grid-area: e; }
+        > :nth-child(4) { grid-area: f; }
+        > :nth-child(5) { grid-area: g; }
+        > :nth-child(6) { grid-area: h; }
+        > :nth-child(7) { grid-area: i; }
         .btn-wrapper {
             height: 18vw;
             min-height: 18.75rem;
         }
 
-
         @media screen and (max-width: 999px) {
-            .row:nth-child(n) {
-                grid-template-columns: 1fr 1fr;
-            }
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-areas:
+                'a b'
+                'e f'
+                'g h'
+                'i n';
 
-            .card.rt {
+            > :nth-child(even) {
                 transform: translate3d(0, 10vw, 0);
             }
 

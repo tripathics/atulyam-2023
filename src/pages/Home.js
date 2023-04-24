@@ -3,14 +3,10 @@ import cx from 'classnames';
 import styles from '../styles/Home.module.scss';
 
 import { ReactComponent as ScheduleIcon } from '../media/icons/schedule.svg';
-import cosplayImg from '../media/cosplay.jpeg'
-import dance from '../media/dance.jpeg'
-import dj from '../media/dj.jpeg'
-import filmMakingImg from '../media/film-making.jpeg'
-import peasantry from '../media/peasantry.jpeg'
-import soloSinger from '../media/singing.jpeg'
 import Carousel from '../components/Carousel';
+import HighlightCard from '../components/HighlightCard';
 
+import { events1 } from '../data/data';
 import { mainCoordinators } from '../data/data'
 import Hero from '../components/Hero';
 
@@ -40,85 +36,14 @@ const Home = () => {
 
         <main>
           <div className={styles.hlgallery}>
-            <div className={styles.row}>
-              <article className={styles.card}>
-                <figure>
-                  <img alt='' src={cosplayImg}/>
-                </figure>
-                <main>
-                  <h3 className={styles.cardTitle}>Cosplay</h3>
-                  <div className={styles.cardSubtitle}>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!
-                  </div>
-                </main>
-              </article>
-              <article className={cx(styles.card, styles.rt)}>
-                <figure>
-                  <img alt='' src={peasantry} />
-                </figure>
-                <main>
-                  <h3 className={styles.cardTitle}>Mr. and Ms. Atulyam</h3>
-                  <div className={styles.cardSubtitle}>
-                    Lorem ipsum dolor sit, amet consectetur adip''isicing elit. Officia est quibusdam vero, placeat a magnam!
-                  </div>
-                </main>
-              </article>
-              <div className={styles.spacer}></div>
-            </div>
-            <div className={styles.row}>
-              <div className={styles.spacer}></div>
-              <article className={styles.card}>
-                <figure><img alt='' src={soloSinger} /></figure>
-                <main>
-                  <h3 className={styles.cardTitle}>Solo singing</h3>
-                  <div className={styles.cardSubtitle}>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!
-                  </div>
-                </main>
-              </article>
-              <article className={cx(styles.card, styles.rt)}>
-                <figure>
-                  <img alt='' src={dj}/>
-                </figure>
-                <main>
-                  <h3 className={styles.cardTitle}>Bollywood Night</h3>
-                  <div className={styles.cardSubtitle}>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!
-                  </div>
-                </main>
-              </article>
-            </div>
-            <div className={styles.row}>
-              <article className={styles.card}>
-                <figure>
-                  <img alt='' src={dance} />
-                </figure>
-                <main>
-                  <h3 className={styles.cardTitle}>Modern Dance</h3>
-                  <div className={styles.cardSubtitle}>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!
-                  </div>
-                </main>
-              </article>
-              <article className={cx(styles.card, styles.rt)}>
-                <figure>
-                  <img alt='' src={filmMakingImg} />
-                </figure>
-                <main>
-                  <h3 className={styles.cardTitle}>Short Film Making</h3>
-                  <div className={styles.cardSubtitle}>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!
-                  </div>
-                </main>
-              </article>
-              <div className={styles['btn-wrapper']}>
+            {events1.filter(event => event.highlight).map(event => <HighlightCard key={event.title} {...event} />)}
+            <div className={styles['btn-wrapper']}>
                 <NavLink to='/events' className='btn'>
                   <span className='btn-subtitle'>Events</span>
                   <span className='btn-text'>Full Event<br/>Schedule</span>
                   <ScheduleIcon />
                 </NavLink>
               </div>
-            </div>
           </div>
         </main>
       </section>
