@@ -30,7 +30,8 @@ body {
 .container {
     padding-left: 1.2rem;
     padding-right: 1.2rem;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
 
     @media screen and (max-width: 700px) {
         padding-left: 0.8rem;
@@ -46,6 +47,47 @@ body {
     position: relative;
     background-color: var(--white1);
 }
+
+header.page-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: calc(var(--nav-height) + 2rem);
+    padding-bottom: 1rem;
+    height: 100vh;
+    --heading-font-size: 16vw;
+
+    .heading {
+        font-family: "Antonio", sans-serif;
+        display: flex;
+        flex-direction: column;
+        font-size: var(--heading-font-size);
+        font-weight: 200;
+        letter-spacing: -0.15ch;
+        line-height: 0.9;
+        text-transform: uppercase;
+        width: 100%;
+        max-width: fit-content;
+        margin: 2rem 0;
+    }
+
+    .subtitle {
+        position: absolute;
+        top: calc(var(--nav-height) + 2rem);
+        right: 1.2rem;
+    }
+
+    @media screen and (max-width: 999px) {
+        --heading-font-size: 20vw;
+    }
+    @media screen and (max-width: 760px) {
+        --heading-font-size: 24vw;
+    }
+    @media screen and (max-width: 700px) {
+        height: 60vh;
+    }
+}  
 
 .link {
     color: black;
