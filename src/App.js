@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Events from './pages/Events';
 import Profile from "./form/Profile";
 import SignIn from "./form/SignIn";
+import AdminComponent from './components/AdminComponent'
 import EventRegistration from "./form/EventRegistration";
 import { BrowserRouter } from "react-router-dom";
 import './styles/index.scss';
@@ -59,6 +60,11 @@ function App() {
           <Route path="/register" element={
             // <EventRegistration user={user}/>
             <ProtectedComponent isAdmin={false} children={<EventRegistration user={user} loginUser={handleLogin} logoutUser={handleLogout} />} />
+          } />
+
+          <Route path="/admin" element={
+            // <EventRegistration user={user}/>
+            <ProtectedComponent isAdmin={false} children={<AdminComponent user={user} loginUser={handleLogin} logoutUser={handleLogout} />} />
           } />
 
         </Routes>
