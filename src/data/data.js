@@ -139,7 +139,7 @@ export const events1 = [
   },
   {
     id: '6',
-    title: 'Chorun Mugli & The Band',
+    title: 'Chorun Mugli & The Tribe',
     figureSrc: '',
     day: 0,
     time: '19:00',
@@ -239,7 +239,7 @@ export const events1 = [
   },
   {
     id: '16',
-    title: 'Bollywood Night',
+    title: 'DJ Night',
     figureSrc: '/media/events/dj.jpeg',
     day: 2,
     time: '',

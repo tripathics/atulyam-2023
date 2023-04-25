@@ -1,20 +1,21 @@
 .alert {
     position: fixed;
-    top: 0;
+    top: calc(var(--nav-height) + 2rem);
     left: 50%;
-    
-
-}
-
-.alert {
+    top: 0;
+    transition: none;
+    min-width: 300px;
+    max-width: calc(100% - 3.2rem);
+ 
     display: flex;
-    align-items: center;
-    padding: 0.8rem 1rem;
+    align-items: flex-start;
+    padding: 0.4rem;
     font-size: 0.875rem;
-    margin: 1rem auto 2rem;
-    border-radius: 4px;
+    border-radius: 0.5rem;
+    background-color: var(--white1);
     font-family: "Open Sans", sans-serif;
-    box-shadow: 0px 1px 3px -2px #000000e6;
+    transform: translate3d(-50%, -101%, 0);
+    border: solid 1px;
 
     .icon {
         display: flex;
@@ -27,20 +28,62 @@
             fill: currentColor;
         }
     }
+
+    .message {
+        flex-grow: 1;
+    }
+
+    .dismiss {
+        position: relative;
+        background-color: transparent;
+        border: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 24px;
+        flex-shrink: 0;
+        transition: background-color 0.2s ease;
+        > svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75%;
+            height: 75%;
+            fill: currentColor;
+        }
+    }
+    .dismiss:hover {
+        background-color: rgba(230, 230, 230, 0.9);
+    }
+    .dismiss:active {
+        background-color: rgba(214, 214, 214, 0.9);
+    }
+    
 }
 .alert.info {
-    color: #0288d1;
-    background-color: rgb(229, 246, 253);
+    color: rgb(1, 67, 97);
+    border: 1px solid #03a9f4;
 }
 .alert.success {
-    color: #2e7d32;
-    background-color: rgb(237, 247, 237);    
+    color: rgb(30, 70, 32);
+    border: 1px solid #4caf50;    
 }
 .alert.warning {
-    color: ;
-    background-color: rgb(255, 244, 229);
+    color: rgb(102, 60, 0);
+    border: 1px solid #ff9800;
 }
 .alert.error {
-    color: #d32f2f;
-    background-color: rgb(253, 237, 237);
+    color: rgb(95, 33, 32);
+    border: 1px solid #ef5350;
+}
+
+.alert.active {
+    transform: translate3d(-50%, var(--nav-height), 0);
+    transition: 0.3s all cubic-bezier(.86,0,.07,.995);
+}
+
+@media screen and (max-width: 550px) {
+    .alert {
+        width: calc(100% - 1.6rem);
+    }
 }

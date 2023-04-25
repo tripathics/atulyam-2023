@@ -39,7 +39,7 @@ const Events = () => {
     return () => {
       window.removeEventListener('scroll', stickEventFigure);
     }
-  }, [])
+  }, [currentDay])
 
   return (
     <div className={styles.events}>

@@ -2,19 +2,11 @@ import React, { useEffect } from 'react'
 import '../styles/form.scss'
 import { useState } from 'react'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
-import { ReactComponent as ErrorIcon } from '../media/icons/error.svg'
-import { ReactComponent as SucesssIcon } from '../media/icons/sucess.svg'
 
-import { auth, db } from "../config/config"
-import { useFetchCollection } from '../hooks/hooks'
+import { db } from "../config/config"
+import Alert from '../components/Alert'
 const Register = ({ user }) => {
   const [collegeStudent, setCollegeStudent] = useState(true);
-
-
-  let id;
-  if (user.user) {
-    id = user.user.uid;
-  }
 
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
@@ -72,19 +64,8 @@ const Register = ({ user }) => {
 
         <div className='formHeading'>Add Profile Details</div>
         <form className='FormComponent' autoComplete="off" onSubmit={updateProfile}>
-          {/* basic information  */}
-          <div className="messages">
-            {errorMsg && <div className='login-msg error'>
-              <div className="icon"><ErrorIcon /></div>
-              {errorMsg}
-            </div>}
-
-            {successMsg && <div className='login-msg success'>
-              <div className="icon">< SucesssIcon /></div>
-              {successMsg}
-            </div>}
-          </div>
-
+          <Alert severity='error' message={errorMsg} handleDismiss={e => {e.preventDefault(); setErrorMsg('')}} />
+          <Alert severity='success' message={successMsg} handleDismiss={e => {e.preventDefault(); setSuccessMsg('')}} />
           <div className='formColumn'>
             <div className='sectionHeading'> Basic Informations</div>
             <div className='FormLabel DoubleInputBox'>
@@ -192,7 +173,7 @@ const Register = ({ user }) => {
             </div>
 
 
-            {collegeStudent == true ? <> <div className='FormLabel'>
+            {collegeStudent === true ? <> <div className='FormLabel'>
               <label htmlFor="rollno">Enter Your RollNo*</label>
               <input required className='halfInput' name="rollno" type="text" id="rollno"></input>
             </div>  </> : <>         <div className='FormLabel'>
