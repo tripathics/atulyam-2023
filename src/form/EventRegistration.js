@@ -20,7 +20,6 @@ const EventRegistration = ({user}) => {
         getDoc(doc(db, 'users', user.user.uid)).then((snap) => {
             if (snap.exists()) {
                 // console.log(snap.data());
-                
                 const fetched = snap.data();
                 setUid(user.user.uid);
                 updateFormData('firstName',fetched.firstName);
@@ -64,10 +63,11 @@ const EventRegistration = ({user}) => {
             TeamSize: ((individualParticipation==true) ? 'Individual' : 'Group'),
             TeamMebers: data.get('teamMembers'),
             college: data.get('collegeName'),
+            isRegister: true,
         }
         console.log(userFormData);
         
-        setDoc(doc(db,userFormData.eventParticipation,id),userFormData)
+        setDoc(doc(db,'registered',id),userFormData)
         .then(()=>{
             setSuccessMsg('Congratulations you have been successfully registered')
             console.log('done')
