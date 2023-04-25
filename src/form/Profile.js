@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import '../styles/form.scss'
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { ReactComponent as ErrorIcon } from '../media/icons/error.svg'
 import { ReactComponent as SucesssIcon } from '../media/icons/sucess.svg'
@@ -9,6 +10,7 @@ import { auth, db } from "../config/config"
 import { useFetchCollection } from '../hooks/hooks'
 const Register = ({ user }) => {
   const [collegeStudent, setCollegeStudent] = useState(true);
+  const history = useNavigate();
 
 
   let id;
@@ -35,12 +37,15 @@ const Register = ({ user }) => {
       gender: data.get('gender'),
       age: data.get('age'),
       course: data.get('course'),
+      userid: user.user.uid,
       graduationYear: data.get('graduationYear'),
       college: (collegeStudent ? "NITAP" : data.get('collegeName'))
     }
     setDoc(doc(db, 'users', user.user.uid), {
       ...userProfile, isProfileComplete: true
     }, { merge: true })
+    setSuccessMsg('User Details Added Sucessfully !')
+    history('/user')
   }
 
   useEffect(() => {

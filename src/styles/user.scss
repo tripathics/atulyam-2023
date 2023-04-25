@@ -1,3 +1,7 @@
+@font-face {
+    font-family: Kathycox;
+    src: url(../fonts/KathyCox.ttf);
+}
 .icon {
     display: flex;
     color: inherit;
@@ -15,6 +19,7 @@
     display: flex;
     flex-wrap: wrap;
     padding: 45px;
+    font-family: Kathycox;
     align-items: flex-start;
     justify-content: space-around;
 }

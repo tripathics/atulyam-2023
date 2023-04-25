@@ -2,14 +2,16 @@ import React from 'react'
 import "../styles/form.scss"
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router'
 import { getDoc, doc, setDoc } from 'firebase/firestore'
 import {auth,db} from '../config/config'
 import { ReactComponent as ErrorIcon } from '../media/icons/error.svg'
 import { ReactComponent as SucesssIcon } from '../media/icons/sucess.svg'
 
 const EventRegistration = ({user}) => {
-    const [individualParticipation,setIndividualParticipation] =  useState(true);
+    const history = useNavigate();
 
+    const [individualParticipation,setIndividualParticipation] =  useState(true);
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
     const [id,setUid] = useState('')
@@ -30,8 +32,6 @@ const EventRegistration = ({user}) => {
                 updateFormData('address',fetched.address);
                 updateFormData('age',fetched.age);
                 updateFormData('gender',fetched.gender);
-                // updateFormData('firstName',fetched.firstName);
-
             } else {
                 console.log('Data does not exist');
             }
@@ -62,6 +62,7 @@ const EventRegistration = ({user}) => {
             TeamSize: ((individualParticipation==true) ? 'Individual' : 'Group'),
             TeamMebers: data.get('teamMembers'),
             college: data.get('collegeName'),
+            userId: user.user.uid,
             isRegister: true,
         }
         
@@ -69,14 +70,13 @@ const EventRegistration = ({user}) => {
         .then(()=>{
             setSuccessMsg('Congratulations you have been successfully registered')
             console.log('done')
+            history('/user')
         })
         .catch((error)=>{
             console.log(error)
         })
     }
  
-
-
   return (
 
     <>

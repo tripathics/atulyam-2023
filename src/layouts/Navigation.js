@@ -5,6 +5,7 @@ import cx from 'classnames';
 const links = [
   { link: '/events', name: 'What\'s on' },
   { link: '/register', name: 'Register' },
+  { link: '/user',name:'Profile'}
 ]
 
 const NavItem = ({ name, link }) => (
