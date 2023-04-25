@@ -4,8 +4,12 @@ import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
 import Events from './pages/Events';
 import Profile from "./form/Profile";
-import SignIn from "./form/SignIn";
-import AdminComponent from './components/AdminComponent'
+// <<<<<<< HEAD
+import SignUp from "./form/SignUp";
+import SignIn from "./pages/SignIn";
+// =======
+// import AdminComponent from './components/AdminComponent'
+// >>>>>>> b38bb00576dff93781496f0cef61c934e4e0309e
 import EventRegistration from "./form/EventRegistration";
 import { BrowserRouter } from "react-router-dom";
 import './styles/index.scss';
@@ -50,7 +54,6 @@ function App() {
             <Events />
           } />
           <Route path="/profile" element={
-            // <Profile user={user} loginUser={handleLogin} logoutUser={handleLogout} />
             <ProtectedComponent isAdmin={false} children={<Profile user={user} loginUser={handleLogin} logoutUser={handleLogout} />} />
           } />
 
@@ -58,18 +61,19 @@ function App() {
             <SignIn user={user} loginUser={handleLogin} logoutUser={handleLogout}  />
           } />
 
+          <Route path="/signup" element={
+            <SignUp user={user} loginUser={handleLogin} logoutUser={handleLogout}  />
+          } />
+
           <Route path="/register" element={
-            // <EventRegistration user={user}/>
             <ProtectedComponent isAdmin={false} children={<EventRegistration user={user} loginUser={handleLogin} logoutUser={handleLogout} />} />
           } />
 
           <Route path="/user" element={
-            // <EventRegistration user={user}/>
             <ProtectedComponent isAdmin={false} children={<UserProfile user={user} loginUser={handleLogin} logoutUser={handleLogout} />} />
           } />
 
           <Route path="/admin" element={
-            // <EventRegistration user={user}/>
             <ProtectedComponent isAdmin={false} children={<AdminComponent user={user} loginUser={handleLogin} logoutUser={handleLogout} />} />
           } />
 

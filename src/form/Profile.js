@@ -9,11 +9,10 @@ import { auth, db } from "../config/config"
 const Register = ({ user }) => {
 
     let id;
-    if(user.user)
-    {
+    if (user.user) {
         id = user.user.uid;
     }
-    
+
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
     console.log(user);
@@ -37,7 +36,7 @@ const Register = ({ user }) => {
             age: data.get('age'),
             course: data.get('course'),
             graduationYear: data.get('Graduationyear'),
-            college: (collegeStudent? "NITAP" : data.get('collegeName'))
+            college: (collegeStudent ? "NITAP" : data.get('collegeName'))
         }
         addProfileDetails(user);
     }
@@ -65,15 +64,15 @@ const Register = ({ user }) => {
                 <form className='FormComponent' autoComplete="off" onSubmit={updateProfile}>
                     {/* basic information  */}
                     <div className="messages">
-                    {errorMsg && <div className='login-msg error'>
-                    <div className="icon"><ErrorIcon /></div>
-                    {errorMsg}
-                    </div>}
+                        {errorMsg && <div className='login-msg error'>
+                            <div className="icon"><ErrorIcon /></div>
+                            {errorMsg}
+                        </div>}
 
-                    {successMsg && <div className='login-msg success'>
-                    <div className="icon">< SucesssIcon/></div>
-                    {successMsg}
-                    </div>}
+                        {successMsg && <div className='login-msg success'>
+                            <div className="icon">< SucesssIcon /></div>
+                            {successMsg}
+                        </div>}
                     </div>
 
                     <div className='formColumn'>
@@ -104,20 +103,20 @@ const Register = ({ user }) => {
 
                         </div>
                         <div className='FormLabel DoubleInputBox' >
-                        <div className='age'>
-                                    <label htmlFor="Course">Gender</label>
-                                    <br />
-                                    <select required className='halfInput' style={{ padding: "4px 12px" }} name="gender" id="gender">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Non-binary">Non-Binary</option>
-                                        <option value="I prefer not to answer">I Prefer not to answer</option>
+                            <div className='age'>
+                                <label htmlFor="Course">Gender</label>
+                                <br />
+                                <select required className='halfInput' style={{ padding: "4px 12px" }} name="gender" id="gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Non-binary">Non-Binary</option>
+                                    <option value="I prefer not to answer">I Prefer not to answer</option>
 
-                                    </select>
-                                </div>
+                                </select>
+                            </div>
 
-                                <div className='FormLabel'>
-                        <div className='year'>
+                            <div className='FormLabel'>
+                                <div className='year'>
                                     <label htmlFor="age">Age</label>
                                     <br />
                                     <select required className='halfInput' style={{ padding: "4px 12px" }} name="age" id="age">
@@ -136,10 +135,10 @@ const Register = ({ user }) => {
 
                                     </select>
                                 </div>
-                        </div>
+                            </div>
                         </div>
 
-                      
+
                         <div className='FormLabel'>
                             <label htmlFor="address">Address*</label>
                             <input required className='halfInput' name="address" type="text" id="address"></input>

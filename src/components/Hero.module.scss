@@ -11,7 +11,9 @@
         .logo {
             text-transform: uppercase;
             font-family: 'Roboto', sans-serif;
-            font-size: 3rem;
+            font-family: 'Antonio', sans-serif;
+            font-weight: 400;
+            font-size: 8rem;
             color: #333;
             height: 100%;
             display: flex;
@@ -21,7 +23,6 @@
 
             >span {
                 will-change: transform;
-                margin-right: 1rem;
             }
 
             >span:last-child {

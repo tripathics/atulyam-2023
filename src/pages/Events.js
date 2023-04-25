@@ -118,7 +118,7 @@ const EventLI = ({ id, title, venue, time, handleHover }) => {
 }
 
 const EventFigure = ({ id, title, figureSrc, isActive = false }) => (
-  <article key={id}
+  figureSrc && <article key={id}
     className={cx(styles['current-figure'], { [styles.active]: isActive })}>
     <figure className={styles['img-wrapper']}>
       <img alt={title} src={figureSrc} />

@@ -18,22 +18,18 @@ const firebaseConfig = {
   measurementId: "G-0WDCGPTG09"
 };
 
-  // firebase.initializeApp(firebaseConfig);
-  // firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
 
-  // variables that it will reaturn after calling import
-  // const auth = firebase.auth()
-  // const fs = firebase.firestore();
-  // const storage= firebase.storage();
+// variables that it will reaturn after calling import
+// const auth = firebase.auth()
+// const fs = firebase.firestore();
+// const storage= firebase.storage();
 
-    // redoing from docs
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const auth = getAuth(app);
-  const googleProvider = auth.googleProvider;
- 
+// redoing from docs
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
-
- export {auth,db,googleProvider}
-  // export {auth,fs}
+export { auth, db }
