@@ -10,7 +10,6 @@ import '../styles/user.scss'
 const UserProfile = ({ user, loginUser, logoutUser })  => {
   const [profiledata,setProfileData] = useState('') 
 
-  console.log('user details',user.user);
   useEffect(() => {
     if (!user) return;
     if (!user.user) return;
@@ -27,9 +26,6 @@ const UserProfile = ({ user, loginUser, logoutUser })  => {
         console.log('An error occured', err)
     })
 }, [user])
-
-console.log(profiledata)
-
 
   return (
     <> 
@@ -63,7 +59,7 @@ console.log(profiledata)
 
         <div> 
         <button className='Registerbtn register'> <a href="/register" className='link'>Register</a></button>
-        <button className='Registerbtn' onClick={logoutUser()}> <a href="" className='link'>Logout</a></button>
+        <button className='Registerbtn' onClick={(e) => {e.preventDefault(); logoutUser()}}> <a href="" className='link'>Logout</a></button>
 
         </div>
       </div>

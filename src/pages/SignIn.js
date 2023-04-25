@@ -56,8 +56,6 @@ const Login = ({ user, loginUser, logoutUser }) => {
     signInWithEmailAndPassword(auth, email, password).then(async (res) => {
       const docSnap = await getDoc(doc(db, 'users', res.user.uid));
       if (docSnap.exists()) {
-        console.log(docSnap.data())
-        console.log(docSnap.data().isProfileComplete === true);
         const authUser = {
           user: res.user,
           isProfileComplete: docSnap.data().isProfileComplete === true,

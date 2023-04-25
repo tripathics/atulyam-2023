@@ -41,9 +41,8 @@ const EventRegistration = ({user}) => {
     }, [user])
 
 
-    function updateFormData(ref,val)
-    {
-        document.getElementById(ref).value =val
+    function updateFormData(ref,val) {
+        document.getElementById(ref).value = val ? val : '';
     }
 
     const handleSubmit =(e)=>{
@@ -65,7 +64,6 @@ const EventRegistration = ({user}) => {
             college: data.get('collegeName'),
             isRegister: true,
         }
-        console.log(userFormData);
         
         setDoc(doc(db,'registered',id),userFormData)
         .then(()=>{
@@ -75,7 +73,6 @@ const EventRegistration = ({user}) => {
         .catch((error)=>{
             console.log(error)
         })
-        
     }
  
 
