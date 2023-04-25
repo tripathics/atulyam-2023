@@ -4,7 +4,8 @@ import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
 import Events from './pages/Events';
 import Profile from "./form/Profile";
-import SignIn from "./form/SignIn";
+import SignUp from "./form/SignUp";
+import SignIn from "./pages/SignIn";
 import EventRegistration from "./form/EventRegistration";
 import { BrowserRouter } from "react-router-dom";
 import './styles/index.scss';
@@ -54,6 +55,10 @@ function App() {
 
           <Route path="/signin" element={
             <SignIn user={user} loginUser={handleLogin} logoutUser={handleLogout}  />
+          } />
+
+          <Route path="/signup" element={
+            <SignUp user={user} loginUser={handleLogin} logoutUser={handleLogout}  />
           } />
 
           <Route path="/register" element={

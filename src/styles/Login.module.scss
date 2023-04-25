@@ -1,0 +1,98 @@
+.login-page {
+    header.header {
+        height: unset;
+    }
+
+    .form-box {
+        .greet-box {
+            .heading {
+                font-size: 1.6rem;
+                color: var(--gray-8);
+                border-bottom: solid 1px rgb(200, 200, 200);
+            }
+            margin-bottom: 2rem;
+        }
+
+        .login-msg {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            font-size: 0.875rem;
+            margin: 1rem auto 2rem;
+            border-radius: 4px;
+            font-family: "Open Sans", sans-serif;
+            box-shadow: 0px 1px 3px -2px #000000e6;
+
+            .icon {
+                display: flex;
+                color: inherit;
+                margin-right: 0.8rem;
+
+                svg {
+                    width: 1.375rem;
+                    height: 1.375rem;
+                    fill: currentColor;
+                }
+            }
+        }
+
+        .login-msg.success {
+            color: #2e7d32;
+            background-color: rgb(237, 247, 237);
+        }
+
+        .login-msg.error {
+            color: #d32f2f;
+            background-color: rgb(253, 237, 237);
+        }
+
+        .login-form {
+            padding: 2.5rem 0 4rem;
+            max-width: 800px;
+
+            .login-fields {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+
+                .login-field {
+                    flex: 1;
+                }
+            }
+
+            .login-field {
+                position: relative;
+                margin: 0 0 1.6rem;
+                overflow: hidden;
+
+                input {
+                    font-family: 'Roboto', sans-serif;
+                    position: relative;
+                    background-color: transparent;
+                    padding: 0.8rem 0;
+                    border: none;
+                    border-bottom: solid 1px #01020433;
+                    outline: none;
+                    width: 100%;
+                    font-size: 1rem;
+                    line-height: 1.2;
+                }
+
+                input:focus {
+                    border-bottom: solid 1px #153964;
+                }
+            }
+
+            .btns-wrapper {
+                display: flex;
+                flex-direction: row;
+                height: 6rem;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+            .btn-wrapper {
+                height: 4rem;   
+            }
+        }
+    }
+}
