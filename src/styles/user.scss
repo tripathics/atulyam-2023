@@ -1,0 +1,40 @@
+.icon {
+    display: flex;
+    color: inherit;
+    margin-right: 0.8rem;
+
+    svg {
+        width: 2rem;
+        height: 2rem;
+        fill: currentColor;
+    }
+}
+
+.box 
+{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 45px;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.Registerbtn
+{
+    width: 100px;
+    font-size: small;
+    padding:8px;
+    .link {
+        color:white;
+    }
+}
+.register
+{
+    background-color: rgb(23, 173, 23);
+    color:white;
+}
+.titleContainer 
+{
+    color:#9b9ea0;
+    font-size: 0.6rem;
+}

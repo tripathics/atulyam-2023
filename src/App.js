@@ -9,6 +9,7 @@ import AdminComponent from './components/AdminComponent'
 import EventRegistration from "./form/EventRegistration";
 import { BrowserRouter } from "react-router-dom";
 import './styles/index.scss';
+import  UserProfile  from "./pages/UserProfile";
 import ProtectedComponent from "./components/ProtectedRoute";
 
 
@@ -60,6 +61,11 @@ function App() {
           <Route path="/register" element={
             // <EventRegistration user={user}/>
             <ProtectedComponent isAdmin={false} children={<EventRegistration user={user} loginUser={handleLogin} logoutUser={handleLogout} />} />
+          } />
+
+          <Route path="/user" element={
+            // <EventRegistration user={user}/>
+            <ProtectedComponent isAdmin={false} children={<UserProfile user={user} loginUser={handleLogin} logoutUser={handleLogout} />} />
           } />
 
           <Route path="/admin" element={

@@ -192,20 +192,7 @@ const EventRegistration = ({user}) => {
 
                 </div>
                 
-                
-                <div className='FormLabel DoubleInputBox'> 
-                    <div>
-                    <label  htmlFor="teamName">Team Name* </label> 
-                    <br/>
-                    <input required className='halfInput' type="text" name="teamName" id="teamName" />
-                    </div>
-                    <div>
-                    <label htmlFor="teamLeaderName">Team Leaders Name*</label>
-                    <br/>
-                    <input required className='halfInput' type="text" name="teamLeader" id="teamLeader"></input>
-                    </div>
-                </div> 
-
+          
        
  
                 <div className='FormLabel'> 
@@ -239,6 +226,21 @@ const EventRegistration = ({user}) => {
              
             
                 {individualParticipation ==false && <>
+
+                    
+                <div className='FormLabel DoubleInputBox'> 
+                <div>
+                <label  htmlFor="teamName">Team Name* </label> 
+                <br/>
+                <input required className='halfInput' type="text" name="teamName" id="teamName" />
+                </div>
+                <div>
+                <label htmlFor="teamLeaderName">Team Leaders Name*</label>
+                <br/>
+                <input required className='halfInput' type="text" name="teamLeader" id="teamLeader"></input>
+                </div>
+            </div> 
+
                 <div className='FormLabel'>
                     <label htmlFor="collegeName">Team Members Details*</label>
                     <input required className='halfInput'  type="text" name="teamMembers" id="teamMembers"></input>

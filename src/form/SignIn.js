@@ -72,7 +72,7 @@ const SignUpWithGoogle =()=>{
 });
 }
 useEffect(() => {
-  if (user.user) history('/');
+  if (user.user) history('/profile');
 })
  
   return (
