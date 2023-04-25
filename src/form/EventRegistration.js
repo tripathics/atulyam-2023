@@ -8,11 +8,13 @@ import { db } from '../config/config'
 import Alert from '../components/Alert';
 
 const EventRegistration = ({ user }) => {
-  const [individualParticipation, setIndividualParticipation] = useState(true);
+  const history = useNavigate();
 
+  const [individualParticipation, setIndividualParticipation] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
   const [id, setUid] = useState('')
+
   useEffect(() => {
     if (!user) return;
     if (!user.user) return;
@@ -62,14 +64,14 @@ const EventRegistration = ({ user }) => {
       TeamSize: ((individualParticipation === true) ? 'Individual' : 'Group'),
       TeamMebers: data.get('teamMembers'),
       college: data.get('collegeName'),
-            userId: user.user.uid,
+      userId: user.user.uid,
       isRegister: true,
     }
 
     setDoc(doc(db, 'registered', id), userFormData)
       .then(() => {
-        setSuccessMsg('Congratulations you have been successfully registered')
-        history('/user')
+        setSuccessMsg('Congratulations you have been successfully registered for the event!');
+        history('/user');
       })
       .catch((error) => {
         console.log(error)

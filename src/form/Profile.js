@@ -1,23 +1,26 @@
 import React, { useEffect } from 'react'
 import '../styles/form.scss'
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
+import { updateProfile as firebaseUpdateProfile } from 'firebase/auth'
 
 import { db } from "../config/config"
 import Alert from '../components/Alert'
 const Register = ({ user }) => {
-  const [collegeStudent, setCollegeStudent] = useState(true);
   const history = useNavigate();
+  const location = useLocation();
 
+  const [collegeStudent, setCollegeStudent] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
-  console.log(user);
+
   const updateProfile = (e) => {
     e.preventDefault();
     const currentTime = new Date().getTime()
 
     const data = new FormData(e.currentTarget);
+    const displayName = data.get('firstName');
     const userProfile = {
       created: new Date(currentTime).toLocaleString('en-IN', { dateStyle: "medium", timeStyle: "short", }),
       firstName: data.get('firstName'),
@@ -33,18 +36,32 @@ const Register = ({ user }) => {
       graduationYear: data.get('graduationYear'),
       college: (collegeStudent ? "NITAP" : data.get('collegeName'))
     }
-    setDoc(doc(db, 'users', user.user.uid), {
-      ...userProfile, isProfileComplete: true
-    }, { merge: true })
-    setSuccessMsg('User Details Added Sucessfully !')
-    history('/user')
+
+    firebaseUpdateProfile(user.user, { displayName: displayName })
+    .then(() => {
+      return setDoc(doc(db, 'users', user.user.uid), {
+        ...userProfile, isProfileComplete: true
+      }, { merge: true })
+    })
+    .then(() => {
+      setSuccessMsg('Profile updated successfully')
+
+      if (location.state) {
+        if (location.state.to) {
+          return history(location.state.to);
+        }
+      }
+      history('/user')
+    })
+    .catch(err => {
+      setErrorMsg(err.message);
+    })    
   }
 
   useEffect(() => {
-    if (!user) return;
     if (!user.user) return;
-
     function updateFormData(id,val) {
+        if (document.getElementById(id) === null) console.log(id)
         document.getElementById(id).value = val ? val : '';
     }
 
@@ -55,7 +72,7 @@ const Register = ({ user }) => {
       updateFormData('lastName',data.lastName);
       updateFormData('email',data.email);
       updateFormData('contact',data.contact);
-      updateFormData('collegeName',data.college);
+      if (!collegeStudent) updateFormData('collegeName',data.college);
       updateFormData('address',data.address);
       updateFormData('age',data.age);
       updateFormData('gender',data.gender);

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import { auth, db } from '../config/config'
 import { doc, setDoc } from 'firebase/firestore';
-import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth'
 
 import { ReactComponent as SpinnerIcon } from '../media/icons/spinner.svg'
 import { ReactComponent as GoogleIcon } from '../media/icons/google-g.svg'
@@ -36,28 +36,27 @@ const SignIn = ({ user, loginUser, logoutUser }) => {
       return;
     }
 
-    let user = null;
     createUserWithEmailAndPassword(auth, email, password)
       .then((credential) => {
-        user = credential.user;
-        loginUser(user);
-
-        return updateProfile(credential.user, {
-          displayName: email
+        const authUser = {
+          user: credential.user,
+          admin: false,
+          isProfileComplete: false
+        }
+        loginUser(authUser);
+        return setDoc(doc(db, 'users', authUser.user.uid), {
+          email: email
         })
       })
       .then(() => {
-        return setDoc(doc(db, 'users', user.uid), {
-          email: email
-        })
-      }).then(() => {
         setSuccessMsg('Signup Successfull.');
         resetForm();
         setErrorMsg('');
         setTimeout(() => {
-          history('/profile');
+          history('/profile', {
+            state: { to: '/register' }
+          });
         }, 500);
-
       }).catch((error) => {
         setLoading(false);
         setErrorMsg(error.message);
@@ -106,7 +105,7 @@ const SignIn = ({ user, loginUser, logoutUser }) => {
 
   useEffect(() => {
     if (user.user) history('/');
-  })
+  }, [])
 
   return (
     <div className={styles['login-page']}>
@@ -116,8 +115,8 @@ const SignIn = ({ user, loginUser, logoutUser }) => {
         </header>
         <div className={styles['form-box']}>
 
-          <Alert message={successMsg} severity='success' handleDismiss={(e) => {e.preventDefault(); setSuccessMsg('')}} />
-          <Alert message={errorMsg} severity='error' handleDismiss={(e) => {e.preventDefault(); setErrorMsg('')}} />
+          <Alert message={successMsg} severity='success' handleDismiss={(e) => { e.preventDefault(); setSuccessMsg('') }} />
+          <Alert message={errorMsg} severity='error' handleDismiss={(e) => { e.preventDefault(); setErrorMsg('') }} />
 
           <form className={styles['login-form']} onSubmit={handleSignUp}>
             <div className={cx(styles['login-field'], styles.email)}>

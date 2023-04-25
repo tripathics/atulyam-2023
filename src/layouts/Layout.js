@@ -33,7 +33,7 @@ const Layout = ({children,user}) => {
 
   return (
     <div className="__layout">
-      <Navigation />
+      <Navigation user={user.user} />
       <main className="page">
         {children}
       </main>
