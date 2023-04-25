@@ -2,6 +2,7 @@ import React from 'react'
 import "../styles/form.scss"
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router'
 import { getDoc, doc, setDoc } from 'firebase/firestore'
 import { db } from '../config/config'
 import Alert from '../components/Alert';
@@ -61,20 +62,20 @@ const EventRegistration = ({ user }) => {
       TeamSize: ((individualParticipation === true) ? 'Individual' : 'Group'),
       TeamMebers: data.get('teamMembers'),
       college: data.get('collegeName'),
+            userId: user.user.uid,
       isRegister: true,
     }
 
     setDoc(doc(db, 'registered', id), userFormData)
       .then(() => {
         setSuccessMsg('Congratulations you have been successfully registered')
-        console.log('done')
+        history('/user')
       })
       .catch((error) => {
         console.log(error)
+        setErrorMsg(error.message);
       })
   }
-
-
 
   return (
     <div className='MainFormComponent container'>
