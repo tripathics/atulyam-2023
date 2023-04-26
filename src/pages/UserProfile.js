@@ -90,7 +90,7 @@ const UserProfile = ({ user, loginUser, logoutUser }) => {
             </NavLink>
           </div>
           <div className={cx(styles['header-btn-wrapper'])}>
-            <NavLink to='/profile' className='btn'>
+            <NavLink to='/update-profile' className='btn'>
               <span className='btn-subtitle'>Need changes ?</span>
               <span className='btn-text'>Update<br />profile</span>
             </NavLink>

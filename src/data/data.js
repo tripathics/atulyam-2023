@@ -48,11 +48,11 @@ export const mainCoordinators = [
   {
     name: 'Joni Nomuk',
     imgSrc: '/media/coordinators/joni.jpg',
-    roles: ['Chief Coordinator Atulyam\'23']
+    roles: ['Chief coordinator Atulyam\'23']
   }, {
-    name: 'Designing for complex UIs',
-    imgSrc: 'https://conference.awwwards.com/uploads/speakers/speaker-isabel-moranta-sepia-light-960x960.jpg',
-    roles: ['Developer', 'UI/UX', 'Nerd']
+    name: 'Nich Talo',
+    imgSrc: '/media/coordinators/talo.jpg',
+    roles: ['Events coordinator']
   }, {
     name: 'Designing for complex UIs',
     imgSrc: 'https://conference.awwwards.com/uploads/speakers/speaker-filippo-cipriani-sepia-light-960x960.jpg',
@@ -88,16 +88,6 @@ export const events1 = [
     highlight: false,
   },
   {
-    id: '1',
-    title: 'Traditional Dance',
-    figureSrc: '/media/events/dance.jpeg',
-    day: 0,
-    time: '11:15',
-    venue: 'Pablo Stanley',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
-    highlight: true
-  },
-  {
     id: '2',
     title: 'Short Film Making',
     figureSrc: '/media/events/film-making.jpeg',
@@ -106,6 +96,16 @@ export const events1 = [
     venue: 'Pablo Stanley',
     desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
     highlight: true
+  },
+  {
+    id: '1',
+    title: 'Traditional Dance',
+    figureSrc: '/media/events/dance.jpeg',
+    day: 0,
+    time: '11:15',
+    venue: 'Pablo Stanley',
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
+    highlight: false
   },
   {
     id: '3',

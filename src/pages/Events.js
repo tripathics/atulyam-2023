@@ -55,7 +55,7 @@ const Events = () => {
           </NavLink>
         </div>
         <div className={cx('subtitle', styles['header-subtitle'])}>
-          <h2>May.5-7</h2>
+          <h2>May.4-6</h2>
           <div>2023</div>
         </div>
       </header>

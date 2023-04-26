@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router'
 import { getDoc, doc, setDoc } from 'firebase/firestore'
 import { db } from '../config/config'
 import Alert from '../components/Alert';
-import styles from '../styles/Register.module.scss';
+import styles from '../styles/Form.module.scss';
 import cx from 'classnames';
 import { events1 } from '../data/data';
 import { ReactComponent as SpinnerIcon } from '../media/icons/spinner.svg'
@@ -14,7 +14,7 @@ import { ReactComponent as SpinnerIcon } from '../media/icons/spinner.svg'
 const TextInputField = ({ val = '', title = '', pattern = '.*', setVal, name, placeholder, type = 'text', attrs = {} }) => (
   <div className={styles['form-field']}>
     <label htmlFor={name} data-name={placeholder} className={cx(
-      { [styles.filled]: val.length }
+      { [styles.filled]: val }
     )}>
       <input pattern={pattern} title={title} type={type} required name={name} id={name} value={val} {...attrs} onChange={(e) => { setVal(e.target.value) }} />
     </label>
@@ -46,15 +46,14 @@ const Register = ({ user }) => {
     setLoading(true);
     getDoc(doc(db, 'users', user.user.uid)).then((snap) => {
       if (snap.exists()) {
-        // console.log(snap.data());
         const fetched = snap.data();
         setUid(user.user.uid);
-        setFirstName(fetched.firstName);
-        setLastName(fetched.lastName);
-        setEmail(fetched.email);
-        setContact(fetched.contact)
-        setCollegeName(fetched.college)
-        setAge(fetched.age)
+        setFirstName(fetched.firstName ? fetched.firstName : '');
+        setLastName(fetched.lastName ? fetched.lastName : '');
+        setEmail(fetched.email ? fetched.email : '');
+        setContact(fetched.contact ? fetched.contact : '')
+        setCollegeName(fetched.college ? fetched.college : '')
+        setAge(fetched.age ? fetched.age : '')
         updateFormData('gender', fetched.gender);
         updateFormData('address', fetched.address);
         updateFormData('gender', fetched.gender);
@@ -110,12 +109,12 @@ const Register = ({ user }) => {
 
   useEffect(() => {
     if (!user.isProfileComplete) {
-      history('/profile');
+      history('/update-profile');
     }
   }, [])
 
   return (
-    <div className={styles.register}>
+    <div className={styles['form-page']}>
       <div className='container'>
         <header className={cx('page-header', 'form-header')}>
           <h2 className='heading'>Register for events</h2>
@@ -130,7 +129,7 @@ const Register = ({ user }) => {
               <TextInputField name={'firstName'} placeholder={'Last name *'} val={lastName} setVal={setLastName} />
             </div>
             <div className={styles['form-fields']}>
-              <TextInputField type='email' name={'email'} placeholder={'Email *'} val={email} setVal={setEmail} />
+              <TextInputField type='email' name={'email'} placeholder={'Email *'} val={email} attrs={{ disabled: true }} />
               <TextInputField type='tel' pattern="[6-9]{1}[0-9]{9}" title='Enter a 10 digit number' name={'contact'} placeholder={'Whatsapp number *'} val={contact} setVal={setContact} />
             </div>
             <div className={styles['form-fields']}>
@@ -145,17 +144,17 @@ const Register = ({ user }) => {
               </div>
               <TextInputField type='number' name={'age'} attrs={{ min: 15, max: 100 }} placeholder={'Age *'} val={age} setVal={setAge} />
             </div>
-            <TextInputField name={'collegeName'} placeholder={'College Name *'} val={collegeName} setVal={setCollegeName} />
+            <TextInputField name={'collegeName'} placeholder={'College Name *'} val={collegeName} attrs={{ disabled: true }} />
             <div className={cx(styles['form-field'])}>
               <label htmlFor='address'>Address *</label>
               <textarea placeholder='Enter your address' title='Address' required name='address' id='address' />
             </div>
             <div className={cx(styles['form-field'])}>
               <label htmlFor='events'>Event</label>
-              <select required name="events" id="events" defaultChecked>
-                <option disabled="disabled" selected="true" value="">Select an event to participate</option>
+              <select required name="events" id="events" defaultValue={""} defaultChecked>
+                <option disabled="disabled" value="">Select an event to participate</option>
                 {events1.filter(event => event.isRegistrationOpen).map(event => (
-                  <option value={event.id}>{event.title}</option>
+                  <option key={event.id} value={event.id}>{event.title}</option>
                 ))}
               </select>
             </div>
@@ -164,11 +163,11 @@ const Register = ({ user }) => {
               <label htmlFor='Individual'>Are you participating in a team? *</label>
               <div className={styles['radio-group']}>
                 <div className={styles['radio-option']}>
-                  <input className={styles.radio} onChange={event => setIndividualParticipation(true)} defaultChecked id="option-1" type="radio" name="options" />
+                  <input checked={individualParticipation === true} className={styles.radio} onChange={event => setIndividualParticipation(true)} defaultChecked id="option-1" type="radio" name="options" />
                   <label className={styles['radio-label']} htmlFor='No'>No</label>
                 </div>
                 <div className={styles['radio-option']}>
-                  <input className={styles.radio} onChange={event => setIndividualParticipation(false)} id="option-2" type="radio" name="options" />
+                  <input checked={individualParticipation === false} className={styles.radio} onChange={event => setIndividualParticipation(false)} id="option-2" type="radio" name="options" />
                   <label className={styles['radio-label']} htmlFor='Yes'>Yes</label>
                 </div>
               </div>

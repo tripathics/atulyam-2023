@@ -6,7 +6,7 @@ const links = [
   { link: '/', name: 'Home', onlyMobile: true },
   { link: '/events', name: 'What\'s on' },
   { link: '/register', name: 'Register' },
-  { link: '/user',name:'Profile', auth: true}
+  { link: '/user', name:'Profile', auth: true}
 ]
 
 const NavItem = ({ name, link, handleClick }) => (

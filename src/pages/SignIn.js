@@ -79,7 +79,7 @@ const Login = ({ user, loginUser, logoutUser }) => {
     if (user.isProfileComplete) {
       history('/register');
     } else {
-      history('/profile');
+      history('/update-profile');
     }
   }
 
