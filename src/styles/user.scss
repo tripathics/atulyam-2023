@@ -15,12 +15,17 @@
 {
     display: flex;
     flex-wrap: wrap;
-    padding: 45px;
+    padding-top: 45px;
+    justify-content: space-around;
     font-family: 'Antonio', sans-serif;
     align-items: flex-start;
     justify-content: space-around;
 }
 
+.profile 
+{
+    line-height: 2rem;
+}
 .Registerbtn
 {
     width: 100px;
@@ -38,7 +43,7 @@
 .titleContainer 
 {
     color:#9b9ea0;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
 }
 .btnComponent
 {
@@ -52,3 +57,49 @@
     width:300px;
 }
  
+@media screen and (max-width:1000px)
+{
+    .box 
+    {
+        column-gap: 20px;
+        row-gap:40px;
+    }
+    .centerItem 
+    {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width:600px)
+{
+    .box 
+    {   
+        column-gap: 20px;
+        row-gap:40px;
+    }
+
+
+
+    .buttonClass
+    {
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width:496px)
+{
+    .box 
+    {   
+        column-gap: 20px;
+        row-gap:40px;
+    }
+
+}
+.buttonClass
+{   display: flex;
+    padding-top:10px;
+    padding-bottom: 10px;
+    align-items: center;
+    gap:20px;
+}
