@@ -46,13 +46,9 @@ export const coordinators = [
 
 export const mainCoordinators = [
   {
-    name: 'Joni Nomuk',
-    imgSrc: '/media/coordinators/joni.jpg',
-    roles: ['Chief coordinator Atulyam\'23']
-  }, {
-    name: 'Nich Talo',
-    imgSrc: '/media/coordinators/talo.jpg',
-    roles: ['Events coordinator']
+    name: 'Designing for complex UIs',
+    imgSrc: 'https://conference.awwwards.com/uploads/workshops/Vitaly-retocada1-sepia-light-834x500.jpg',
+    roles: ['Developer', 'UI/UX', 'Nerd']
   }, {
     name: 'Designing for complex UIs',
     imgSrc: 'https://conference.awwwards.com/uploads/speakers/speaker-filippo-cipriani-sepia-light-960x960.jpg',
@@ -62,9 +58,13 @@ export const mainCoordinators = [
     imgSrc: 'https://conference.awwwards.com/uploads/speakers/speaker-victor-costa-sepia-light-960x960.jpg',
     roles: ['Developer', 'UI/UX', 'Nerd']
   }, {
-    name: 'Designing for complex UIs',
-    imgSrc: 'https://conference.awwwards.com/uploads/workshops/Vitaly-retocada1-sepia-light-834x500.jpg',
-    roles: ['Developer', 'UI/UX', 'Nerd']
+    name: 'Joni Nomuk',
+    imgSrc: '/media/coordinators/joni.jpg',
+    roles: ['Chief coordinator Atulyam\'23']
+  }, {
+    name: 'Nich Talo',
+    imgSrc: '/media/coordinators/talo.jpg',
+    roles: ['Events Coordinator']
   }, {
     name: 'Designing for complex UIs',
     imgSrc: 'https://conference.awwwards.com/uploads/workshops/Vitaly-retocada1-sepia-light-834x500.jpg',
@@ -206,7 +206,8 @@ export const events1 = [
     venue: 'Pablo Stanley',
     desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
     highlight: true,
-    isRegistrationOpen: true
+    isRegistrationOpen: true,
+    solo: true
   },
   {
     id: '12',
@@ -216,7 +217,7 @@ export const events1 = [
     time: '18:00',
     venue: 'Pablo Stanley',
     desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
-    highlight: false
+    highlight: false,
   },
   {
     id: '13',
