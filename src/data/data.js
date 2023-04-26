@@ -205,7 +205,8 @@ export const events1 = [
     time: '14:30',
     venue: 'Pablo Stanley',
     desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
-    highlight: true
+    highlight: true,
+    isRegistrationOpen: true
   },
   {
     id: '12',

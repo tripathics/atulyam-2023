@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
 import Events from './pages/Events';
+import UpdateProfile from "./pages/UpdateProfile";
+import Register from "./pages/Register";
+
 import Profile from "./form/Profile";
 import SignUp from "./form/SignUp";
 import SignIn from "./pages/SignIn";
@@ -27,9 +30,9 @@ function App() {
       .then(() => {
         setAlertMsg('Signed out!')
       })
-      .catch((err) => { 
+      .catch((err) => {
         setAlertMsg(err.message);
-        setAlertSeverity('error'); 
+        setAlertSeverity('error');
       });
   }
 
@@ -45,22 +48,33 @@ function App() {
       <Layout user={authUser}>
         {alertSeverity ? <Alert message={alertMsg} /> : <Alert message={alertMsg} severity={alertSeverity} />}
         <Routes>
-          <Route path="/" element={ <Home /> } />
+          <Route path="/" element={<Home />} />
           <Route path="/events" element={<Events />} />
           <Route path="/profile" element={
             <ProtectedComponent isAdmin={false}
-              children={ 
+              children={
                 <Profile updateProfile={updateAuthUserAttr} checkingStatus={checkingStatus} user={authUser} logoutUser={handleLogout} />
               } />
           } />
 
-          <Route path="/signin" element={ <SignIn user={authUser} logoutUser={handleLogout} /> } />
+          <Route path="/register"
+            element={<ProtectedComponent
+              isAdmin={false}
+              children={<Register user={authUser} />}
+            />}
+          />
+          <Route path="/update-profile"
+            element={<ProtectedComponent
+              isAdmin={false}
+              children={<UpdateProfile updateProfile={updateAuthUserAttr} user={authUser} />}
+            />}
+          />
+          <Route path="/signin" element={<SignIn user={authUser} logoutUser={handleLogout} />} />
+          <Route path="/signup" element={<SignUp user={authUser} logoutUser={handleLogout} />} />
 
-          <Route path="/signup" element={ <SignUp user={authUser} logoutUser={handleLogout} /> } />
-
-          <Route path="/register" element={
+          {/* <Route path="/register" element={
             <ProtectedComponent isAdmin={false} children={<EventRegistration user={authUser} />} />
-          } />
+          } /> */}
 
           <Route path="/user" element={
             <ProtectedComponent isAdmin={false} children={<UserProfile user={authUser} logoutUser={handleLogout} />} />

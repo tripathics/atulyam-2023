@@ -62,7 +62,10 @@ header.page-header {
     padding-top: calc(var(--nav-height) + 2rem);
     padding-bottom: 1rem;
     height: 100vh;
-    --heading-font-size: 16vw;
+
+    h1.heading {
+        --heading-font-size: 16vw;
+    }
 
     .heading {
         font-family: "Antonio", sans-serif;
@@ -93,7 +96,15 @@ header.page-header {
     @media screen and (max-width: 700px) {
         height: 60vh;
     }
-}  
+}
+.page-header.form-header {
+    height: unset;
+    --heading-font-size: 10vw;
+
+    .heading {
+        margin: 0;
+    }
+}
 
 .link {
     color: black;
