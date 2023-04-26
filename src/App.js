@@ -5,12 +5,8 @@ import Home from "./pages/Home";
 import Events from './pages/Events';
 import UpdateProfile from "./pages/UpdateProfile";
 import Register from "./pages/Register";
-
-import Profile from "./form/Profile";
-import SignUp from "./form/SignUp";
+import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
-import AdminComponent from './components/AdminComponent';
-import EventRegistration from "./form/EventRegistration";
 import { BrowserRouter } from "react-router-dom";
 import './styles/index.scss';
 import UserProfile from "./pages/UserProfile";
@@ -50,13 +46,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/profile" element={
-            <ProtectedComponent isAdmin={false}
-              children={
-                <Profile updateProfile={updateAuthUserAttr} checkingStatus={checkingStatus} user={authUser} logoutUser={handleLogout} />
-              } />
-          } />
-
           <Route path="/register"
             element={<ProtectedComponent
               isAdmin={false}
@@ -71,19 +60,9 @@ function App() {
           />
           <Route path="/signin" element={<SignIn user={authUser} logoutUser={handleLogout} />} />
           <Route path="/signup" element={<SignUp user={authUser} logoutUser={handleLogout} />} />
-
-          {/* <Route path="/register" element={
-            <ProtectedComponent isAdmin={false} children={<EventRegistration user={authUser} />} />
-          } /> */}
-
           <Route path="/user" element={
             <ProtectedComponent isAdmin={false} children={<UserProfile user={authUser} logoutUser={handleLogout} />} />
           } />
-
-          <Route path="/admin" element={
-            <ProtectedComponent isAdmin={false} children={<AdminComponent user={authUser} logoutUser={handleLogout} />} />
-          } />
-
         </Routes>
       </Layout>
     </BrowserRouter>

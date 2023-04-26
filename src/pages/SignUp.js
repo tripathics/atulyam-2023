@@ -13,7 +13,7 @@ import styles from '../styles/Login.module.scss';
 import cx from 'classnames'
 import Alert from '../components/Alert';
 
-const SignIn = ({ user, loginUser, logoutUser }) => {
+const SignIn = ({ user }) => {
   const history = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -49,7 +49,7 @@ const SignIn = ({ user, loginUser, logoutUser }) => {
         })
       })
       .then(() => {
-        setSuccessMsg('Signup Successfull.');
+        setSuccessMsg('Signup Successful');
         resetForm();
         setErrorMsg('');
         setTimeout(() => {
@@ -62,39 +62,34 @@ const SignIn = ({ user, loginUser, logoutUser }) => {
         setErrorMsg(error.message);
         console.error(error);
       })
+      .finally(() => {
+        setLoading(false);
+      })
   }
 
-  // TODO: fetch user data from google API
   const SignUpWithGoogle = () => {
     setLoading(true);
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-
-        console.log(result.user);
-        console.log(credential);
-        console.log(token);
-        // setSignedUp(true);
-        // updateSignInRoutes();
+        return setDoc(doc(db, 'users', result.user.uid), {
+          email: result.user.email
+        });
+      }).then(() => {
+        setSuccessMsg('Signup Successful');
+        resetForm();
+        setErrorMsg('');
+        setTimeout(() => {
+          history('/update-profile')
+        }, 500);
       }).catch((err) => {
-        // Handle Errors here.
-        // const errorCode = err.code;
-        // const errorMessage = err.message;
-        // // The email of the user's account used.
-        // const email = err.customData.email;
-        // // The AuthCredential type that was used.
-        // const credential = GoogleAuthProvider.credentialFromError(err);
-
         setLoading(false);
         setErrorMsg(err.message);
         resetForm();
-        logoutUser();
+      }).finally(() => {
         setLoading(false);
-      });
+      })
   }
 
   const resetForm = () => {

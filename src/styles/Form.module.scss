@@ -21,6 +21,7 @@
 
                 label {
                     font-size: 0.8rem;
+                    color: #333;
                 }
 
                 input,
@@ -53,11 +54,13 @@
                     top: 50%;
                     transform: translate3d(0, -50%, 0);
                     font: inherit;
+                    font-size: 1rem;
                     transition: all 0.1s;
                 }
 
                 label.filled::before,
                 label:focus-within::before {
+                    color: var(--primary);
                     font-size: 0.75rem;
                     transform: translate3d(0, -210%, 0);
                 }

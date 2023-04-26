@@ -61,8 +61,6 @@ const UpdateProfile = ({ user, updateProfile }) => {
       college: (isCollegeStudent ? "NITAP" : data.get('collegeName'))
     }
 
-    console.log(userProfile);
-
     firebaseUpdateProfile(user.user, { displayName: displayName })
       .then(() => {
         return setDoc(doc(db, 'users', user.user.uid), {
@@ -71,8 +69,6 @@ const UpdateProfile = ({ user, updateProfile }) => {
       })
       .then(() => {
         setSuccessMsg('Profile updated successfully')
-        console.log('Call update profile');
-
         if (!user.isProfileComplete) {
           updateProfile({ isProfileComplete: true });
           history('/register');
@@ -95,7 +91,6 @@ const UpdateProfile = ({ user, updateProfile }) => {
     getDoc(doc(db, 'users', user.user.uid)).then(snap => {
       if (!snap.exists()) return;
       const data = snap.data();
-      console.log(data);
       setFirstName(data.firstName ? data.firstName : '');
       setLastName(data.lastName ? data.lastName : '');
       setEmail(data.email ? data.email : '');
@@ -104,10 +99,7 @@ const UpdateProfile = ({ user, updateProfile }) => {
       setAge(data.age ? data.age : '');
       setRollNo(data.rollno ? data.rollno : '');
       setGradYear(data.graduationYear ? data.graduationYear : '');
-      
-      if (data.nitapian !== null) {
-        setIsCollegeStudent(data.nitapian);
-      }
+      if (data.nitapian === false) setIsCollegeStudent(false);
       updateFormData('address', data.address);
       updateFormData('gender', data.gender);
     })
@@ -149,7 +141,7 @@ const UpdateProfile = ({ user, updateProfile }) => {
               <label htmlFor='Individual'>Are you a student of NITAP? *</label>
               <div className={styles['radio-group']}>
                 <div className={styles['radio-option']}>
-                  <input className={styles.radio} onChange={event => setIsCollegeStudent(true)} defaultChecked id="option-1" checked={isCollegeStudent === true} type="radio" name="options" />
+                  <input className={styles.radio} onChange={event => setIsCollegeStudent(true)} id="option-1" checked={isCollegeStudent === true} type="radio" name="options" />
                   <label className={styles['radio-label']} htmlFor='Yes'>Yes</label>
                 </div>
                 <div className={styles['radio-option']}>

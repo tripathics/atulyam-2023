@@ -31,6 +31,7 @@ const Register = ({ user }) => {
   const [teamMemberDetails, setTeamMemberDetails] = useState('');
   const [teamName, setTeamName] = useState('');
   const [loading, setLoading] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState('');
 
   const history = useNavigate();
 
@@ -54,6 +55,8 @@ const Register = ({ user }) => {
         setContact(fetched.contact ? fetched.contact : '')
         setCollegeName(fetched.college ? fetched.college : '')
         setAge(fetched.age ? fetched.age : '')
+        if (fetched.TeamSize !== 'Individual') setIndividualParticipation(false);
+
         updateFormData('gender', fetched.gender);
         updateFormData('address', fetched.address);
         updateFormData('gender', fetched.gender);
@@ -151,7 +154,7 @@ const Register = ({ user }) => {
             </div>
             <div className={cx(styles['form-field'])}>
               <label htmlFor='events'>Event</label>
-              <select required name="events" id="events" defaultValue={""} defaultChecked>
+              <select required name="events" id="events" defaultValue={""} defaultChecked onChange={(e) => { setSelectedEvent(e.target.value) }}>
                 <option disabled="disabled" value="">Select an event to participate</option>
                 {events1.filter(event => event.isRegistrationOpen).map(event => (
                   <option key={event.id} value={event.id}>{event.title}</option>
@@ -159,25 +162,26 @@ const Register = ({ user }) => {
               </select>
             </div>
 
-            <div className={cx(styles['form-field'])}>
-              <label htmlFor='Individual'>Are you participating in a team? *</label>
-              <div className={styles['radio-group']}>
-                <div className={styles['radio-option']}>
-                  <input checked={individualParticipation === true} className={styles.radio} onChange={event => setIndividualParticipation(true)} defaultChecked id="option-1" type="radio" name="options" />
-                  <label className={styles['radio-label']} htmlFor='No'>No</label>
-                </div>
-                <div className={styles['radio-option']}>
-                  <input checked={individualParticipation === false} className={styles.radio} onChange={event => setIndividualParticipation(false)} id="option-2" type="radio" name="options" />
-                  <label className={styles['radio-label']} htmlFor='Yes'>Yes</label>
+            {selectedEvent && !events1.find(event => event.id === selectedEvent).solo && (<>
+              <div className={cx(styles['form-field'])}>
+                <label htmlFor='Individual'>Are you participating in a team? *</label>
+                <div className={styles['radio-group']}>
+                  <div className={styles['radio-option']}>
+                    <input checked={individualParticipation === true} className={styles.radio} onChange={event => setIndividualParticipation(true)} id="option-1" type="radio" name="options" />
+                    <label className={styles['radio-label']} htmlFor='No'>No</label>
+                  </div>
+                  <div className={styles['radio-option']}>
+                    <input checked={individualParticipation === false} className={styles.radio} onChange={event => setIndividualParticipation(false)} id="option-2" type="radio" name="options" />
+                    <label className={styles['radio-label']} htmlFor='Yes'>Yes</label>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            {!individualParticipation &&
-              <div className={styles['form-fields']}>
-                <TextInputField name={'teamName'} placeholder={'Team name *'} val={teamName} setVal={setTeamName} />
-                <TextInputField name={'teamMemberDetails'} placeholder={'Team member details *'} val={teamMemberDetails} setVal={setTeamMemberDetails} />
-              </div>}
+              {!individualParticipation &&
+                <div className={styles['form-fields']}>
+                  <TextInputField name={'teamName'} placeholder={'Team name *'} val={teamName} setVal={setTeamName} />
+                  <TextInputField name={'teamMemberDetails'} placeholder={'Team member details *'} val={teamMemberDetails} setVal={setTeamMemberDetails} />
+                </div>}
+            </>)}
 
             <div className={styles['btns-wrapper']}>
               <button disabled={loading} className={'btn'} type="submit">

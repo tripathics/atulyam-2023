@@ -14,7 +14,7 @@ import { ReactComponent as GoogleIcon } from '../media/icons/google-g.svg'
 
 import { NavLink } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 
 const Login = ({ user, loginUser, logoutUser }) => {
@@ -28,22 +28,26 @@ const Login = ({ user, loginUser, logoutUser }) => {
   const handleGoogleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
-    setErrorMsg('');
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
-      .then((res) => {
-        const authUser = {
-          user: res.user,
-          admin: false
-        }
-        redirect(authUser.admin);
+      .then((result) => {
+        return setDoc(doc(db, 'users', result.user.uid), {
+          email: result.user.email
+        });
+      }).then(() => {
+        resetForm();
+        setErrorMsg('');
+        setTimeout(() => {
+          history('/update-profile')
+        }, 500);
       }).catch((err) => {
+        setLoading(false);
         setErrorMsg(err.message);
         resetForm();
-        logoutUser();
+      }).finally(() => {
         setLoading(false);
-      });
+      })
   }
 
   const handleLogin = (e) => {

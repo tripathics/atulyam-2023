@@ -18,16 +18,11 @@ import cx from 'classnames'
 import Alert from '../components/Alert'
 
 
-const UserProfile = ({ user, loginUser, logoutUser }) => {
+const UserProfile = ({ user, logoutUser }) => {
   const [profiledata, setProfileData] = useState('');
-  const [registeredData,setRegisteredData] = useState('')
+  const [registeredData, setRegisteredData] = useState('')
   const [eventRegistered, setRegistered] = useState('');
   const [infoMessage, setInfoMessage] = useState('');
-
-  const handleLogout = (e) => {
-    e.preventDefault();
-    logoutUser();
-  }
 
   let userQrValue = "";
   useEffect(() => {
@@ -38,7 +33,6 @@ const UserProfile = ({ user, loginUser, logoutUser }) => {
       if (snap.exists()) {
         const fetched = snap.data();
         setProfileData(fetched);
-
       } else {
         console.log('Data does not exist');
       }
@@ -67,9 +61,9 @@ const UserProfile = ({ user, loginUser, logoutUser }) => {
 
 
   if (profiledata) {
-    userQrValue = "Name " + profiledata.firstName + " " + profiledata.lastName + ", Registration Id " + user.user.uid +" " +"College "+profiledata.college + " Event Registered " + eventRegistered ;
+    userQrValue = "Name " + profiledata.firstName + " " + profiledata.lastName + ", Registration Id " + user.user.uid + " " + "College " + profiledata.college + " Event Registered " + eventRegistered;
   }
-  return (
+  return (<>
     <div className='container'>
       <Alert severity='info' message={infoMessage} />
       <div className='box'>
@@ -89,63 +83,54 @@ const UserProfile = ({ user, loginUser, logoutUser }) => {
       <div className='box centerItem'>
         <div className='profile'>
           <h2>   Profile Details </h2>
-
           <p> <span className='titleContainer'>Email:</span> {profiledata.email}</p>
           <p> <span className='titleContainer'>Gender</span>  {profiledata.gender}</p>
           <p> <span className='titleContainer'>Contact</span>   {profiledata.contact}</p>
           <p> <span className='titleContainer'>Address</span>  {profiledata.address}</p>
           {registeredData.TeamSize && <> <p> <span className='titleContainer'>Team Size</span>  {registeredData.TeamSize}</p></>}
-
         </div>
-        
         <div>
-
           {eventRegistered && <>
             <p>Please take a screenshort of  QR for future reference</p>
-            <br/>
+            <br />
             <QrCode value={userQrValue} />
           </>}
+        </div>
+
+        <div className='buttonClass'>
+          <div className='btnComponent'>
+            <div className={cx(styles['header-btn-wrapper'])}>
+              <NavLink to='/register' className='btn'>
+                <span className='btn-subtitle'>Events registration open</span>
+                <span className='btn-text'>Register now!</span>
+                <RegisterIcon />
+              </NavLink>
+            </div>
+          </div>
+          <div className='btnComponent'>
+            <div className={cx(styles['header-btn-wrapper secondary'])}>
+              <NavLink to='/update-profile' className='btn secondary'>
+                <span className='btn-subtitle'>Need changes ?</span>
+                <span className='btn-text'>Update profile</span>
+                <UpdateIcon />
+              </NavLink>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className='buttonClass'>
-
-        <div className='btnComponent'>
-          <div className={cx(styles['header-btn-wrapper'])}>
-            <NavLink to='/register' className='btn'>
-              <span className='btn-subtitle'>Events registration open</span>
-              <span className='btn-text'>Register now!</span>
-              <RegisterIcon />
-            </NavLink>
+      <div>
+        <div className='logOutBtn'>
+          <div className={cx(styles['header-btn-wrapper'])} >
+            <button className='btn secondary' onClick={(e) => { e.preventDefault(); logoutUser() }} >
+              <span className='btn-subtitle'>Need a break ?</span>
+              <span className='btn-text'>Logout</span>
+              <LogoutIcon />
+            </button>
           </div>
-        </div>
-
-        <div className='btnComponent'>
-          <div className={cx(styles['header-btn-wrapper secondary'])}>
-            <NavLink to='/profile' className='btn secondary'>
-              <span className='btn-subtitle'>Need changes ?</span>
-              <span className='btn-text'>Update profile</span>
-              <UpdateIcon />
-            </NavLink>
-          </div>
-        </div>
-
-      </div>     
-  <div>
-  </div>
-  </div>
-    <div>
-      <div className='logOutBtn'>
-        <div className={cx(styles['header-btn-wrapper'])} onClick={(e) => { e.preventDefault(); logoutUser() }} >
-          <NavLink to='/login' className='btn secondary'>
-            <span className='btn-subtitle'>Need a break ?</span>
-            <span className='btn-text'>Logout</span>
-            <LogoutIcon />
-          </NavLink>
         </div>
       </div>
     </div>
-  </div>
-  )
+  </>)
 }
 
 export default UserProfile;
