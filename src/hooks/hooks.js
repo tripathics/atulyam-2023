@@ -1,9 +1,40 @@
 import { useState, useEffect } from "react";
 import { auth, db } from "../config/config";
-// import {  doc, getDoc } from 'firebase/firestore'
+import { doc, getDoc } from 'firebase/firestore'
 import { query, collection, getDocs } from 'firebase/firestore'
 
+
 function useAuthStatus() {
+  const [authUser, setAuthUser] = useState({ user: null, isProfileComplete: false, admin: false });
+  const [checkingStatus, setCheckingStatus] = useState(true);
+
+  const setUserAttr = (attr) => {
+    setAuthUser({ ...authUser, ...attr });
+  }
+
+  const checkAuth = async (user) => {
+    const update = { user: null, isProfileComplete: false, admin: false };
+    if (user) {
+      update.user = user;
+      const docRef = doc(db, 'users', user.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists() && docSnap.data().isProfileComplete === true) {
+        update.isProfileComplete = true;
+      }
+    }
+    const result = { ...authUser, ...update };
+    setAuthUser(result);
+    setCheckingStatus(false);
+  }
+
+  useEffect(() => {
+    auth.onAuthStateChanged(checkAuth);
+  }, []);
+
+  return { checkingStatus, authUser, updateAuthUserAttr: setUserAttr };
+}
+
+function useAuthStatusOld() {
   const [loggedIn, setLoggedIn] = useState(null);
   const [checkingStatus, setCheckingStatus] = useState(true);
   const [admin, setAdmin] = useState(false);
@@ -24,9 +55,9 @@ function useAuthStatus() {
         //     // docSnap.data() will be undefined in this case
         //     console.log("No such document!");
         //   }
-    } else {
-      setCheckingStatus(false)
-    }
+      } else {
+        setCheckingStatus(false)
+      }
     })
   }, []);
 
@@ -44,7 +75,6 @@ function useFetchCollection(collectionName, filter = []) {
   const [docs, setDocs] = useState({});
 
   const fetchDocs = () => {
-    console.log('fetchDocs: Fetching...')
     setFetching(true);
     const q = query(collection(db, collectionName), ...filter);
 
@@ -66,4 +96,4 @@ function useFetchCollection(collectionName, filter = []) {
   return { docs, setDocs, fetching, refetch: fetchDocs };
 }
 
-export { useAuthStatus, useFetchCollection };
+export { useAuthStatusOld, useAuthStatus, useFetchCollection };

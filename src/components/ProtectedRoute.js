@@ -11,21 +11,21 @@ const UnauthorizedComponent = () => (
 )
 
 const ProtectedComponent = ({ children, isAdmin }) => {
-  const { checkingStatus, loggedIn, admin } = useAuthStatus();
+  const { checkingStatus, authUser } = useAuthStatus();
   const history = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    if (!checkingStatus && !loggedIn) {
+    if (!checkingStatus && !authUser.user) {
       return history('/signin', {state: {from: location.pathname}});
     }
   })
 
   return (
     checkingStatus ? <LoadingPage /> : (<>
-      {loggedIn && (<>
+      {authUser.user && (<>
         {!isAdmin ? <>{children}</> : (<>
-          {admin ? <>{children}</> : <UnauthorizedComponent />}
+          {authUser.admin ? <>{children}</> : <UnauthorizedComponent />}
         </>)}
       </>)}
     </>)

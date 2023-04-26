@@ -32,8 +32,6 @@ const EventRegistration = ({ user }) => {
         updateFormData('address', fetched.address);
         updateFormData('age', fetched.age);
         updateFormData('gender', fetched.gender);
-        // updateFormData('firstName',fetched.firstName);
-
       } else {
         console.log('Data does not exist');
       }
@@ -74,10 +72,15 @@ const EventRegistration = ({ user }) => {
         history('/user');
       })
       .catch((error) => {
-        console.log(error)
         setErrorMsg(error.message);
       })
   }
+
+  useEffect(() => {
+    if (!user.isProfileComplete) {
+      history('/profile');
+    }
+  }, [])
 
   return (
     <div className='MainFormComponent container'>

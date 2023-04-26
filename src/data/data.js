@@ -1,4 +1,4 @@
-export const eventStartDate = 'May 5, 2023 10:00:00';
+export const eventStartDate = 'May 4, 2023 10:00:00';
 
 export const coordinators = [
   {name: 'Likha Tassam', roll:  'CSE/20/04', phone: '6033936115', email: 'likhatassam1@gmail.com' },
@@ -46,9 +46,9 @@ export const coordinators = [
 
 export const mainCoordinators = [
   {
-    name: 'Designing for complex UIs',
-    imgSrc: 'https://conference.awwwards.com/uploads/speakers/speaker_vitaly-friedman-sepia-light-960x960.jpg',
-    roles: ['Developer', 'UI/UX', 'Nerd']
+    name: 'Joni Nomuk',
+    imgSrc: '/media/coordinators/joni.jpg',
+    roles: ['Chief Coordinator Atulyam\'23']
   }, {
     name: 'Designing for complex UIs',
     imgSrc: 'https://conference.awwwards.com/uploads/speakers/speaker-isabel-moranta-sepia-light-960x960.jpg',
@@ -89,7 +89,7 @@ export const events1 = [
   },
   {
     id: '1',
-    title: 'Modern Dance',
+    title: 'Traditional Dance',
     figureSrc: '/media/events/dance.jpeg',
     day: 0,
     time: '11:15',
@@ -158,11 +158,21 @@ export const events1 = [
     highlight: false
   },
   {
+    id: '1',
+    title: 'Modern Dance',
+    figureSrc: '/media/events/dance.jpeg',
+    day: 1,
+    time: '11:15',
+    venue: 'Pablo Stanley',
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
+    highlight: true
+  },
+  {
     id: '8',
     title: 'Solo Singing',
     figureSrc: '/media/events/singing.jpeg',
-    day: 1,
-    time: '11:15',
+    day: 2,
+    time: '14:00',
     venue: 'Pablo Stanley',
     desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
     highlight: true

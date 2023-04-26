@@ -5,9 +5,8 @@ import { useEffect } from 'react'
 import { ReactComponent as UserIcon } from '../media/icons/user.svg'
 import { ReactComponent as EventsIcon } from '../media/icons/events.svg'
 import { ReactComponent as CollegeIcon } from '../media/icons/college.svg'
+import { NavLink } from 'react-router-dom'
 
-
-import { NavLink, useNavigate } from 'react-router-dom'
 import styles from '../styles/Events.module.scss'
 import '../styles/user.scss'
 import cx from 'classnames'
@@ -15,15 +14,12 @@ import Alert from '../components/Alert'
 
 
 const UserProfile = ({ user, loginUser, logoutUser }) => {
-  const history = useNavigate();
-
   const [profiledata, setProfileData] = useState('');
   const [eventRegistered, setRegistered] = useState('');
   const [infoMessage, setInfoMessage] = useState('');
 
   const handleLogout = (e) => {
     e.preventDefault();
-    history('/');
     logoutUser();
   }
 

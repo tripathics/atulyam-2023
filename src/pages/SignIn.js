@@ -33,13 +33,10 @@ const Login = ({ user, loginUser, logoutUser }) => {
 
     signInWithPopup(auth, provider)
       .then((res) => {
-        // const credential = GoogleAuthProvider.credentialFromResult(res);
-        // const token = credential.accessToken;
         const authUser = {
           user: res.user,
           admin: false
         }
-        loginUser(authUser);
         redirect(authUser.admin);
       }).catch((err) => {
         setErrorMsg(err.message);
@@ -62,7 +59,6 @@ const Login = ({ user, loginUser, logoutUser }) => {
           isProfileComplete: docSnap.data().isProfileComplete === true,
           admin: false
         }
-        loginUser(authUser);
         redirect(authUser);  
       }
       else {

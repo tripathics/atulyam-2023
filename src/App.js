@@ -10,68 +10,64 @@ import AdminComponent from './components/AdminComponent';
 import EventRegistration from "./form/EventRegistration";
 import { BrowserRouter } from "react-router-dom";
 import './styles/index.scss';
-import  UserProfile  from "./pages/UserProfile";
+import UserProfile from "./pages/UserProfile";
 import ProtectedComponent from "./components/ProtectedRoute";
+import Alert from './components/Alert';
 
-
-import { auth} from "./config/config";
+import { auth } from "./config/config";
 import { useAuthStatus } from "./hooks/hooks";
 
 function App() {
-
-  const [user, setUser] = useState({ user: null, admin: false });
-  const { checkingStatus, loggedIn, admin } = useAuthStatus();
+  const { checkingStatus, authUser, updateAuthUserAttr } = useAuthStatus();
+  const [alertMsg, setAlertMsg] = useState('');
+  const [alertSeverity, setAlertSeverity] = useState(null);
 
   const handleLogout = () => {
     auth.signOut()
       .then(() => {
-        setUser({ user: null, admin: false });
+        setAlertMsg('Signed out!')
       })
-      .catch((err) => { console.log(err) });
-  }
-
-  const handleLogin = (user) => {
-    setUser(user);
+      .catch((err) => { 
+        setAlertMsg(err.message);
+        setAlertSeverity('error'); 
+      });
   }
 
   useEffect(() => {
-    if (!checkingStatus) {
-      setUser({ user: loggedIn, admin: admin });
-    }
-    // eslint-disable-next-line
-  }, [checkingStatus])
+    setTimeout(() => {
+      setAlertMsg('');
+      setAlertSeverity(null);
+    }, 5000);
+  }, [alertMsg])
+
   return (
     <BrowserRouter>
-      <Layout user={user}>
+      <Layout user={authUser}>
+        {alertSeverity ? <Alert message={alertMsg} /> : <Alert message={alertMsg} severity={alertSeverity} />}
         <Routes>
-          <Route path="/" element={
-            <Home />
-          } />
-          <Route path="/events" element={
-            <Events />
-          } />
+          <Route path="/" element={ <Home /> } />
+          <Route path="/events" element={<Events />} />
           <Route path="/profile" element={
-            <ProtectedComponent isAdmin={false} children={<Profile user={user} loginUser={handleLogin} logoutUser={handleLogout} />} />
+            <ProtectedComponent isAdmin={false}
+              children={ 
+                <Profile updateProfile={updateAuthUserAttr} checkingStatus={checkingStatus} user={authUser} logoutUser={handleLogout} />
+              } />
           } />
 
-          <Route path="/signin" element={
-            <SignIn user={user} loginUser={handleLogin} logoutUser={handleLogout}  />
-          } />
+          <Route path="/signin" element={ <SignIn user={authUser} logoutUser={handleLogout} /> } />
 
-          <Route path="/signup" element={
-            <SignUp user={user} loginUser={handleLogin} logoutUser={handleLogout}  />
-          } />
+          <Route path="/signup" element={ <SignUp user={authUser} logoutUser={handleLogout} /> } />
 
           <Route path="/register" element={
-            <ProtectedComponent isAdmin={false} children={<EventRegistration user={user} loginUser={handleLogin} logoutUser={handleLogout} />} />
+            <ProtectedComponent isAdmin={false} children={<EventRegistration user={authUser} />} />
           } />
 
           <Route path="/user" element={
-            <ProtectedComponent isAdmin={false} children={<UserProfile user={user} loginUser={handleLogin} logoutUser={handleLogout} />} />
+            <ProtectedComponent isAdmin={false} children={<UserProfile user={authUser} logoutUser={handleLogout} />} />
           } />
 
           <Route path="/admin" element={
-            <ProtectedComponent isAdmin={false} children={<AdminComponent user={user} loginUser={handleLogin} logoutUser={handleLogout} />} />
+            <ProtectedComponent isAdmin={false} children={<AdminComponent user={authUser} logoutUser={handleLogout} />} />
           } />
 
         </Routes>

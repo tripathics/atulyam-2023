@@ -62,7 +62,7 @@ const Events = () => {
       <main className={cx(styles['main-content'], 'container')}>
         <nav className={styles['schedule-nav']}>
           <ul className={styles.tabs}>
-            {['Fri.', 'Sat.', 'Sun.'].map((day, i) => (
+            {['Thu.', 'Fri.', 'Sat.'].map((day, i) => (
               <ScheduleNavBtn key={day}
                 currentDay={currentDay} day={i}
                 label={day} handleDayChange={setCurrentDay} />
