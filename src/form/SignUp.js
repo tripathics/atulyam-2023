@@ -43,7 +43,7 @@ const SignIn = ({ user, loginUser, logoutUser }) => {
           admin: false,
           isProfileComplete: false
         }
-        loginUser(authUser);
+        // loginUser(authUser);
         return setDoc(doc(db, 'users', authUser.user.uid), {
           email: email
         })
@@ -53,7 +53,7 @@ const SignIn = ({ user, loginUser, logoutUser }) => {
         resetForm();
         setErrorMsg('');
         setTimeout(() => {
-          history('/profile', {
+          history('/update-profile', {
             state: { to: '/register' }
           });
         }, 500);
