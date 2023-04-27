@@ -47,9 +47,9 @@ const Home = () => {
             After three years, we return with a more niwe and creative community than ever.
           </p>
           <div className={styles['header-btn-wrapper']}>
-            <NavLink to='/register' className='btn'>
-              <span className='btn-subtitle'>Events registration open</span>
-              <span className='btn-text'>Register<br />now!</span>
+            <NavLink to='/register' className={cx('btn', styles['intro-header-btn'])}>
+              <span className={cx('btn-subtitle', styles['intro-btn-subtitle'])}>Events registration open</span>
+              <span className={cx('btn-text', styles['intro-btn-text'])}>Register<br />now!</span>
               <LinkIcon />
             </NavLink>
           </div>

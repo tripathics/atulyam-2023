@@ -122,7 +122,7 @@
         }
         .rail:nth-child(1) {
             color: #dadada;
-            top: -2rem;
+            top: calc(-0.045 * var(--heading-font-size));
             animation: 140s infinite marquee;
         }
         .rail:nth-child(2) {
@@ -171,6 +171,23 @@
             top: calc(0.09 * var(--heading-font-size));
             left: calc(2.45 * var(--heading-font-size));
             bottom: unset;
+        }
+    }
+
+    @media screen and (max-width: 550px) {
+        .header-btn-wrapper {
+            .intro-header-btn {
+                .intro-btn-subtitle {
+                    font-size: 0;
+                }
+                .intro-btn-text {
+                    font-size: 1.2rem;
+                }
+                > svg {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
+            }
         }
     }
 }
