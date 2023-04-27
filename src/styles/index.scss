@@ -228,10 +228,10 @@ header.page-header {
     transition: transform .2s cubic-bezier(0.215, 0.61, 0.355, 1);
     z-index: 0;
 }
-.btn:hover {
+.btn:hover, .btn:focus {
     --txt-color: var(--hover-txt-color)!important;
 }
-.btn:hover::before {
+.btn:hover::before, .btn:focus::before {
     transform: translate3d(0, 0, 0);
 }
 .btn.secondary {

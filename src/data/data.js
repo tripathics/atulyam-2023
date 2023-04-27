@@ -102,6 +102,7 @@ export const events = {
     time: '10:00 - 11:00',
     venue: '',
     desc: '',
+    type: 'Event',
     highlight: false
   },
   '1': {
@@ -112,6 +113,7 @@ export const events = {
     time: '11:15',
     venue: '',
     desc: '',
+    type: 'Contest',
     highlight: true
   },
   '2': {
@@ -122,6 +124,7 @@ export const events = {
     time: '11:15',
     venue: '',
     desc: '',
+    type: 'Contest',
     highlight: true
   },
   '3': {
@@ -132,6 +135,7 @@ export const events = {
     time: '14:30',
     venue: '',
     desc: '',
+    type: 'Contest',
     highlight: false
   },
   '4': {
@@ -142,6 +146,7 @@ export const events = {
     time: '14:30',
     venue: '',
     desc: '',
+    type: 'Contest',
     highlight: false
   },
   '5': {
@@ -152,6 +157,7 @@ export const events = {
     time: '18:00',
     venue: '',
     desc: '',
+    type: 'Event',
     highlight: false
   },
   '6': {
@@ -162,6 +168,7 @@ export const events = {
     time: '19:00',
     venue: '',
     desc: '',
+    type: 'Event',
     highlight: false
   },
   '7': {
@@ -172,6 +179,7 @@ export const events = {
     time: '10:00 - 11:00',
     venue: '',
     desc: '',
+    type: 'Contest',
     highlight: false
   },
   '8': {
@@ -182,6 +190,7 @@ export const events = {
     time: '14:00',
     venue: '',
     desc: '',
+    type: 'Contest',
     highlight: true
   },
   '9': {
@@ -192,6 +201,7 @@ export const events = {
     time: '11:15',
     venue: '',
     desc: '',
+    type: 'Contest',
     highlight: false
   },
   '10': {
@@ -202,6 +212,7 @@ export const events = {
     time: '14:30',
     venue: '',
     desc: '',
+    type: 'Contest',
     highlight: false
   },
   '11': {
@@ -212,6 +223,7 @@ export const events = {
     time: '14:30',
     venue: '',
     desc: '',
+    type: 'Contest',
     highlight: true,
     isRegistrationOpen: true,
     solo: true,
@@ -225,6 +237,7 @@ export const events = {
     time: '18:00',
     venue: '',
     desc: '',
+    type: 'Contest',
     highlight: false
   },
   '13': {
@@ -235,6 +248,7 @@ export const events = {
     time: '19:00',
     venue: '',
     desc: '',
+    type: 'Event',
     highlight: false
   },
   '14': {
@@ -245,6 +259,7 @@ export const events = {
     time: '18:00',
     venue: '',
     desc: '',
+    type: 'Contest',
     highlight: true
   },
   '15': {
@@ -255,6 +270,7 @@ export const events = {
     time: 'After Mr. and Mrs. Atulyam',
     venue: '',
     desc: '',
+    type: 'Event',
     highlight: false
   },
   '16': {
@@ -265,6 +281,7 @@ export const events = {
     time: 'After Opening Act',
     venue: '',
     desc: '',
+    type: 'Event',
     highlight: true
   },
   '17': {
@@ -275,6 +292,7 @@ export const events = {
     time: '11:15',
     venue: '',
     desc: '',
+    type: 'Contest',
     highlight: false
   },
 }

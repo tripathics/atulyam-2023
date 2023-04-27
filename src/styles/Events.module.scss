@@ -4,6 +4,12 @@
     --li-venue-width: 100%;
     --li-time-width: 100%;
 
+    .page-header {
+        @media screen and (max-width: 699px) {
+            height: 100vh;
+        }
+    }
+
     .header-btn-wrapper {
         width: 100%;
         height: 8rem;
@@ -35,19 +41,19 @@
 
         @media screen and (max-width: 999px) {
             >h2 {
-                font-size: 9vw;
+                font-size: 12vw;
             }
         }
 
         @media screen and (max-width: 699px) {
             >h2 {
-                font-size: 10vw;
+                font-size: 16vw;
             }
         }
     }
 
     .main-content {
-        padding-top: 6rem;
+        padding-top: 4rem;
         padding-bottom: 6rem;
     }
 
@@ -82,11 +88,14 @@
                     font-weight: 700;
                     border: none;
                     overflow: hidden;
+                    transition: 0.1s ease-out;
                 }
+
                 .tab-btn:hover {
                     cursor: pointer;
                     color: var(--primary);
                 }
+
                 @media screen and (max-width: 699px) {
                     .tab-btn {
                         font-size: 8vw;
@@ -121,6 +130,7 @@
             .event-li {
                 position: relative;
                 display: flex;
+                user-select: none;
 
                 .event-li-inner {
                     display: flex;
@@ -142,6 +152,12 @@
                         order: 2;
                         width: var(--li-title-width);
 
+                        p {
+                            font-size: 0.8rem;
+                            margin-bottom: 0.25rem;
+                            color: black;
+                        }
+
                         h4 {
                             font-size: inherit;
                             font-weight: inherit;
@@ -160,8 +176,10 @@
                         order: 1;
                         width: var(--li-time-width);
                         color: var(--primary);
+                        margin-right: 1.2rem;
                     }
                 }
+
                 .event-li-inner::before {
                     content: "";
                     position: absolute;
@@ -169,11 +187,18 @@
                     background-color: #bcbcbc1f;
                     width: 100%;
                     height: 0;
-                    transition: 0.3s cubic-bezier(.86,0,.07,.995);
+                    transition: 0.3s cubic-bezier(.86, 0, .07, .995);
                     pointer-events: none;
                 }
+
                 .event-li-inner:hover::before {
                     height: 100%;
+                }
+
+                @media (hover: none) {
+                    .event-li-inner::before {
+                        display: none;
+                    }
                 }
             }
 
@@ -229,6 +254,7 @@
                     }
                 }
             }
+
             .current-figure.active {
                 height: var(--card-width);
                 opacity: 1;
@@ -236,12 +262,11 @@
         }
     }
 
-
     @media (min-aspect-ratio: 1 / 1) and (min-width: 1000px) {
         --list-width: calc(100vw - (100vw - 9.375rem) * 4/14 + 1.875rem);
-        --li-title-width: calc((100vw - 9.375rem) * 5/14 + 3.125rem);
+        --li-title-width: calc((100vw - 9.375rem) * 4/14 + 3.125rem);
         --li-venue-width: calc((100vw - 9.375rem) * 3/14 + 1.875rem);
-        --li-time-width: calc((100vw - 9.375rem) * 2/14 + 1.25rem);
+        --li-time-width: calc((100vw - 9.375rem) * 3/14 + 1.25rem);
 
         .event-list-wrapper {
             .event-list .event-li-inner {
@@ -249,22 +274,23 @@
                 padding-left: calc((100vw - 9.375rem) * 4/14 + 3.125rem);
                 margin-left: -.625rem;
             }
-
             .event-figures {
                 display: flex;
             }
         }
-
     }
 
     @media (max-aspect-ratio: 1 / 1),
     (max-width: 999px) {
         .event-list-wrapper .event-list .event-li .event-li-inner {
-
-            .title,
-            .time,
+            font-size: 1.2rem;
             .venue {
-                padding-top: 1.25rem;
+                text-align: left;
+                font-weight: 400;
+                font-size: 1rem;
+            }
+            .title {
+                padding-top: 1rem;
                 padding-bottom: .625rem;
                 text-align: left;
             }

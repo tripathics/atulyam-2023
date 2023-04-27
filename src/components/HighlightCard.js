@@ -1,6 +1,7 @@
 import styles from './HighlightCard.module.scss';
+import cx from 'classnames';
 
-const HighlightCard = ({ figureSrc, title, desc, type }) => {
+const HighlightCard = ({ figureSrc, title, desc, type, isRegistrationOpen }) => {
   return (
     <article className={styles.card}>
       <figure>
@@ -10,7 +11,11 @@ const HighlightCard = ({ figureSrc, title, desc, type }) => {
         <h3 className={styles.cardTitle}>{title}</h3>
         <div className={styles.cardSubtitle}>
           <div className={styles.desc}>{desc}</div>
-          <div className={styles.type}>{type}</div>
+
+          {type === 'Contest' 
+            ? <div className={cx(styles.type, { [styles.active]: isRegistrationOpen })}>
+              {isRegistrationOpen ? 'Registrations open' : 'Registrations open soon'}
+            </div> : <div className={styles.type}>{type}</div>}
         </div>
       </main>
     </article>

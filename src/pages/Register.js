@@ -10,6 +10,7 @@ import styles from '../styles/Form.module.scss';
 import cx from 'classnames';
 import { events } from '../data/data';
 import { ReactComponent as SpinnerIcon } from '../media/icons/spinner.svg'
+import { ReactComponent as LinkIcon } from '../media/icons/link.svg';
 
 const TextInputField = ({ val = '', title = '', pattern = '.*', setVal, name, placeholder, type = 'text', attrs = {} }) => (
   <div className={styles['form-field']}>
@@ -152,41 +153,44 @@ const Register = ({ user }) => {
               <label htmlFor='address'>Address *</label>
               <textarea placeholder='Enter your address' title='Address' required name='address' id='address' />
             </div>
-            <div className={cx(styles['form-field'])}>
-              <label htmlFor='events'>Event *</label>
-              <select required name="events" id="events" defaultValue={""} defaultChecked onChange={(e) => { setSelectedEvent(e.target.value) }}>
-                <option disabled="disabled" value="">Select an event to participate</option>
-                {Object.keys(events).filter(id => events[id].isRegistrationOpen).map(id => (
-                  <option key={id} value={id}>{events[id].title}</option>
-                ))}
-              </select>
-            </div>
 
-            {selectedEvent && (<>
+            <div className={styles['form-fields']}>
+
               <div className={styles['form-field']}>
-                {events[selectedEvent].rules && 
-                  <a target='_blank' rel='noreferrer' href={events[selectedEvent].rules}>View rules</a>}
+                <label htmlFor='events'>Event *</label>
+                <select required name="events" id="events" defaultValue={""} defaultChecked onChange={(e) => { setSelectedEvent(e.target.value) }}>
+                  <option disabled="disabled" value="">Select an event to participate</option>
+                  {Object.keys(events).filter(id => events[id].isRegistrationOpen).map(id => (
+                    <option key={id} value={id}>{events[id].title}</option>
+                  ))}
+                </select>
               </div>
-              {!events[selectedEvent].solo && (<>
-                <div className={cx(styles['form-field'])}>
-                  <label htmlFor='Individual'>Are you participating in a team? *</label>
-                  <div className={styles['radio-group']}>
-                    <div className={styles['radio-option']}>
-                      <input checked={individualParticipation === true} className={styles.radio} onChange={event => setIndividualParticipation(true)} id="option-1" type="radio" name="options" />
-                      <label className={styles['radio-label']} htmlFor='No'>No</label>
-                    </div>
-                    <div className={styles['radio-option']}>
-                      <input checked={individualParticipation === false} className={styles.radio} onChange={event => setIndividualParticipation(false)} id="option-2" type="radio" name="options" />
-                      <label className={styles['radio-label']} htmlFor='Yes'>Yes</label>
-                    </div>
+              {selectedEvent && events[selectedEvent].rules && (<div className={styles['form-link']}>
+                <a className={cx('btn', 'secondary', styles['form-btn'])} target='_blank' rel='noreferrer' href={events[selectedEvent].rules}>
+                  <span className={cx('btn-text', styles['btn-text'])}>View rules</span>
+                  <LinkIcon />
+                </a>
+              </div>)}
+            </div>
+            {selectedEvent && !events[selectedEvent].solo && (<>
+              <div className={cx(styles['form-field'])}>
+                <label htmlFor='Individual'>Are you participating in a team? *</label>
+                <div className={styles['radio-group']}>
+                  <div className={styles['radio-option']}>
+                    <input checked={individualParticipation === true} className={styles.radio} onChange={event => setIndividualParticipation(true)} id="option-1" type="radio" name="options" />
+                    <label className={styles['radio-label']} htmlFor='No'>No</label>
+                  </div>
+                  <div className={styles['radio-option']}>
+                    <input checked={individualParticipation === false} className={styles.radio} onChange={event => setIndividualParticipation(false)} id="option-2" type="radio" name="options" />
+                    <label className={styles['radio-label']} htmlFor='Yes'>Yes</label>
                   </div>
                 </div>
-                {!individualParticipation &&
-                  <div className={styles['form-fields']}>
-                    <TextInputField name={'teamName'} placeholder={'Team name *'} val={teamName} setVal={setTeamName} />
-                    <TextInputField name={'teamMemberDetails'} placeholder={'Team member details *'} val={teamMemberDetails} setVal={setTeamMemberDetails} />
-                  </div>}
-              </>)}
+              </div>
+              {!individualParticipation &&
+                <div className={styles['form-fields']}>
+                  <TextInputField name={'teamName'} placeholder={'Team name *'} val={teamName} setVal={setTeamName} />
+                  <TextInputField name={'teamMemberDetails'} placeholder={'Team member details *'} val={teamMemberDetails} setVal={setTeamMemberDetails} />
+                </div>}
             </>)}
             <div className={styles['btns-wrapper']}>
               <button disabled={loading} className={'btn'} type="submit">

@@ -53,7 +53,7 @@ const Events = () => {
 
   return (
     <div className={styles.events}>
-      <header className='page-header container'>
+      <header className={cx('page-header', 'container', styles['page-header'])}>
         <h1 className='heading'>
           <span>Event</span>
           <span>Schedule</span>
@@ -107,7 +107,7 @@ const ScheduleNavBtn = ({ day, currentDay, handleDayChange, label }) => (
   </li>
 )
 
-const EventLI = ({ id, title, venue, time, handleHover }) => {
+const EventLI = ({ id, title, type, isRegistrationOpen, venue, time, handleHover }) => {
   return (
     <li className={cx(styles['event-li'])}>
       <article className={styles['event-li-inner']}
@@ -115,6 +115,9 @@ const EventLI = ({ id, title, venue, time, handleHover }) => {
         onMouseOver={e => { handleHover(id) }}
       >
         <div className={styles.title}>
+          {type === 'Contest'
+            ? <p>{isRegistrationOpen ? 'Registrations open!' : 'Contest'}</p>
+            : <p>{type} </p>}
           <h4>{title}</h4>
         </div>
         <div className={styles.venue}>

@@ -238,6 +238,9 @@
                 display: none;
             }
         }
+        @media screen and (max-width: 699px) {
+            gap: 0.3125rem;
+        }
     }
 }
 
