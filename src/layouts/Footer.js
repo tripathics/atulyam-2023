@@ -7,7 +7,7 @@ import { ReactComponent as MailIcon } from '../media/icons/mail.svg';
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className='container'>
       <div className={styles.MainFooterContent}>
         <div className={styles.footerContent} id="footerContent">
           <div className={styles.QuotesContainer}>
@@ -20,13 +20,13 @@ const Footer = () => {
 
           </div>
           <div>
-            <p style={{textAlign:"center"}}>Media Patner</p>
+            <p styfle={{textAlign:"center", fontSize: '1.2rem', marginBottom: '0.8rem'}}>Media Patner</p>
           <img  className={styles.sponsors} src={sponsors} alt=""></img>
           </div>
         </div>
         <div className={styles.footerItems}>
           <div >
-            <p>Follow us</p>
+            <p>Contact us</p>
             <ul className={styles.SocialHandles}>
               <li className={cx( styles['handle-wrapper'],styles.growIcon)}>
                 <a className={styles.handle} target='_blank' rel='noreferrer' href="https://www.facebook.com/atulyamnitap">
