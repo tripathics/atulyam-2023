@@ -79,12 +79,15 @@
                         display: flex;
                         flex-direction: row;
 
-                        .role {
+                        .role, .sep {
                             display: inline-block;
                             margin-right: .625rem;
                             font-size: .75rem;
                             font-weight: 700;
                             line-height: 1;
+                        }
+                        .sep::after {
+                            content: "/";
                         }
                     }
                 }

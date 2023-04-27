@@ -10,7 +10,7 @@ export const coordinators = [
   { name: 'K. Biswadeep Singh', roll: 'ECE/20/14', phone: '9436208518', email: 'biswadeepsingh28@gmail.com' },
   { name: 'Madap Waghe', roll: 'EE/20/16', phone: '6033967147', email: 'wahgemadap@gmail.com' },
   { name: 'Jummo Ngomle', roll: 'ME/20/14', phone: '6033936148', email: 'Ngomlejummo@gmail.com' },
-  { name: 'Loiuch Taid', roll: 'CSE/20/15', phone: '9612203876', email: 'Loiuchtaid64@gmail.com' },
+  { name: 'Louich Taid', roll: 'CSE/20/15', phone: '9612203876', email: 'Loiuchtaid64@gmail.com' },
   { name: 'Chandrashekhar Tripathi', roll: 'CSE/20/38', phone: '8448052156', email: 'tripathics17@gmail.com' },
   { name: 'Pursottam Sah', roll: 'CSE/20/37', phone: '8259053265', email: 'rahulsah6003@gmail.com' },
   { name: 'Moji Bogo', roll: 'CE/20/30', phone: '6033940384', email: 'mojibogo911@gmail.com' },
@@ -48,215 +48,233 @@ export const mainCoordinators = [
     name: 'Pursottam Sah',
     imgSrc: '/media/coordinators/pursottam.jpg',
     roles: ['Developer', 'Event Coordinator', 'Backend']
-  }, {
-    name: 'Likha Tassam',
-    imgSrc: 'https://conference.awwwards.com/uploads/speakers/speaker-victor-costa-sepia-light-960x960.jpg',
-    roles: ['Decoration Coordinator']
-  }, {
+  },
+  {
+    name: 'Gamjum Laye',
+    imgSrc: '/media/coordinators/gamjum.jpg',
+    roles: ['Coordinator', 'Mr. and Mrs. Atulyam']
+  },
+  {
     name: 'Mekruk Waii',
     imgSrc: '/media/coordinators/mekruk.jpg',
     roles: ['Event Coordinator', 'Designing Team']
-  }, {
+  },
+  {
     name: 'Joni Nomuk',
     imgSrc: '/media/coordinators/joni.jpg',
     roles: ['Chief coordinator Atulyam\'23']
-  }, {
+  },
+  {
+    name: 'Rikto Padu',
+    imgSrc: '/media/coordinators/rikto.jpg',
+    roles: ['Sponsor Head']
+  },
+  {
+    name: 'Kamin Pajing',
+    imgSrc: '/media/coordinators/joni.jpg',
+    roles: ['Program Manager']
+  },
+  {
     name: 'Nich Talo',
     imgSrc: '/media/coordinators/talo.jpg',
     roles: ['Events Coordinator']
-  }, {
+  },
+  {
     name: 'Chandrashekhar Tripathi',
-    imgSrc: 'https://conference.awwwards.com/uploads/workshops/Vitaly-retocada1-sepia-light-834x500.jpg',
-    roles: ['Developer', 'UI/UX', 'Full stack', 'Coordinator']
-  }, {
+    imgSrc: '/media/coordinators/chandrashekhar.jpg',
+    roles: ['Developer', 'UI/UX', 'Full stack']
+  },
+  {
     name: 'Daknya Bam',
-    imgSrc: 'https://conference.awwwards.com/uploads/workshops/Vitaly-retocada1-sepia-light-834x500.jpg',
+    imgSrc: '/media/coordinators/daknya.jpg',
     roles: ['Designer', 'UI/UX', 'Frontend', 'Coordinator']
   }
 ]
 
-export const events1 = [
-  {
+export const highlights = ['1', '2', '8', '11', '14', '16'];
+
+export const events = {
+  '0': {
     id: '0',
     title: 'Inaguration',
     figureSrc: '',
     day: 0,
     time: '10:00 - 11:00',
     venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
-    highlight: false,
-  },
-  {
-    id: '2',
-    title: 'Short Film Making',
-    figureSrc: '/media/events/film-making.jpeg',
-    day: 0,
-    time: '11:15',
-    venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
-    highlight: true
-  },
-  {
-    id: '1',
-    title: 'Traditional Dance',
-    figureSrc: '/media/events/dance.jpeg',
-    day: 0,
-    time: '11:15',
-    venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
+    desc: '',
     highlight: false
   },
-  {
-    id: '3',
-    title: 'Quiz',
-    figureSrc: '',
-    day: 0,
-    time: '14:30',
-    venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
-    highlight: false
-  },
-  {
-    id: '4',
-    title: 'Face Painting',
-    figureSrc: '',
-    day: 0,
-    time: '14:30',
-    venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
-    highlight: false
-  },
-  {
-    id: '5',
-    title: 'Dance by Kenbi and Doi',
-    figureSrc: '',
-    day: 0,
-    time: '18:00',
-    venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
-    highlight: false
-  },
-  {
-    id: '6',
-    title: 'Chorun Mugli & The Tribe',
-    figureSrc: '',
-    day: 0,
-    time: '19:00',
-    venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
-    highlight: false
-  },
-  {
-    id: '7',
-    title: 'Poetry Slam',
-    figureSrc: '',
-    day: 1,
-    time: '10:00 - 11:00',
-    venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
-    highlight: false
-  },
-  {
+  '1': {
     id: '1',
     title: 'Modern Dance',
     figureSrc: '/media/events/dance.jpeg',
     day: 1,
     time: '11:15',
     venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
+    desc: '',
     highlight: true
   },
-  {
+  '2': {
+    id: '2',
+    title: 'Short Film Making',
+    figureSrc: '/media/events/film-making.jpeg',
+    day: 0,
+    time: '11:15',
+    venue: '',
+    desc: '',
+    highlight: true
+  },
+  '3': {
+    id: '3',
+    title: 'Quiz',
+    figureSrc: '',
+    day: 0,
+    time: '14:30',
+    venue: '',
+    desc: '',
+    highlight: false
+  },
+  '4': {
+    id: '4',
+    title: 'Face Painting',
+    figureSrc: '',
+    day: 0,
+    time: '14:30',
+    venue: '',
+    desc: '',
+    highlight: false
+  },
+  '5': {
+    id: '5',
+    title: 'Dance by Kenbi and Doi',
+    figureSrc: '',
+    day: 0,
+    time: '18:00',
+    venue: '',
+    desc: '',
+    highlight: false
+  },
+  '6': {
+    id: '6',
+    title: 'Chorun Mugli & The Tribe',
+    figureSrc: '',
+    day: 0,
+    time: '19:00',
+    venue: '',
+    desc: '',
+    highlight: false
+  },
+  '7': {
+    id: '7',
+    title: 'Poetry Slam',
+    figureSrc: '',
+    day: 1,
+    time: '10:00 - 11:00',
+    venue: '',
+    desc: '',
+    highlight: false
+  },
+  '8': {
     id: '8',
     title: 'Solo Singing',
     figureSrc: '/media/events/singing.jpeg',
     day: 2,
     time: '14:00',
     venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
+    desc: '',
     highlight: true
   },
-  {
+  '9': {
     id: '9',
     title: 'Essay',
     figureSrc: '',
     day: 1,
     time: '11:15',
     venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
+    desc: '',
     highlight: false
   },
-  {
+  '10': {
     id: '10',
     title: 'Sketching',
     figureSrc: '',
     day: 1,
     time: '14:30',
     venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
+    desc: '',
     highlight: false
   },
-  {
+  '11': {
     id: '11',
     title: 'Cosplay',
     figureSrc: '/media/events/cosplay.jpeg',
     day: 1,
     time: '14:30',
     venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
+    desc: '',
     highlight: true,
     isRegistrationOpen: true,
     solo: true,
     rules: 'https://drive.google.com/file/d/1gQ3qLqtHFOwS5M8m3zBKvh5Rvel-mB15/view?usp=sharing'
   },
-  {
+  '12': {
     id: '12',
     title: 'Hip hop performance',
     figureSrc: '',
     day: 1,
     time: '18:00',
     venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
-    highlight: false,
+    desc: '',
+    highlight: false
   },
-  {
+  '13': {
     id: '13',
     title: 'David Angu & The Tribe',
     figureSrc: '',
     day: 1,
     time: '19:00',
     venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
+    desc: '',
     highlight: false
   },
-  {
+  '14': {
     id: '14',
     title: 'Mr. and Ms. Atulyam',
     figureSrc: '/media/events/peasantry.jpeg',
     day: 2,
     time: '18:00',
     venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
+    desc: '',
     highlight: true
   },
-  {
+  '15': {
     id: '15',
     title: 'Opening Act',
     figureSrc: '',
     day: 2,
-    time: '',
+    time: 'After Mr. and Mrs. Atulyam',
     venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
+    desc: '',
     highlight: false
   },
-  {
+  '16': {
     id: '16',
     title: 'DJ Night',
     figureSrc: '/media/events/dj.jpeg',
     day: 2,
-    time: '',
+    time: 'After Opening Act',
     venue: '',
-    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
+    desc: '',
     highlight: true
   },
-]
+  '17': {
+    id: '17',
+    title: 'Traditional Dance',
+    figureSrc: '/media/events/dance.jpeg',
+    day: 0,
+    time: '11:15',
+    venue: '',
+    desc: '',
+    highlight: false
+  },
+}

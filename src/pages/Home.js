@@ -3,19 +3,36 @@ import cx from 'classnames';
 import styles from '../styles/Home.module.scss';
 
 import { ReactComponent as ScheduleIcon } from '../media/icons/schedule.svg';
+import { ReactComponent as LinkIcon } from '../media/icons/link.svg';
 import Carousel from '../components/Carousel';
 import HighlightCard from '../components/HighlightCard';
 
-import { events1 } from '../data/data';
-import { mainCoordinators,coordinators } from '../data/data'
+import { events, highlights } from '../data/data';
+import { mainCoordinators, coordinators } from '../data/data'
 import Hero from '../components/Hero';
+
+const tags = [
+  'cosplay', 'fun', 'poetry', 'face painting', 'solo song', 'dance', 'essay', 'sketching',
+  'concert', 'flash mob', 'film making', 'joy', 'concert', 'dj', 'poetry slam'
+]
 
 const Home = () => {
   return (
     <div>
       <Hero />
-      <section className={cx('container', styles["intro-section"], styles['home-section'])}>
-        <header className={cx(styles.introContent, styles.sectionHeader)}>
+      <section className={cx(styles["intro-section"], styles['home-section'])}>
+        <div className={styles['intro-bg']}>
+          <div className={styles.rail}>
+            {tags.map((tag, i) => <span key={i}>{tag} </span>)}
+          </div>
+          <div className={styles.rail}>
+            {tags.map((tag, i) => <span key={i}>{tag} </span>)}
+          </div>
+          <div className={styles.rail}>
+            {tags.map((tag, i) => <span key={i}>{tag} </span>)}
+          </div>
+        </div>
+        <header className={cx(styles.introContent, styles.sectionHeader, 'container')}>
           <h2 className={styles.heading}>
             <span style={{ marginRight: '3ch' }}>Atulyam</span>
             <span className={styles._ar}>2023</span>
@@ -24,6 +41,13 @@ const Home = () => {
             Atulyam is the annual cultural festival of NIT Arunachal Pradesh. A splendid idea realised by a group of students in 2012 at NITAP giving birth to Atulyam as we know it today.<br />
             After three years, we return with a more niwe and creative community than ever.
           </p>
+          <div className={styles['header-btn-wrapper']}>
+            <NavLink to='/register' className='btn'>
+              <span className='btn-subtitle'>Events registration open</span>
+              <span className='btn-text'>Register<br />now!</span>
+              <LinkIcon />
+            </NavLink>
+          </div>
         </header>
       </section>
 
@@ -36,14 +60,14 @@ const Home = () => {
 
         <main>
           <div className={styles.hlgallery}>
-            {events1.filter(event => event.highlight).map(event => <HighlightCard key={event.title} {...event} />)}
+            {highlights.map(id => <HighlightCard key={id} {...events[id]} />)}
             <div className={styles['btn-wrapper']}>
-                <NavLink to='/events' className='btn'>
-                  <span className='btn-subtitle'>Events</span>
-                  <span className='btn-text'>Full Event<br/>Schedule</span>
-                  <ScheduleIcon />
-                </NavLink>
-              </div>
+              <NavLink to='/events' className='btn'>
+                <span className='btn-subtitle'>Events</span>
+                <span className='btn-text'>Full Event<br />Schedule</span>
+                <ScheduleIcon />
+              </NavLink>
+            </div>
           </div>
         </main>
       </section>
@@ -55,12 +79,12 @@ const Home = () => {
             <span className={styles._ar}>Team</span>
           </h2>
           <p className={cx(styles.subtitle, 'container')} id='coordinatorsList'>
-          <span>
-            {coordinators.filter((val, i)=> i <= 20).map(val => <span  key={val.name}> {val.name}</span>)}
-          </span>
-          <span>
-            {coordinators.filter((val, i)=> i > 20).map(val => <span  key={val.name}> {val.name}</span>)}
-          </span>
+            <span>
+              {coordinators.filter((val, i) => i <= 20).map(val => <span key={val.name}> {val.name}</span>)}
+            </span>
+            <span>
+              {coordinators.filter((val, i) => i > 20).map(val => <span key={val.name}> {val.name}</span>)}
+            </span>
           </p>
         </header>
         <main>

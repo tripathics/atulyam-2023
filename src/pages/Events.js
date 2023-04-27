@@ -1,8 +1,18 @@
 import { NavLink } from 'react-router-dom';
 import styles from '../styles/Events.module.scss';
 import cx from 'classnames';
-import { events1 } from '../data/data';
+import { events, events1 } from '../data/data';
 import { useEffect, useRef, useState } from 'react';
+
+const timeCompare = (a, b) => {
+  if (events[a].time < events[b].time) {
+    return -1;
+  } else if (events[a].time == events[b].time) {
+    return 0;
+  } else {
+    return 1;
+  }
+}
 
 const Events = () => {
   const eventFigureWrapper = useRef(null);
@@ -71,13 +81,14 @@ const Events = () => {
         </nav>
         <section ref={eventFigureWrapper} className={styles['event-list-wrapper']}>
           <ul className={styles['event-list']}>
-            {events1.filter(eventDetails => eventDetails.day === currentDay)
-              .map(event => <EventLI key={event.id} {...event} handleHover={setActiveEventId} />)}
+            {Object.keys(events).filter(id => events[id].day === currentDay)
+              .sort(timeCompare)
+              .map(id => <EventLI key={id} {...events[id]} handleHover={setActiveEventId} />)}
           </ul>
           <div className={styles['event-figures']}>
             <div className={styles.figures}>
-              {events1.filter(eventDetails => eventDetails.day === currentDay)
-                .map(event => <EventFigure key={event.id} {...event} isActive={activeEventId === event.id} />)}
+              {Object.keys(events).filter(id => events[id].day === currentDay)
+                .map(id => <EventFigure key={id} {...events[id]} isActive={activeEventId === id} />)}
             </div>
           </div>
         </section>

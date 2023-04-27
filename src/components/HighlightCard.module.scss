@@ -59,11 +59,15 @@
         z-index: 22;
         color: white;
         font-family: "Roboto", sans-serif;
+        width: 100%;
 
         .cardTitle {
             font-size: 2.2rem;
-            font-weight: 450;
+            font-weight: 500;
             letter-spacing: -0.08rem;
+            padding-bottom: 4rem;
+            position: absolute;
+            bottom: 0;
         }
 
         .cardSubtitle {
@@ -87,6 +91,11 @@
 
     @media screen and (min-width: 1000px) {
         height: 40vw;
+        >main {
+            .cardTitle {
+                font-size: 3vw;
+            }
+        }
     }
 }
 

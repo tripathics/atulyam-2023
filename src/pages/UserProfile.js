@@ -13,7 +13,7 @@ import { NavLink } from 'react-router-dom'
 import styles from '../styles/Profile.module.scss'
 import '../styles/user.scss'
 import cx from 'classnames'
-import { events1 } from '../data/data'
+import { events } from '../data/data'
 
 
 const UserProfile = ({ user, logoutUser }) => {
@@ -101,9 +101,9 @@ const UserProfile = ({ user, logoutUser }) => {
 
             {loading ? <p>Please wait...</p> : isRegistered ? (
               <div className={styles.confirmation}>
-                <EventFigure figureSrc={eventRegistered && events1.find(event => event.id === eventRegistered).figureSrc}
-                  title={eventRegistered && events1.find(event => event.id === eventRegistered).title} />
-
+                {eventRegistered && (
+                  <EventFigure figureSrc={events[eventRegistered].figureSrc} title={events[eventRegistered].title} />
+                )}
                 <div className={styles.user}>
                   <h3>Participant Details</h3>
                   <ul className={styles['registration-details']}>
