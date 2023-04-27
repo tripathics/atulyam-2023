@@ -2,6 +2,10 @@
     height: 100vh;
     position: relative;
     overflow: hidden;
+    background-image: url('../media/hero-image.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 
     .content {
         position: absolute;
