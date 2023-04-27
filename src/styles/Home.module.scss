@@ -2,7 +2,6 @@
 .home-section {
     padding-top: 6rem;
     padding-bottom: 8rem;
-    min-height: 100vh;
     --heading-font-size: 16vw;
     overflow-x: hidden;
 
@@ -45,11 +44,16 @@
     }
 }
 
+.home-section:last-child {
+    padding-top: 14rem;
+}
+
 // ----- First section
 .intro-section {
     width: fit-content;
     max-width: 100%;
     margin: auto;
+    padding-bottom: 2rem;
 
     padding-top: calc(var(--nav-height) + 3rem);
     --heading-font-size: 18vw;
@@ -102,13 +106,34 @@
             'd d e e f f f'
             'g g h h h i i';
 
-        > :nth-child(1) { grid-area: a; }
-        > :nth-child(2) { grid-area: b; }
-        > :nth-child(3) { grid-area: e; }
-        > :nth-child(4) { grid-area: f; }
-        > :nth-child(5) { grid-area: g; }
-        > :nth-child(6) { grid-area: h; }
-        > :nth-child(7) { grid-area: i; }
+        > :nth-child(1) {
+            grid-area: a;
+        }
+
+        > :nth-child(2) {
+            grid-area: b;
+        }
+
+        > :nth-child(3) {
+            grid-area: e;
+        }
+
+        > :nth-child(4) {
+            grid-area: f;
+        }
+
+        > :nth-child(5) {
+            grid-area: g;
+        }
+
+        > :nth-child(6) {
+            grid-area: h;
+        }
+
+        > :nth-child(7) {
+            grid-area: i;
+        }
+
         .btn-wrapper {
             height: 18vw;
             min-height: 18.75rem;
@@ -257,12 +282,18 @@
                 margin-left: var(--heading-font-size);
             }
 
+            @media screen and (max-width: 1900px) {
+                font-size: 3rem;
+            }
+            @media screen and (max-width: 1600px) {
+                font-size: 2.5rem;
+            }
             @media screen and (max-width: 1366px) {
-                font-size: 2.4rem;
+                font-size: 2.25rem;
             }
 
             @media screen and (max-width: 1150px) {
-                font-size: 2.1rem;
+                font-size: 2rem;
             }
 
             @media screen and (max-width: 999px) {
@@ -270,16 +301,16 @@
             }
 
             @media screen and (max-width: 800px) {
-                font-size: 1.6rem;
-                bottom: 1.6rem;
+                font-size: 1.4rem;
+                bottom: 1.2rem;
             }
 
             @media screen and (max-width: 650px) {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
             }
 
             @media screen and (max-width: 500px) {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 bottom: 0;
             }
         }

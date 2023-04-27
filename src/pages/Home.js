@@ -7,7 +7,7 @@ import Carousel from '../components/Carousel';
 import HighlightCard from '../components/HighlightCard';
 
 import { events1 } from '../data/data';
-import { mainCoordinators } from '../data/data'
+import { mainCoordinators,coordinators } from '../data/data'
 import Hero from '../components/Hero';
 
 const Home = () => {
@@ -55,12 +55,12 @@ const Home = () => {
             <span className={styles._ar}>Team</span>
           </h2>
           <p className={cx(styles.subtitle, 'container')} id='coordinatorsList'>
-            <span>
-              Isabel Moranta Amelie Maia Victor Costa Simon D’haenens Mathieu Ducharme & Jérémy Minié Claudio Guglieri JP Burcks & Mia Pratevito Parker Peterson Adriano Esteves Rhodi Iliadou & Peter Ha Filippo Cipriani Pablo Stanley
-            </span>
-            <span>
-              Franco Arza & Clément Roche Ali Hosseini Josh Kirk Diana Varma Vitaly Friedman Femke van Schoonhoven Nicolas Brassard-Ferron
-            </span>
+          <span>
+            {coordinators.filter((val, i)=> i <= 20).map(val => <span  key={val.name}> {val.name}</span>)}
+          </span>
+          <span>
+            {coordinators.filter((val, i)=> i > 20).map(val => <span  key={val.name}> {val.name}</span>)}
+          </span>
           </p>
         </header>
         <main>
