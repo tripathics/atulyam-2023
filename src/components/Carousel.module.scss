@@ -78,14 +78,17 @@
                     .card-footer {
                         display: flex;
                         flex-direction: row;
+                        list-style-type: none;
 
-                        .role, .sep {
+                        .role,
+                        .sep {
                             display: inline-block;
                             margin-right: .625rem;
                             font-size: .75rem;
                             font-weight: 700;
                             line-height: 1;
                         }
+
                         .sep::after {
                             content: "/";
                         }
@@ -102,12 +105,6 @@
                 .card .card-content .card-heading {
                     font-size: 1.5rem;
                 }
-            }
-
-            @media screen and (min-width: 700px) {
-                .card .card-content .card-heading {
-                        max-width: 60%;
-                    }
             }
         }
     }
@@ -156,12 +153,13 @@
             height: 4rem;
             color: white;
 
-            > svg {
+            >svg {
                 fill: currentColor;
                 width: 100%;
                 height: 100%;
             }
         }
+
         .dir:first-child {
             transform: scaleX(-1);
         }
