@@ -10,11 +10,9 @@ import { ReactComponent as ScheduleIcon } from '../media/icons/schedule.svg';
 
 import QrCode from '../components/qrCode'
 import { NavLink } from 'react-router-dom'
-import styles from '../styles/Events.module.scss'
-import styles1 from '../styles/Profile.module.scss'
+import styles from '../styles/Profile.module.scss'
 import '../styles/user.scss'
 import cx from 'classnames'
-import Alert from '../components/Alert'
 import { events1 } from '../data/data'
 
 
@@ -65,19 +63,20 @@ const UserProfile = ({ user, logoutUser }) => {
 
   useEffect(() => {
     if (profiledata) {
-      setUserQrValue("Name " + profiledata.firstName + " " + profiledata.lastName + ", Registration Id " + user.user.uid + " " + "College " + profiledata.college + " Event Registered " + eventRegistered)
+      const qrStr = `Name ${profiledata.firstName} ${profiledata.lastName}, Registration Id ${user.user.uid} College ${profiledata.college} Event Registered ${eventRegistered}`
+      setUserQrValue(qrStr);
     }
   }, [profiledata])
 
   return (
-    <div className={styles1.profile}>
+    <div className={styles.profile}>
       <div className='container'>
-        <header className={cx('page-header', styles1.header)}>
+        <header className={cx('page-header', styles.header)}>
           <h2 className='heading'>
             Welcome <br />back {user.user.displayName}!
           </h2>
-          <div className={styles1['header-btn-wrapper']}>
-            <NavLink to='/update-profile' className={cx('btn', { ['secondary']: user.isProfileComplete })}>
+          <div className={styles['header-btn-wrapper']}>
+            <NavLink to='/update-profile' className={cx('btn', { secondary: user.isProfileComplete })}>
               {user.isProfileComplete
                 ? <span className='btn-subtitle'>Need changes?</span>
                 : <span className='btn-subtitle'>Your profile is incomplete</span>}
@@ -87,7 +86,7 @@ const UserProfile = ({ user, logoutUser }) => {
           </div>
           <div className='subtitle'>
             <h4>{user.user.email}</h4>
-            <div className={styles1['subtitle-btn-wrapper']}>
+            <div className={styles['subtitle-btn-wrapper']}>
               <button className='btn secondary' onClick={(e) => { e.preventDefault(); logoutUser() }} >
                 <span className='btn-subtitle'>We'll meet again</span>
                 <span className='btn-text'>Logout</span>
@@ -97,31 +96,31 @@ const UserProfile = ({ user, logoutUser }) => {
           </div>
         </header>
         <main>
-          <section className={styles1['profile-section']}>
-            <h2 className={styles1.heading}>Registration details</h2>
+          <section className={styles['profile-section']}>
+            <h2 className={styles.heading}>Registration details</h2>
 
             {loading ? <p>Please wait...</p> : isRegistered ? (
-              <div className={styles1.confirmation}>
+              <div className={styles.confirmation}>
                 <EventFigure figureSrc={eventRegistered && events1.find(event => event.id === eventRegistered).figureSrc}
                   title={eventRegistered && events1.find(event => event.id === eventRegistered).title} />
 
-                <div className={styles1.user}>
+                <div className={styles.user}>
                   <h3>Participant Details</h3>
-                  <ul className={styles1['registration-details']}>
-                    <li> <span className={cx(styles1.title, styles1.id)}> {user.user.uid} </span></li>
-                    <li> <span className={styles1.title}>Name</span> <span> {`${profiledata.firstName} ${profiledata.lastName}`}</span></li>
-                    <li> <span className={styles1.title}>Sex</span> <span> {profiledata.gender}</span></li>
-                    <li> <span className={styles1.title}>Whatsapp#</span> <span>  {profiledata.contact}</span></li>
-                    <li> <span className={styles1.title}>Address</span> <span> {profiledata.address}</span></li>
+                  <ul className={styles['registration-details']}>
+                    <li> <span className={cx(styles.title, styles.id)}> {user.user.uid} </span></li>
+                    <li> <span className={styles.title}>Name</span> <span> {`${profiledata.firstName} ${profiledata.lastName}`}</span></li>
+                    <li> <span className={styles.title}>Sex</span> <span> {profiledata.gender}</span></li>
+                    <li> <span className={styles.title}>Whatsapp#</span> <span>  {profiledata.contact}</span></li>
+                    <li> <span className={styles.title}>Address</span> <span> {profiledata.address}</span></li>
                     {registeredData.TeamName && <>
-                      <li> <span className={styles1.title}>Team Name</span> <span> {registeredData.TeamName}</span></li>
-                      <li> <span className={styles1.title}>Team Members</span> <span> {registeredData.TeamMebers}</span></li>
+                      <li> <span className={styles.title}>Team Name</span> <span> {registeredData.TeamName}</span></li>
+                      <li> <span className={styles.title}>Team Members</span> <span> {registeredData.TeamMebers}</span></li>
                     </>}
                   </ul>
                 </div>
-                <div className={styles1.qr}>
+                <div className={styles.qr}>
                   <QrCode value={userQrValue} />
-                  <div className={styles1.ftr}>
+                  <div className={styles.ftr}>
                     <p>Autogenerated from www.atulyam23.com</p>
                     <p>Save this as a screenshot for the event</p>
                   </div>
@@ -130,17 +129,17 @@ const UserProfile = ({ user, logoutUser }) => {
               </div>
             ) : (<h3>Unregistered</h3>)}
 
-            <div className={styles1['btns-wrapper']}>
-              <div className={styles1['btn-wrapper']}>
-                <NavLink to='/events' className={cx('btn', { ['secondary']: !isRegistered })}>
+            <div className={styles['btns-wrapper']}>
+              <div className={styles['btn-wrapper']}>
+                <NavLink to='/events' className={cx('btn', { secondary: !isRegistered })}>
                   <span className='btn-subtitle'>Events</span>
                   <span className='btn-text'>Full Event<br />Schedule</span>
                   <ScheduleIcon />
                 </NavLink>
               </div>
 
-              <div className={styles1['btn-wrapper']}>
-                <NavLink to='/register' className={cx('btn', { ['secondary']: isRegistered })}>
+              <div className={styles['btn-wrapper']}>
+                <NavLink to='/register' className={cx('btn', { secondary: isRegistered })}>
                   {!isRegistered && <span className='btn-subtitle'>You haven't registered yet</span>}
                   {isRegistered && <span className='btn-subtitle'>Register for a different event</span>}
                   <span className='btn-text'>Register</span>
@@ -157,12 +156,12 @@ const UserProfile = ({ user, logoutUser }) => {
 
 const EventFigure = ({ title = '', figureSrc }) => (
   figureSrc && <article
-    className={styles1['event-card']}>
-    <figure className={styles1['img-wrapper']}>
+    className={styles['event-card']}>
+    <figure className={styles['img-wrapper']}>
       <img alt={title} src={figureSrc} />
     </figure>
     <main>
-      <h3 className={styles1.title}>{title}</h3>
+      <h3 className={styles.title}>{title}</h3>
       <p>Atulyam'23 NITAP</p>
     </main>
   </article>

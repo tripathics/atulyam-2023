@@ -162,6 +162,33 @@ const Register = ({ user }) => {
               </select>
             </div>
 
+            {selectedEvent && (<>
+              <div className={styles['form-field']}>
+                {events1.find(event => event.id === selectedEvent).rules &&
+                  <a target='_blank' rel='noreferrer' href={events1.find(event => event.id === selectedEvent).rules}>View rules</a>}
+              </div>
+              {!events1.find(event => event.id === selectedEvent).solo && (<>
+                <div className={cx(styles['form-field'])}>
+                  <label htmlFor='Individual'>Are you participating in a team? *</label>
+                  <div className={styles['radio-group']}>
+                    <div className={styles['radio-option']}>
+                      <input checked={individualParticipation === true} className={styles.radio} onChange={event => setIndividualParticipation(true)} id="option-1" type="radio" name="options" />
+                      <label className={styles['radio-label']} htmlFor='No'>No</label>
+                    </div>
+                    <div className={styles['radio-option']}>
+                      <input checked={individualParticipation === false} className={styles.radio} onChange={event => setIndividualParticipation(false)} id="option-2" type="radio" name="options" />
+                      <label className={styles['radio-label']} htmlFor='Yes'>Yes</label>
+                    </div>
+                  </div>
+                </div>
+                {!individualParticipation &&
+                  <div className={styles['form-fields']}>
+                    <TextInputField name={'teamName'} placeholder={'Team name *'} val={teamName} setVal={setTeamName} />
+                    <TextInputField name={'teamMemberDetails'} placeholder={'Team member details *'} val={teamMemberDetails} setVal={setTeamMemberDetails} />
+                  </div>}
+              </>)}
+            </>)}
+{/* 
             {selectedEvent && !events1.find(event => event.id === selectedEvent).solo && (<>
               <div className={cx(styles['form-field'])}>
                 <label htmlFor='Individual'>Are you participating in a team? *</label>
@@ -181,7 +208,7 @@ const Register = ({ user }) => {
                   <TextInputField name={'teamName'} placeholder={'Team name *'} val={teamName} setVal={setTeamName} />
                   <TextInputField name={'teamMemberDetails'} placeholder={'Team member details *'} val={teamMemberDetails} setVal={setTeamMemberDetails} />
                 </div>}
-            </>)}
+            </>)} */}
 
             <div className={styles['btns-wrapper']}>
               <button disabled={loading} className={'btn'} type="submit">

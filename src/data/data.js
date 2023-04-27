@@ -43,7 +43,6 @@ export const coordinators = [
   { name: 'Dolly Gautam', roll: 'ECE/20/24', phone: '9521429017', email: 'dolly.btech.ece.20@nitap.ac.in' },
 ]
 
-
 export const mainCoordinators = [
   {
     name: 'Pursottam Sah',
@@ -66,13 +65,13 @@ export const mainCoordinators = [
     imgSrc: '/media/coordinators/talo.jpg',
     roles: ['Events Coordinator']
   }, {
-    name: 'Designing for complex UIs',
+    name: 'Chandrashekhar Tripathi',
     imgSrc: 'https://conference.awwwards.com/uploads/workshops/Vitaly-retocada1-sepia-light-834x500.jpg',
-    roles: ['Developer', 'UI/UX', 'Nerd']
+    roles: ['Developer', 'UI/UX', 'Full stack', 'Coordinator']
   }, {
-    name: 'Designing for complex UIs',
+    name: 'Daknya Bam',
     imgSrc: 'https://conference.awwwards.com/uploads/workshops/Vitaly-retocada1-sepia-light-834x500.jpg',
-    roles: ['Developer', 'UI/UX', 'Nerd']
+    roles: ['Designer', 'UI/UX', 'Frontend', 'Coordinator']
   }
 ]
 
@@ -207,7 +206,8 @@ export const events1 = [
     desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia est quibusdam vero, placeat a magnam!',
     highlight: true,
     isRegistrationOpen: true,
-    solo: true
+    solo: true,
+    rules: 'https://drive.google.com/file/d/1gQ3qLqtHFOwS5M8m3zBKvh5Rvel-mB15/view?usp=sharing'
   },
   {
     id: '12',
