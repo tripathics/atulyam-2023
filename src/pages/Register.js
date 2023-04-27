@@ -8,7 +8,7 @@ import { db } from '../config/config'
 import Alert from '../components/Alert';
 import styles from '../styles/Form.module.scss';
 import cx from 'classnames';
-import { events1, events } from '../data/data';
+import { events } from '../data/data';
 import { ReactComponent as SpinnerIcon } from '../media/icons/spinner.svg'
 
 const TextInputField = ({ val = '', title = '', pattern = '.*', setVal, name, placeholder, type = 'text', attrs = {} }) => (
@@ -167,7 +167,7 @@ const Register = ({ user }) => {
                 {events[selectedEvent].rules && 
                   <a target='_blank' rel='noreferrer' href={events[selectedEvent].rules}>View rules</a>}
               </div>
-              {!events1.find(event => event.id === selectedEvent).solo && (<>
+              {!events[selectedEvent].solo && (<>
                 <div className={cx(styles['form-field'])}>
                   <label htmlFor='Individual'>Are you participating in a team? *</label>
                   <div className={styles['radio-group']}>
