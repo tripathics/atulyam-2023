@@ -61,6 +61,8 @@
     @media screen and (max-width: 700px) {
         padding-left: 0.8rem;
         padding-right: 0.8rem;        
+        min-height: unset;
+        padding-bottom: 2rem;
     }
 
     padding-top: calc(var(--nav-height) + 3rem);

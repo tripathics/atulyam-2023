@@ -32,6 +32,10 @@
             >span:last-child {
                 margin-right: 0;
             }
+
+            @media screen and (max-width: 699px) {
+                font-size: 6rem;
+            }
         }
 
         .timeline {
