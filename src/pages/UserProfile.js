@@ -104,7 +104,7 @@ const UserProfile = ({ user, logoutUser }) => {
           <section className={styles['profile-section']}>
             <h2 className={styles.heading}>Registration details</h2>
 
-            {loading ? <p>Please wait...</p> : isRegistered ? (
+            {loading ? <p>Please wait...</p> : user.isProfileComplete && isRegistered ? (
               <div className={styles.confirmation}>
                 {eventRegistered && (
                   <EventFigure figureSrc={events[eventRegistered].figureSrc} title={events[eventRegistered].title} />
