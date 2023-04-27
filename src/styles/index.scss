@@ -52,6 +52,7 @@ body {
     position: relative;
     background-color: var(--white1);
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 header.page-header {
@@ -248,4 +249,32 @@ header.page-header {
 }
 .btn[disabled]::before {   
     transform: translate3d(0, 0, 0);
+}
+
+footer {
+    .MainFooterContent {
+        overflow: hidden;
+    }
+}
+
+// page transition animation
+// .page-transition {
+//     position: fixed;
+//     pointer-events: none;
+//     z-index: 999999;
+//     width: 100%;
+//     height: 100%;
+//     top: 0;
+//     left: 0;
+//     background-color: var(--white2);
+
+//     // upon unmount
+//     // clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
+
+//     // // initial
+//     // clip-path: polygon(0 100%,100% 100%,100% 100%,0 100%);
+// }
+
+.page-transition {
+    transform-origin: left;
 }

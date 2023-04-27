@@ -16,6 +16,7 @@ import Alert from './components/Alert';
 import { auth } from "./config/config";
 import { useAuthStatus } from "./hooks/hooks";
 import ScrollToTop from "./utils/helper";
+import AnimatedRoutes from "./pages/AnimatedRoutes";
 
 function App() {
   const { checkingStatus, authUser, updateAuthUserAttr } = useAuthStatus();
@@ -43,27 +44,7 @@ function App() {
   return (
     <Layout user={authUser}>
       {alertSeverity ? <Alert message={alertMsg} /> : <Alert message={alertMsg} severity={alertSeverity} />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/register"
-          element={<ProtectedComponent
-            isAdmin={false}
-            children={<Register user={authUser} />}
-          />}
-        />
-        <Route path="/update-profile"
-          element={<ProtectedComponent
-            isAdmin={false}
-            children={<UpdateProfile updateProfile={updateAuthUserAttr} user={authUser} />}
-          />}
-        />
-        <Route path="/signin" element={<SignIn user={authUser} logoutUser={handleLogout} />} />
-        <Route path="/signup" element={<SignUp user={authUser} logoutUser={handleLogout} />} />
-        <Route path="/user" element={
-          <ProtectedComponent isAdmin={false} children={<UserProfile user={authUser} logoutUser={handleLogout} />} />
-        } />
-      </Routes>
+      <AnimatedRoutes authUser={authUser} handleLogout={handleLogout} updateAuthUserAttr={updateAuthUserAttr} />
     </Layout>
   );
 }

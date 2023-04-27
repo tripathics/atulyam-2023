@@ -5,10 +5,13 @@ import { ReactComponent as ScrollDownIcon } from '../media/icons/down.svg';
 import HeroVideo from '../media/medium.mp4';
 import styles from './Hero.module.scss';
 
-const Hero = () => {  
+const Hero = () => {
   useEffect(() => {
+    const navEl = document.getElementById('nav');
+    const heroEl = document.getElementById('hero');
     const heroLogoLetters = document.querySelectorAll('.shouldAnimate');
     const coordinatorNames = document.getElementById('coordinatorsList');
+
     const parallaxAnimate = () => {
       // animate hero logo letters
       const offsetTop = heroLogoLetters[0].offsetTop;
@@ -25,12 +28,28 @@ const Hero = () => {
       coordinatorNames.style.transform = 'translate3d(0, ' + speed * coordNamesTopOffset.toFixed(3) + 'px, 0)';
     }
 
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navEl.style.position = 'absolute';
+          navEl.style.top = '100vh';
+        } else {
+          navEl.style.position = 'fixed';
+          navEl.style.top = '0';
+        }
+      })
+    })
+
+    if (heroEl) observer.observe(heroEl);
     if (heroLogoLetters.length > 0) {
       window.addEventListener('scroll', parallaxAnimate);
     }
 
     return () => {
       window.removeEventListener('scroll', parallaxAnimate);
+      observer.disconnect()
+      navEl.style.position = 'fixed';
+      navEl.style.top = '0';
     }
   }, [])
 

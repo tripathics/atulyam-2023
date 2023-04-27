@@ -8,6 +8,7 @@ import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } f
 import { ReactComponent as SpinnerIcon } from '../media/icons/spinner.svg'
 import { ReactComponent as GoogleIcon } from '../media/icons/google-g.svg'
 import { ReactComponent as LinkIcon } from '../media/icons/link.svg'
+import { motion } from 'framer-motion';
 
 import styles from '../styles/Login.module.scss';
 import cx from 'classnames'
@@ -103,7 +104,11 @@ const SignIn = ({ user }) => {
   }, [])
 
   return (
-    <div className={styles['login-page']}>
+    <motion.div className={cx(styles['login-page'], 'page-transition')}
+      initial={{ scaleX: 0 }}
+      animate={{ scaleX: 1 }}
+      exit={{ scaleX: 0 }}
+    >
       <div className='container'>
         <header className={cx('page-header', styles.header)}>
           <h1 className='heading'>Sign Up</h1>
@@ -148,7 +153,7 @@ const SignIn = ({ user }) => {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

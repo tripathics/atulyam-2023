@@ -3,6 +3,7 @@ import styles from '../styles/Events.module.scss';
 import cx from 'classnames';
 import { events, events1 } from '../data/data';
 import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const timeCompare = (a, b) => {
   if (events[a].time < events[b].time) {
@@ -52,7 +53,11 @@ const Events = () => {
   }, [currentDay])
 
   return (
-    <div className={styles.events}>
+    <motion.div className={cx(styles.events, 'page-transition')}
+      initial={{ scaleX: 0 }}
+      animate={{ scaleX: 1 }}
+      exit={{ scaleX: 0 }}
+    >
       <header className={cx('page-header', 'container', styles['page-header'])}>
         <h1 className='heading'>
           <span>Event</span>
@@ -93,7 +98,7 @@ const Events = () => {
           </div>
         </section>
       </main>
-    </div>
+    </motion.div>
   )
 }
 

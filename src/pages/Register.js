@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router'
 import { getDoc, doc, setDoc } from 'firebase/firestore'
 import { db } from '../config/config'
 import Alert from '../components/Alert';
+import { motion } from 'framer-motion';
 import styles from '../styles/Form.module.scss';
 import cx from 'classnames';
 import { events } from '../data/data';
@@ -118,7 +119,11 @@ const Register = ({ user }) => {
   }, [])
 
   return (
-    <div className={styles['form-page']}>
+    <motion.div className={cx(styles['form-page'], 'page-transition')}
+      initial={{ scaleX: 0 }}
+      animate={{ scaleX: 1 }}
+      exit={{ scaleX: 0 }}
+    >
       <div className='container'>
         <header className={cx('page-header', 'form-header')}>
           <h2 className='heading'>Register for events</h2>
@@ -202,7 +207,7 @@ const Register = ({ user }) => {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

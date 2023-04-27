@@ -15,6 +15,7 @@ import { ReactComponent as GoogleIcon } from '../media/icons/google-g.svg'
 import { NavLink } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { motion } from 'framer-motion'
 
 
 const Login = ({ user, loginUser, logoutUser }) => {
@@ -105,7 +106,11 @@ const Login = ({ user, loginUser, logoutUser }) => {
   }, [])
 
   return (
-    <div className={styles['login-page']}>
+    <motion.div className={cx(styles['login-page'], 'page-transition')}
+      initial={{ scaleX: 0 }}
+      animate={{ scaleX: 1 }}
+      exit={{ scaleX: 0 }}
+    >
       <div className='container'>
         <header className={cx('page-header', styles.header)}>
           <h1 className='heading'>Login</h1>
@@ -142,7 +147,7 @@ const Login = ({ user, loginUser, logoutUser }) => {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

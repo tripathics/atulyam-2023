@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { updateProfile as firebaseUpdateProfile } from 'firebase/auth'
 import { ReactComponent as SpinnerIcon } from '../media/icons/spinner.svg'
+import { motion } from 'framer-motion';
 
 import { db } from "../config/config"
 import Alert from '../components/Alert'
@@ -106,7 +107,11 @@ const UpdateProfile = ({ user, updateProfile }) => {
   }, [user])
 
   return (
-    <div className={styles['form-page']}>
+    <motion.div className={cx(styles['form-page'], 'page-transition')}
+      initial={{ scaleX: 0 }}
+      animate={{ scaleX: 1 }}
+      exit={{ scaleX: 0 }}
+    >
       <div className='container'>
         <header className={cx('page-header', 'form-header')}>
           <h2 className='heading'>Update Profile</h2>
@@ -188,7 +193,7 @@ const UpdateProfile = ({ user, updateProfile }) => {
           </form>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

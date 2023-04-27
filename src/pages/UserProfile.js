@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { getDoc, doc } from 'firebase/firestore'
 import { db } from '../config/config'
 import { useEffect } from 'react'
+import { motion } from 'framer-motion';
 import { ReactComponent as LogoutIcon } from '../media/icons/logout.svg'
 import { ReactComponent as RegisterIcon } from '../media/icons/register.svg'
 import { ReactComponent as UpdateIcon } from '../media/icons/update.svg'
@@ -69,7 +70,11 @@ const UserProfile = ({ user, logoutUser }) => {
   }, [profiledata])
 
   return (
-    <div className={styles.profile}>
+    <motion.div className={cx(styles.profile, 'page-transition')}
+      initial={{ scaleX: 0 }}
+      animate={{ scaleX: 1 }}
+      exit={{ scaleX: 0 }}
+    >
       <div className='container'>
         <header className={cx('page-header', styles.header)}>
           <h2 className='heading'>
@@ -150,7 +155,7 @@ const UserProfile = ({ user, logoutUser }) => {
           </section>
         </main>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

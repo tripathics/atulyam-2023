@@ -10,6 +10,7 @@ import HighlightCard from '../components/HighlightCard';
 import { events, highlights } from '../data/data';
 import { mainCoordinators, coordinators } from '../data/data'
 import Hero from '../components/Hero';
+import { motion } from 'framer-motion'
 
 const tags = [
   'cosplay', 'fun', 'poetry', 'face painting', 'solo song', 'dance', 'essay', 'sketching',
@@ -18,7 +19,11 @@ const tags = [
 
 const Home = () => {
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <Hero />
       <section className={cx(styles["intro-section"], styles['home-section'])}>
         <div className={styles['intro-bg']}>
@@ -91,7 +96,7 @@ const Home = () => {
           <Carousel cardsList={mainCoordinators} />
         </main>
       </section>
-    </div>
+    </motion.div>
   )
 }
 
