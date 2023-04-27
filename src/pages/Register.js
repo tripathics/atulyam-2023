@@ -91,7 +91,7 @@ const Register = ({ user }) => {
       gender: data.get('gender'),
       TeamName: data.get('teamName'),
       TeamSize: ((individualParticipation === true) ? 'Individual' : 'Group'),
-      TeamMebers: data.get('teamMembers'),
+      TeamMembers: data.get('teamMembers'),
       college: data.get('collegeName'),
       userId: user.user.uid,
       isRegister: true,
@@ -129,7 +129,7 @@ const Register = ({ user }) => {
           <form className={styles['login-form']} onSubmit={handleSubmit} autoComplete='off'>
             <div className={styles['form-fields']}>
               <TextInputField name={'firstName'} placeholder={'First name *'} val={firstName} setVal={setFirstName} />
-              <TextInputField name={'firstName'} placeholder={'Last name *'} val={lastName} setVal={setLastName} />
+              <TextInputField name={'lastName'} placeholder={'Last name *'} val={lastName} setVal={setLastName} />
             </div>
             <div className={styles['form-fields']}>
               <TextInputField type='email' name={'email'} placeholder={'Email *'} val={email} attrs={{ disabled: true }} />

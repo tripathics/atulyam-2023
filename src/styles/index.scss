@@ -55,6 +55,7 @@ body {
 }
 
 header.page-header {
+    --heading-font-size: 16vw;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -63,8 +64,8 @@ header.page-header {
     padding-bottom: 1rem;
     height: 100vh;
 
-    h1.heading {
-        --heading-font-size: 16vw;
+    h2.heading {
+        --heading-font-size: 10vw;
     }
 
     .heading {
@@ -87,11 +88,26 @@ header.page-header {
         right: 1.2rem;
     }
 
+    @media screen and (min-width: 1500px) {
+        h2.heading {
+            --heading-font-size: 10rem;
+        }
+    }
     @media screen and (max-width: 999px) {
-        --heading-font-size: 20vw;
+        h1.heading {
+            --heading-font-size: 20vw;
+        }
+        h2.heading {
+            --heading-font-size: 12vw;
+        }
     }
     @media screen and (max-width: 760px) {
-        --heading-font-size: 24vw;
+        h1.heading {
+            --heading-font-size: 24vw;
+        }
+        h2.heading {
+            --heading-font-size: 15vw;
+        }
     }
     @media screen and (max-width: 700px) {
         height: 60vh;

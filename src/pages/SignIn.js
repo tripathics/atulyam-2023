@@ -102,7 +102,7 @@ const Login = ({ user, loginUser, logoutUser }) => {
 
   useEffect(() => {
     if (user.user) history('/');
-  })
+  }, [])
 
   return (
     <div className={styles['login-page']}>
