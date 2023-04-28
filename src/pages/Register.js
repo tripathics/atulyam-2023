@@ -210,7 +210,7 @@ const Register = ({ user }) => {
             {selectedEvent && events[selectedEvent].rules && <div className={styles['form-field']}>
               <div className={styles['checkbox-input-wrapper']}>
                 <input required type='checkbox' className={styles.checkbox} checked={readRules} onChange={(e) => { setReadRules(!readRules) }} name='Rules' />
-                <label className={styles['checkbox-label']} htmlFor='Rules'>I have read the rules</label>
+                <label className={styles['checkbox-label']} htmlFor='Rules'>I have followed the event rules carefully to fill this form</label>
               </div>
             </div>}
 

@@ -117,7 +117,7 @@ export const events = {
     highlight: false,
     isRegistrationOpen: true,
     solo: false,
-    rules: ''
+    rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '2': {
     id: '2',
@@ -130,8 +130,8 @@ export const events = {
     type: 'Contest',
     highlight: true,
     isRegistrationOpen: true,
-    solo: true,
-    rules: ''
+    solo: false,
+    rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '3': {
     id: '3',
@@ -145,7 +145,7 @@ export const events = {
     highlight: false,
     isRegistrationOpen: true,
     solo: false,
-    rules: ''
+    rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '4': {
     id: '4',
@@ -159,7 +159,7 @@ export const events = {
     highlight: false,
     isRegistrationOpen: true,
     solo: true,
-    rules: ''
+    rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '5': {
     id: '5',
@@ -195,7 +195,7 @@ export const events = {
     highlight: false,
     isRegistrationOpen: true,
     solo: true,
-    rules: ''
+    rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '1': {
     id: '1',
@@ -209,7 +209,7 @@ export const events = {
     highlight: true,
     isRegistrationOpen: true,
     solo: false,              // TODO
-    rules: ''
+    rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '9': {
     id: '9',
@@ -223,7 +223,7 @@ export const events = {
     highlight: false,
     isRegistrationOpen: true,
     solo: true,
-    rules: ''
+    rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '10': {
     id: '10',
@@ -237,7 +237,7 @@ export const events = {
     highlight: false,
     isRegistrationOpen: true,
     solo: true,
-    rules: ''
+    rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '11': {
     id: '11',
@@ -265,7 +265,7 @@ export const events = {
     highlight: false,
     isRegistrationOpen: true,
     solo: true,
-    rules: ''
+    rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '13': {
     id: '13',
@@ -290,7 +290,7 @@ export const events = {
     highlight: true,
     isRegistrationOpen: true,
     solo: true,
-    rules: ''
+    rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '14': {
     id: '14',
@@ -304,7 +304,7 @@ export const events = {
     highlight: true,
     isRegistrationOpen: true,
     solo: true,
-    rules: ''
+    rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '15': {
     id: '15',
