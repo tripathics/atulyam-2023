@@ -137,7 +137,7 @@ const UserProfile = ({ user, logoutUser }) => {
 
             <div className={styles['btns-wrapper']}>
               <div className={styles['btn-wrapper']}>
-                <NavLink to='/events' className={cx('btn', { secondary: !isRegistered })}>
+                <NavLink to='/events' className={cx('btn', { secondary: !(user.isProfileComplete && isRegistered) })}>
                   <span className='btn-subtitle'>Events</span>
                   <span className='btn-text'>Full Event<br />Schedule</span>
                   <ScheduleIcon />
@@ -145,9 +145,9 @@ const UserProfile = ({ user, logoutUser }) => {
               </div>
 
               <div className={styles['btn-wrapper']}>
-                <NavLink to='/register' className={cx('btn', { secondary: isRegistered })}>
+                <NavLink to='/register' className={cx('btn', { secondary: user.isProfileComplete && isRegistered })}>
                   {!isRegistered && <span className='btn-subtitle'>You haven't registered yet</span>}
-                  {isRegistered && <span className='btn-subtitle'>Register for a different event</span>}
+                  {isRegistered && <span className='btn-subtitle'>Deregister from this event and register for another</span>}
                   <span className='btn-text'>Register</span>
                   <RegisterIcon />
                 </NavLink>

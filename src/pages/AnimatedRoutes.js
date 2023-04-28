@@ -17,8 +17,8 @@ function AnimatedRoutes({ authUser, updateAuthUserAttr, handleLogout }) {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />} />
-        <Route path="/events" element={<Events />} />
+        <Route path="/" element={<Home user={authUser.user} />} />
+        <Route path="/events" element={<Events user={authUser.user} />} />
         <Route path="/register"
           element={<ProtectedComponent
             isAdmin={false}

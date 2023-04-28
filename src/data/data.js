@@ -41,6 +41,8 @@ export const coordinators = [
   { name: 'Mitinam Siram', roll: 'CSE21B045', phone: '6033946757', email: 'Mitinam.cse.21@nitap.ac.in' },
   { name: 'Muskan Kumari', roll: 'CE/20/15', phone: '7633868965', email: 'muskan.btech.ce.20@nitap.ac.in' },
   { name: 'Dolly Gautam', roll: 'ECE/20/24', phone: '9521429017', email: 'dolly.btech.ece.20@nitap.ac.in' },
+  { name: 'Tania Doni', roll: '', phone: '', email: '' },
+  { name: 'Prokash Pegu', roll: '', phone: '', email: '' },
 ]
 
 export const mainCoordinators = [
@@ -108,7 +110,7 @@ export const events = {
   '17': {
     id: '17',
     title: 'Traditional Dance',
-    figureSrc: '',
+    figureSrc: '/media/events/traditional-dance.jpg',
     day: 0,
     time: '11:15',
     venue: '2nd Stage',
@@ -136,7 +138,7 @@ export const events = {
   '3': {
     id: '3',
     title: 'Quiz',
-    figureSrc: '',
+    figureSrc: '/media/events/quiz.jpg',
     day: 0,
     time: '14:30',
     venue: 'TEL Center',
@@ -150,7 +152,7 @@ export const events = {
   '4': {
     id: '4',
     title: 'Face Painting',
-    figureSrc: '',
+    figureSrc: '/media/events/face.jpg',
     day: 0,
     time: '14:30',
     venue: 'Mechanical Block 2nd floor',
@@ -164,7 +166,7 @@ export const events = {
   '5': {
     id: '5',
     title: 'Performance by NITAP students',
-    figureSrc: '',
+    figureSrc: '/media/events/college-students-performance.jpg',
     day: 0,
     time: '18:00',
     venue: 'Main Stage',
@@ -175,7 +177,7 @@ export const events = {
   '6': {
     id: '6',
     title: 'Chorun Mugli & The Band',
-    figureSrc: '',
+    figureSrc: '/media/events/band.jpg',
     day: 0,
     time: '19:00',
     venue: 'Main Stage',
@@ -186,7 +188,7 @@ export const events = {
   '7': {
     id: '7',
     title: 'Poetry Slam',
-    figureSrc: '',
+    figureSrc: '/media/events/poetry.jpg',
     day: 1,
     time: '10:00 - 11:30',
     venue: 'TEL Center',
@@ -214,7 +216,7 @@ export const events = {
   '9': {
     id: '9',
     title: 'Essay',
-    figureSrc: '',
+    figureSrc: '/media/events/essay.jpg',
     day: 1,
     time: '11:15 - 13:00',
     venue: 'Mechanical Block 2nd floor',
@@ -228,7 +230,7 @@ export const events = {
   '10': {
     id: '10',
     title: 'Sketching',
-    figureSrc: '',
+    figureSrc: '/media/events/sketch.jpg',
     day: 1,
     time: '14:30 - 16:00',
     venue: 'Mechanical Block 2nd floor',
@@ -256,7 +258,7 @@ export const events = {
   '12': {
     id: '12',
     title: 'Mr. and Ms. Atulyam (Talent Round)',
-    figureSrc: '',
+    figureSrc: '/media/events/peasantry.jpeg',
     day: 1,
     time: '16:30 - 18:00',
     venue: '2nd Stage',
@@ -267,7 +269,7 @@ export const events = {
   '13': {
     id: '13',
     title: 'David Angu & The Tribe',
-    figureSrc: '',
+    figureSrc: '/media/events/tribe.jpg',
     day: 1,
     time: '19:00',
     venue: 'Main Stage',
@@ -306,9 +308,9 @@ export const events = {
   '15': {
     id: '15',
     title: 'Opening Act',
-    figureSrc: '',
+    figureSrc: '/media/events/opening.jpg',
     day: 2,
-    time: 'After Mr. and Mrs. Atulyam',
+    time: 'After Mr. and Ms. Atulyam',
     venue: 'Main Stage',
     desc: '',
     type: 'Event',

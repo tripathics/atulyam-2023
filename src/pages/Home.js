@@ -17,7 +17,7 @@ const tags = [
   'concert', 'flash mob', 'film making', 'joy', 'concert', 'dj', 'poetry slam'
 ]
 
-const Home = () => {
+const Home = ({ user }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -47,11 +47,17 @@ const Home = () => {
             After three years, we return with a more niwe and creative community than ever.
           </p>
           <div className={styles['header-btn-wrapper']}>
-            <NavLink to='/signup' className={cx('btn', styles['intro-header-btn'])}>
-              <span className={cx('btn-subtitle', styles['intro-btn-subtitle'])}>Events registration open</span>
-              <span className={cx('btn-text', styles['intro-btn-text'])}>Register<br />now!</span>
-              <LinkIcon />
-            </NavLink>
+            {user ? (
+              <NavLink to='/register' className={cx('btn', styles['intro-header-btn'])}>
+                <span className={cx('btn-subtitle', styles['intro-btn-subtitle'])}>Events registration open</span>
+                <span className={cx('btn-text', styles['intro-btn-text'])}>Register<br />now!</span>
+                <LinkIcon />
+              </NavLink>
+            ) : <NavLink to='/signup' className={cx('btn', styles['intro-header-btn'])}>
+            <span className={cx('btn-subtitle', styles['intro-btn-subtitle'])}>Events registration open</span>
+            <span className={cx('btn-text', styles['intro-btn-text'])}>Register<br />now!</span>
+            <LinkIcon />
+          </NavLink> }
           </div>
         </header>
       </section>
@@ -65,7 +71,7 @@ const Home = () => {
 
         <main>
           <div className={styles.hlgallery}>
-            {highlights.map(id => <HighlightCard key={id} {...events[id]} />)}
+            {highlights.map(id => <HighlightCard user={user} key={id} {...events[id]} />)}
             <div className={styles['btn-wrapper']}>
               <NavLink to='/events' className='btn'>
                 <span className='btn-subtitle'>Events</span>
@@ -85,10 +91,10 @@ const Home = () => {
           </h2>
           <p className={cx(styles.subtitle, 'container')} id='coordinatorsList'>
             <ul>
-              {coordinators.filter((val, i) => i <= 20).map(val => <li key={val.name}> {val.name}</li>)}
+              {coordinators.filter((val, i) => i <= 22).map(val => <li key={val.name}> {val.name}</li>)}
             </ul>
             <ul>
-              {coordinators.filter((val, i) => i > 20).map(val => <li key={val.name}> {val.name}</li>)}
+              {coordinators.filter((val, i) => i > 22).map(val => <li key={val.name}> {val.name}</li>)}
             </ul>
           </p>
         </header>

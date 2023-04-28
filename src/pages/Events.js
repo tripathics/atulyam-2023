@@ -16,7 +16,7 @@ const timeCompare = (a, b) => {
   }
 }
 
-const Events = () => {
+const Events = ({ user }) => {
   const eventFigureWrapper = useRef(null);
   const [currentDay, setCurrentDay] = useState(0);
   const [activeEventId, setActiveEventId] = useState(null);
@@ -65,10 +65,17 @@ const Events = () => {
           <span>Schedule</span>
         </h1>
         <div className={cx(styles['header-btn-wrapper'])}>
-          <NavLink to='/signup' className='btn'>
+          {user ? (
+          <NavLink to='/register' className='btn'>
             <span className='btn-subtitle'>Events registration open</span>
             <span className='btn-text'>Register<br />now!</span>
           </NavLink>
+          ) : (
+            <NavLink to='/signup' className='btn'>
+              <span className='btn-subtitle'>Events registration open</span>
+              <span className='btn-text'>Register<br />now!</span>
+            </NavLink>
+          )}
         </div>
         <div className={cx('subtitle', styles['header-subtitle'])}>
           <h2>May.4-6</h2>
