@@ -13,6 +13,7 @@ import { motion } from 'framer-motion';
 import styles from '../styles/Login.module.scss';
 import cx from 'classnames'
 import Alert from '../components/Alert';
+import SupportLink from '../components/SupportLink';
 
 const SignIn = ({ user }) => {
   const history = useNavigate();
@@ -151,6 +152,7 @@ const SignIn = ({ user }) => {
               </button>
             </div>
           </form>
+          <SupportLink />
         </div>
       </div>
     </motion.div>

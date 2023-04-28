@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router'
 import { getDoc, doc, setDoc } from 'firebase/firestore'
 import { db } from '../config/config'
 import Alert from '../components/Alert';
+import SupportLink from '../components/SupportLink';
 import { motion } from 'framer-motion';
 import styles from '../styles/Form.module.scss';
 import cx from 'classnames';
@@ -163,7 +164,7 @@ const Register = ({ user }) => {
 
             <div className={styles['form-fields']}>
               <div className={styles['form-field']}>
-                <label htmlFor='events'>Event *</label>
+                <label htmlFor='events'>Select an event to participate *</label>
                 <select required name="events" id="events" defaultValue={""} defaultChecked onChange={(e) => { setSelectedEvent(e.target.value) }}>
                   <option disabled="disabled" value="">Select an event to participate</option>
                   {Object.keys(events).filter(id => events[id].isRegistrationOpen).map(id => (
@@ -222,6 +223,7 @@ const Register = ({ user }) => {
               </button>
             </div>
           </form>
+          <SupportLink />
         </div>
       </div>
     </motion.div>

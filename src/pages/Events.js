@@ -4,6 +4,7 @@ import cx from 'classnames';
 import { events, events1 } from '../data/data';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import SupportLink from '../components/SupportLink';
 
 const timeCompare = (a, b) => {
   if (events[a].time < events[b].time) {
@@ -98,6 +99,9 @@ const Events = () => {
           </div>
         </section>
       </main>
+      <div className='container'>
+        <SupportLink />
+      </div>
     </motion.div>
   )
 }

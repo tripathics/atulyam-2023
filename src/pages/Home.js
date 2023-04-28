@@ -84,12 +84,12 @@ const Home = () => {
             <span className={styles._ar}>Team</span>
           </h2>
           <p className={cx(styles.subtitle, 'container')} id='coordinatorsList'>
-            <span>
-              {coordinators.filter((val, i) => i <= 20).map(val => <span key={val.name}> {val.name}</span>)}
-            </span>
-            <span>
-              {coordinators.filter((val, i) => i > 20).map(val => <span key={val.name}> {val.name}</span>)}
-            </span>
+            <ul>
+              {coordinators.filter((val, i) => i <= 20).map(val => <li key={val.name}> {val.name}</li>)}
+            </ul>
+            <ul>
+              {coordinators.filter((val, i) => i > 20).map(val => <li key={val.name}> {val.name}</li>)}
+            </ul>
           </p>
         </header>
         <main>

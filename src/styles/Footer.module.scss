@@ -33,6 +33,15 @@ footer {
     font-size: 1rem;
     justify-content: space-around;
 
+    >* {
+        flex: 1;
+    }
+
+    > :last-child>img {
+        display: block;
+        margin-left: auto;
+    }
+
     .thanks {
         font-family: "Antonio", sans-serif;
         font-size: 45px;
@@ -51,21 +60,31 @@ footer {
 
 .LogoContainer {
     margin: 0.625rem 1rem 1rem;
+    position: relative;
 
     >img {
         width: 250px;
         height: auto;
         filter: invert(100%);
         max-width: 100%;
+        display: block;
+        margin: auto;
     }
 
     .title {
-        font-size: 34px;
+        position: absolute;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: black;
+        text-transform: uppercase;
+        letter-spacing: 0.22ch;
+        font-family: 'Roboto', sans-serif;
         margin-top: -50px;
         text-align: center;
+        left: 50%;
+        bottom: 1.8rem;
+        transform: translate(-50%, 0);
     }
-
-
 }
 
 .Registerbtn {
@@ -82,6 +101,9 @@ footer {
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
     justify-content: space-around;
 
     .footerContent {
@@ -90,14 +112,22 @@ footer {
         flex-wrap: wrap;
         justify-content: space-around;
 
-        .QuotesContainer {
-            font-family: 'Staatliches', cursive;
-            width: 300px;
-            white-space: wrap;
+    }
 
-            .quotes {
-                font-size: 1.8rem;
-            }
+    .QuotesContainer {
+        font-family: 'Staatliches', cursive;
+        width: 300px;
+        white-space: wrap;
+
+        .quotes {
+            font-size: 1.8rem;
+        }
+    }
+
+    .sponsor-wrapper {
+        .sponsor {
+            width: fit-content;
+            margin-left: auto;
         }
 
         .sponsors {
@@ -128,16 +158,15 @@ footer {
     list-style-type: none;
 
     .handle-wrapper {
-        margin-right: 2rem;
-        border: 1px solid black;
-        padding: 20px;
-        border-radius: 50%;
+        margin-right: 1rem;
 
         .handle {
+            border: 1px solid black;
+            border-radius: 50%;
             display: block;
             position: relative;
-            width: 1.5rem;
-            height: 1.5rem;
+            width: 3.2rem;
+            height: 3.2rem;
 
             a {
                 border-radius: 50%;
@@ -149,13 +178,11 @@ footer {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                width: 80%;
-                height: 80%;
+                width: 40%;
+                height: 40%;
                 fill: var(--text-FooterColor);
             }
-
         }
-
     }
 
     .handle-wrapper:last-child {
@@ -170,4 +197,17 @@ footer {
     font-size: 0.95rem;
     padding: 0.8rem 0;
     text-align: center;
+    letter-spacing: 0ch;
+
+    p {
+        margin-bottom: 0.8rem;
+    }
+    p:last-child {
+        margin: 0;
+    }
+
+    .ln {
+        font-size: inherit;
+        text-transform: none;
+    }
 }

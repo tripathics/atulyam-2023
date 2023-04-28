@@ -55,9 +55,9 @@ export const mainCoordinators = [
     roles: ['Event Coordinator', 'Designing Team']
   },
   {
-    name: 'Kamin Pajing',
-    imgSrc: '/media/coordinators/kamin.jpg',
-    roles: ['Program Manager']
+    name: 'Likha Tassam',
+    imgSrc: '/media/coordinators/tassam.jpg',
+    roles: ['Decoration Coordinator', 'Designing Team']
   },
   {
     name: 'Gamjum Laye',
@@ -65,14 +65,14 @@ export const mainCoordinators = [
     roles: ['Coordinator', 'Mr. and Mrs. Atulyam']
   },
   {
-    name: 'Rikto Padu',
-    imgSrc: '/media/coordinators/rikto.jpg',
-    roles: ['Sponsor Head']
-  },
-  {
     name: 'Joni Nomuk',
     imgSrc: '/media/coordinators/joni.jpg',
     roles: ['Chief coordinator Atulyam\'23']
+  },
+  {
+    name: 'Rikto Padu',
+    imgSrc: '/media/coordinators/rikto.jpg',
+    roles: ['Sponsor Head']
   },
   {
     name: 'Nich Talo',

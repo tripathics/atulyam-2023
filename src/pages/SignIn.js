@@ -16,6 +16,7 @@ import { NavLink } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { motion } from 'framer-motion'
+import SupportLink from '../components/SupportLink';
 
 
 const Login = ({ user, loginUser, logoutUser }) => {
@@ -145,6 +146,7 @@ const Login = ({ user, loginUser, logoutUser }) => {
               </button>
             </div>
           </form>
+          <SupportLink />
         </div>
       </div>
     </motion.div>

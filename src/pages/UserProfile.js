@@ -15,6 +15,7 @@ import styles from '../styles/Profile.module.scss'
 import '../styles/user.scss'
 import cx from 'classnames'
 import { events } from '../data/data'
+import SupportLink from '../components/SupportLink';
 
 
 const UserProfile = ({ user, logoutUser }) => {
@@ -152,6 +153,7 @@ const UserProfile = ({ user, logoutUser }) => {
                 </NavLink>
               </div>
             </div>
+            <SupportLink />
           </section>
         </main>
       </div>

@@ -373,6 +373,18 @@
             bottom: calc(0.4 * var(--heading-font-size));
             left: calc(1.4 * var(--heading-font-size));
 
+            > ul {
+                margin-bottom: 0.8rem;
+                list-style-type: none;
+                > li {
+                    display: inline;
+                }
+            }
+
+            > ul:last-child {
+                margin-left: var(--heading-font-size);
+            }
+
             >span {
                 margin-bottom: 0.8rem;
             }
