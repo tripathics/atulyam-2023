@@ -110,6 +110,25 @@
                         }
                     }
                 }
+
+                .checkbox-input-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    .checkbox {
+                        width: 1.2rem;
+                        height: 1.2rem;
+                    }
+                    label.checkbox-label {
+                        margin-left: 1rem;
+                        font-family: 'Roboto', sans-serif;
+                        font-size: 1rem;
+                        line-height: 1.2;
+                        margin-left: 0.5rem;
+                    }
+                    
+                }
             }
 
             .form-link {

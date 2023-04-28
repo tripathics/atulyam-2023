@@ -30,14 +30,14 @@ const Footer = () => {
             <ul className={styles.SocialHandles}>
               <li className={cx( styles['handle-wrapper'],styles.growIcon)}>
                 <a className={styles.handle} target='_blank' rel='noreferrer' href="https://www.facebook.com/atulyamnitap">
-                  <svg class="c-socials_icon" role="presentation" aria-label="Facebook" aria-hidden="true">
+                  <svg role="presentation" aria-label="Facebook" aria-hidden="true">
                     <use href="/media/icons/sprite.svg#social-facebook"></use>
                   </svg>
                 </a>
               </li>
               <li className={cx( styles['handle-wrapper'],styles.growIcon)}>
               <a className={styles.handle} target='_blank' rel='noreferrer' href="https://www.instagram.com/nitap_atulyam/">
-                <svg class="c-socials_icon" role="presentation" aria-label="Twitter" aria-hidden="true">
+                <svg role="presentation" aria-label="Twitter" aria-hidden="true">
                   <use href="/media/icons/sprite.svg#social-instagram"></use>
                 </svg>
               </a>

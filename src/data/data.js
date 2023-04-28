@@ -50,19 +50,19 @@ export const mainCoordinators = [
     roles: ['Developer', 'Event Coordinator', 'Backend']
   },
   {
-    name: 'Gamjum Laye',
-    imgSrc: '/media/coordinators/gamjum.jpg',
-    roles: ['Coordinator', 'Mr. and Mrs. Atulyam']
-  },
-  {
     name: 'Mekruk Waii',
     imgSrc: '/media/coordinators/mekruk.jpg',
     roles: ['Event Coordinator', 'Designing Team']
   },
   {
-    name: 'Joni Nomuk',
-    imgSrc: '/media/coordinators/joni.jpg',
-    roles: ['Chief coordinator Atulyam\'23']
+    name: 'Kamin Pajing',
+    imgSrc: '/media/coordinators/kamin.jpg',
+    roles: ['Program Manager']
+  },
+  {
+    name: 'Gamjum Laye',
+    imgSrc: '/media/coordinators/gamjum.jpg',
+    roles: ['Coordinator', 'Mr. and Mrs. Atulyam']
   },
   {
     name: 'Rikto Padu',
@@ -70,9 +70,9 @@ export const mainCoordinators = [
     roles: ['Sponsor Head']
   },
   {
-    name: 'Kamin Pajing',
-    imgSrc: '/media/coordinators/kamin.jpg',
-    roles: ['Program Manager']
+    name: 'Joni Nomuk',
+    imgSrc: '/media/coordinators/joni.jpg',
+    roles: ['Chief coordinator Atulyam\'23']
   },
   {
     name: 'Nich Talo',
@@ -100,32 +100,38 @@ export const events = {
     figureSrc: '',
     day: 0,
     time: '10:00 - 11:00',
-    venue: '',
+    venue: 'Main Stage',
     desc: '',
-    type: 'Event',
+    type: '',
     highlight: false
   },
-  '1': {
-    id: '1',
-    title: 'Modern Dance',
-    figureSrc: '/media/events/dance.jpeg',
-    day: 1,
+  '17': {
+    id: '17',
+    title: 'Traditional Dance',
+    figureSrc: '',
+    day: 0,
     time: '11:15',
-    venue: '',
+    venue: '2nd Stage',
     desc: '',
     type: 'Contest',
-    highlight: true
+    highlight: false,
+    isRegistrationOpen: true,
+    solo: false,
+    rules: ''
   },
   '2': {
     id: '2',
-    title: 'Short Film Making',
+    title: 'Short Film Shooting',
     figureSrc: '/media/events/film-making.jpeg',
     day: 0,
     time: '11:15',
-    venue: '',
+    venue: 'Mechanical Block 2nd floor',
     desc: '',
     type: 'Contest',
-    highlight: true
+    highlight: true,
+    isRegistrationOpen: true,
+    solo: true,
+    rules: ''
   },
   '3': {
     id: '3',
@@ -133,10 +139,13 @@ export const events = {
     figureSrc: '',
     day: 0,
     time: '14:30',
-    venue: '',
+    venue: 'TEL Center',
     desc: '',
     type: 'Contest',
-    highlight: false
+    highlight: false,
+    isRegistrationOpen: true,
+    solo: false,
+    rules: ''
   },
   '4': {
     id: '4',
@@ -144,31 +153,34 @@ export const events = {
     figureSrc: '',
     day: 0,
     time: '14:30',
-    venue: '',
+    venue: 'Mechanical Block 2nd floor',
     desc: '',
     type: 'Contest',
-    highlight: false
+    highlight: false,
+    isRegistrationOpen: true,
+    solo: true,
+    rules: ''
   },
   '5': {
     id: '5',
-    title: 'Dance by Kenbi and Doi',
+    title: 'Performance by NITAP students',
     figureSrc: '',
     day: 0,
     time: '18:00',
-    venue: '',
+    venue: 'Main Stage',
     desc: '',
     type: 'Event',
     highlight: false
   },
   '6': {
     id: '6',
-    title: 'Chorun Mugli & The Tribe',
+    title: 'Chorun Mugli & The Band',
     figureSrc: '',
     day: 0,
     time: '19:00',
-    venue: '',
+    venue: 'Main Stage',
     desc: '',
-    type: 'Event',
+    type: 'Concert',
     highlight: false
   },
   '7': {
@@ -176,69 +188,84 @@ export const events = {
     title: 'Poetry Slam',
     figureSrc: '',
     day: 1,
-    time: '10:00 - 11:00',
-    venue: '',
+    time: '10:00 - 11:30',
+    venue: 'TEL Center',
     desc: '',
     type: 'Contest',
-    highlight: false
+    highlight: false,
+    isRegistrationOpen: true,
+    solo: true,
+    rules: ''
   },
-  '8': {
-    id: '8',
-    title: 'Solo Singing',
-    figureSrc: '/media/events/singing.jpeg',
-    day: 2,
-    time: '14:00',
-    venue: '',
+  '1': {
+    id: '1',
+    title: 'Modern Dance',
+    figureSrc: '/media/events/dance.jpeg',
+    day: 1,
+    time: '10:00',
+    venue: '2nd Stage',
     desc: '',
     type: 'Contest',
-    highlight: true
+    highlight: true,
+    isRegistrationOpen: true,
+    solo: false,              // TODO
+    rules: ''
   },
   '9': {
     id: '9',
     title: 'Essay',
     figureSrc: '',
     day: 1,
-    time: '11:15',
-    venue: '',
+    time: '11:15 - 13:00',
+    venue: 'Mechanical Block 2nd floor',
     desc: '',
     type: 'Contest',
-    highlight: false
+    highlight: false,
+    isRegistrationOpen: true,
+    solo: true,
+    rules: ''
   },
   '10': {
     id: '10',
     title: 'Sketching',
     figureSrc: '',
     day: 1,
-    time: '14:30',
-    venue: '',
+    time: '14:30 - 16:00',
+    venue: 'Mechanical Block 2nd floor',
     desc: '',
     type: 'Contest',
-    highlight: false
+    highlight: false,
+    isRegistrationOpen: true,
+    solo: true,
+    rules: ''
   },
   '11': {
     id: '11',
-    title: 'Cosplay',
+    title: 'Cosplay contest',
     figureSrc: '/media/events/cosplay.jpeg',
     day: 1,
     time: '14:30',
-    venue: '',
+    venue: '2nd Stage',
     desc: '',
     type: 'Contest',
     highlight: true,
     isRegistrationOpen: true,
     solo: true,
-    rules: 'https://drive.google.com/file/d/1gQ3qLqtHFOwS5M8m3zBKvh5Rvel-mB15/view?usp=sharing'
+    rules: 'https://drive.google.com/file/d/1gQ3qLqtHFOwS5M8m3zBKvh5Rvel-mB15/view?usp=sharing',
   },
   '12': {
     id: '12',
-    title: 'Hip hop performance',
+    title: 'Mr. and Ms. Atulyam (Talent Round)',
     figureSrc: '',
     day: 1,
-    time: '18:00',
-    venue: '',
+    time: '16:30 - 18:00',
+    venue: '2nd Stage',
     desc: '',
     type: 'Contest',
-    highlight: false
+    highlight: false,
+    isRegistrationOpen: true,
+    solo: true,
+    rules: ''
   },
   '13': {
     id: '13',
@@ -246,21 +273,38 @@ export const events = {
     figureSrc: '',
     day: 1,
     time: '19:00',
-    venue: '',
+    venue: 'Main Stage',
     desc: '',
-    type: 'Event',
+    type: 'Concert',
     highlight: false
+  },
+  '8': {
+    id: '8',
+    title: 'Solo Song',
+    figureSrc: '/media/events/singing.jpeg',
+    day: 2,
+    time: '14:00',
+    venue: '2nd Stage',
+    desc: '',
+    type: 'Contest',
+    highlight: true,
+    isRegistrationOpen: true,
+    solo: true,
+    rules: ''
   },
   '14': {
     id: '14',
     title: 'Mr. and Ms. Atulyam',
     figureSrc: '/media/events/peasantry.jpeg',
     day: 2,
-    time: '18:00',
-    venue: '',
+    time: '17:00',
+    venue: 'Main Stage',
     desc: '',
     type: 'Contest',
-    highlight: true
+    highlight: true,
+    isRegistrationOpen: true,
+    solo: true,
+    rules: ''
   },
   '15': {
     id: '15',
@@ -268,7 +312,7 @@ export const events = {
     figureSrc: '',
     day: 2,
     time: 'After Mr. and Mrs. Atulyam',
-    venue: '',
+    venue: 'Main Stage',
     desc: '',
     type: 'Event',
     highlight: false
@@ -279,20 +323,9 @@ export const events = {
     figureSrc: '/media/events/dj.jpeg',
     day: 2,
     time: 'After Opening Act',
-    venue: '',
+    venue: 'Main Stage',
     desc: '',
     type: 'Event',
     highlight: true
-  },
-  '17': {
-    id: '17',
-    title: 'Traditional Dance',
-    figureSrc: '/media/events/dance.jpeg',
-    day: 0,
-    time: '11:15',
-    venue: '',
-    desc: '',
-    type: 'Contest',
-    highlight: false
   },
 }

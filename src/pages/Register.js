@@ -24,6 +24,10 @@ const TextInputField = ({ val = '', title = '', pattern = '.*', setVal, name, pl
 )
 
 const Register = ({ user }) => {
+  const history = useNavigate();
+
+  const [loading, setLoading] = useState(false);
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -32,12 +36,10 @@ const Register = ({ user }) => {
   const [age, setAge] = useState('');
   const [teamMemberDetails, setTeamMemberDetails] = useState('');
   const [teamName, setTeamName] = useState('');
-  const [loading, setLoading] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState('');
+  const [participatingInTeam, setParticipatingInTeam] = useState(true);
+  const [readRules, setReadRules] = useState('');
 
-  const history = useNavigate();
-
-  const [individualParticipation, setIndividualParticipation] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
   const [id, setUid] = useState('')
@@ -57,7 +59,7 @@ const Register = ({ user }) => {
         setContact(fetched.contact ? fetched.contact : '')
         setCollegeName(fetched.college ? fetched.college : '')
         setAge(fetched.age ? fetched.age : '')
-        if (fetched.TeamSize !== 'Individual') setIndividualParticipation(false);
+        if (fetched.TeamSize !== 'Individual') setParticipatingInTeam(false);
 
         updateFormData('gender', fetched.gender);
         updateFormData('address', fetched.address);
@@ -92,7 +94,7 @@ const Register = ({ user }) => {
       age: data.get('age'),
       gender: data.get('gender'),
       TeamName: data.get('teamName'),
-      TeamSize: ((individualParticipation === true) ? 'Individual' : 'Group'),
+      TeamSize: ((participatingInTeam === true) ? 'Group' : 'Individual'),
       TeamMembers: data.get('teamMembers'),
       college: data.get('collegeName'),
       userId: user.user.uid,
@@ -160,7 +162,6 @@ const Register = ({ user }) => {
             </div>
 
             <div className={styles['form-fields']}>
-
               <div className={styles['form-field']}>
                 <label htmlFor='events'>Event *</label>
                 <select required name="events" id="events" defaultValue={""} defaultChecked onChange={(e) => { setSelectedEvent(e.target.value) }}>
@@ -182,21 +183,37 @@ const Register = ({ user }) => {
                 <label htmlFor='Individual'>Are you participating in a team? *</label>
                 <div className={styles['radio-group']}>
                   <div className={styles['radio-option']}>
-                    <input checked={individualParticipation === true} className={styles.radio} onChange={event => setIndividualParticipation(true)} id="option-1" type="radio" name="options" />
-                    <label className={styles['radio-label']} htmlFor='No'>No</label>
+                    <input className={styles.radio}
+                      checked={participatingInTeam === true}
+                      onChange={event => setParticipatingInTeam(true)}
+                      id="option-2" type="radio" name="options"
+                    />
+                    <label className={styles['radio-label']} htmlFor='Yes'>Yes</label>
                   </div>
                   <div className={styles['radio-option']}>
-                    <input checked={individualParticipation === false} className={styles.radio} onChange={event => setIndividualParticipation(false)} id="option-2" type="radio" name="options" />
-                    <label className={styles['radio-label']} htmlFor='Yes'>Yes</label>
+                    <input className={styles.radio}
+                      checked={participatingInTeam === false}
+                      onChange={event => setParticipatingInTeam(false)}
+                      id="option-1" type="radio" name="options"
+                    />
+                    <label className={styles['radio-label']} htmlFor='No'>No</label>
                   </div>
                 </div>
               </div>
-              {!individualParticipation &&
+              {participatingInTeam &&
                 <div className={styles['form-fields']}>
                   <TextInputField name={'teamName'} placeholder={'Team name *'} val={teamName} setVal={setTeamName} />
-                  <TextInputField name={'teamMemberDetails'} placeholder={'Team member details *'} val={teamMemberDetails} setVal={setTeamMemberDetails} />
+                  <TextInputField name={'teamMemberDetails'} placeholder={'Team members *'} val={teamMemberDetails} setVal={setTeamMemberDetails} />
                 </div>}
             </>)}
+
+            {selectedEvent && events[selectedEvent].rules && <div className={styles['form-field']}>
+              <div className={styles['checkbox-input-wrapper']}>
+                <input required type='checkbox' className={styles.checkbox} checked={readRules} onChange={(e) => { setReadRules(!readRules) }} name='Rules' />
+                <label className={styles['checkbox-label']} htmlFor='Rules'>I have read the rules</label>
+              </div>
+            </div>}
+
             <div className={styles['btns-wrapper']}>
               <button disabled={loading} className={'btn'} type="submit">
                 <span className='btn-subtitle'></span>
