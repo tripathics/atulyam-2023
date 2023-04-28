@@ -120,7 +120,7 @@ const UserProfile = ({ user, logoutUser }) => {
                     <li> <span className={styles.title}>Address</span> <span> {profiledata.address}</span></li>
                     {registeredData.TeamName && <>
                       <li> <span className={styles.title}>Team Name</span> <span> {registeredData.TeamName}</span></li>
-                      <li> <span className={styles.title}>Team Members</span> <span> {registeredData.TeamMebers}</span></li>
+                      <li> <span className={styles.title}>Team Members</span> <span> {registeredData.TeamMembers}</span></li>
                     </>}
                   </ul>
                 </div>

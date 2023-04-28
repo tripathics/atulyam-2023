@@ -75,7 +75,6 @@ const Register = ({ user }) => {
     })
   }, [user])
 
-
   function updateFormData(ref, val) {
     document.getElementById(ref).value = val ? val : '';
   }
@@ -96,11 +95,13 @@ const Register = ({ user }) => {
       gender: data.get('gender'),
       TeamName: data.get('teamName'),
       TeamSize: ((participatingInTeam === true) ? 'Group' : 'Individual'),
-      TeamMembers: data.get('teamMembers'),
+      TeamMembers: data.get('teamMemberDetails'),
       college: data.get('collegeName'),
       userId: user.user.uid,
       isRegister: true,
     }
+
+    console.log(userFormData);
 
     setDoc(doc(db, 'registered', id), userFormData)
       .then(() => {
