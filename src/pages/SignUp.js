@@ -100,7 +100,7 @@ const SignIn = ({ user }) => {
   }
 
   useEffect(() => {
-    if (user.user) history('/');
+    if (user.user) history('/register');
   }, [])
 
   return (

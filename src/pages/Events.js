@@ -64,7 +64,7 @@ const Events = () => {
           <span>Schedule</span>
         </h1>
         <div className={cx(styles['header-btn-wrapper'])}>
-          <NavLink to='/register' className='btn'>
+          <NavLink to='/signup' className='btn'>
             <span className='btn-subtitle'>Events registration open</span>
             <span className='btn-text'>Register<br />now!</span>
           </NavLink>

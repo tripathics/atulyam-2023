@@ -5,8 +5,8 @@ import cx from 'classnames';
 const links = [
   { link: '/', name: 'Home', onlyMobile: true },
   { link: '/events', name: 'What\'s on' },
-  { link: '/register', name: 'Register' },
-  { link: '/user', name:'Profile', auth: true}
+  { link: '/register', name: 'Register', auth: true },
+  { link: '/user', name: 'Profile', auth: true }
 ]
 
 const NavItem = ({ name, link, handleClick }) => (
@@ -41,6 +41,9 @@ const Navigation = ({ user }) => {
         </div>
         <div className={cx(styles["router-links"], styles.desktop)}>
           {links.filter(link => !link.onlyMobile && (!link.auth || user)).map(link => <NavItem key={link.name} {...link} />)}
+          {!user && (
+            <NavItem link={'/signup'} name={'Register'} />
+          )}
         </div>
         <button aria-label="Menu" className={styles['mobile-hamburger-btn']} type='button'
           onClick={(e) => { e.preventDefault(); toggleMobileNav(); }}>
@@ -55,6 +58,10 @@ const Navigation = ({ user }) => {
         <ul className={styles["router-links"]}>
           {links.filter(link => !link.auth || user).map(link =>
             <li key={link.name}><NavItem handleClick={toggleMobileNav} {...link} /></li>
+          )}
+          {!user && (
+            <li key={'noauth'}><NavItem handleClick={toggleMobileNav}
+              {...{ link: '/signup', name: 'Register' }} /></li>
           )}
         </ul>
         <div className={styles['nav-footer']}>
