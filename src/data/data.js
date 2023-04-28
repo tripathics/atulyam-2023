@@ -261,11 +261,8 @@ export const events = {
     time: '16:30 - 18:00',
     venue: '2nd Stage',
     desc: '',
-    type: 'Contest',
+    type: 'Pre round for Mr. & Ms. Atulyam',
     highlight: false,
-    isRegistrationOpen: true,
-    solo: true,
-    rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '13': {
     id: '13',

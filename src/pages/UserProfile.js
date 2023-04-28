@@ -145,7 +145,7 @@ const UserProfile = ({ user, logoutUser }) => {
               </div>
 
               <div className={styles['btn-wrapper']}>
-                <NavLink to='/register' className={cx('btn', { secondary: isRegistered })}>
+                <NavLink to='/signup' className={cx('btn', { secondary: isRegistered })}>
                   {!isRegistered && <span className='btn-subtitle'>You haven't registered yet</span>}
                   {isRegistered && <span className='btn-subtitle'>Register for a different event</span>}
                   <span className='btn-text'>Register</span>
