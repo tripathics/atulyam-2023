@@ -71,7 +71,7 @@ export const mainCoordinators = [
   },
   {
     name: 'Kamin Pajing',
-    imgSrc: '/media/coordinators/joni.jpg',
+    imgSrc: '/media/coordinators/kamin.jpg',
     roles: ['Program Manager']
   },
   {
