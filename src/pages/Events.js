@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styles from '../styles/Events.module.scss';
 import cx from 'classnames';
-import { events, events1 } from '../data/data';
+import { events } from '../data/data';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import SupportLink from '../components/SupportLink';
@@ -9,7 +9,7 @@ import SupportLink from '../components/SupportLink';
 const timeCompare = (a, b) => {
   if (events[a].time < events[b].time) {
     return -1;
-  } else if (events[a].time == events[b].time) {
+  } else if (events[a].time === events[b].time) {
     return 0;
   } else {
     return 1;
