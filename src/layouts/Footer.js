@@ -20,7 +20,7 @@ const Footer = () => {
 
           </div>
           <div>
-            <p styfle={{textAlign:"center", fontSize: '1.2rem', marginBottom: '0.8rem'}}>Media Patner</p>
+            <p style={{textAlign:"center", fontSize: '1.2rem', marginBottom: '0.8rem'}}>Media Partner</p>
           <img  className={styles.sponsors} src={sponsors} alt=""></img>
           </div>
         </div>
@@ -57,7 +57,7 @@ const Footer = () => {
 
           </div>
           <div>
-            <img src={bye} style={{width:"300px"}} alt=""></img>
+            <img src={bye} style={{height:"220px", width: "auto"}} alt=""></img>
           </div>
         </div>
       </div>
