@@ -47,6 +47,11 @@ export const coordinators = [
 
 export const mainCoordinators = [
   {
+    name: 'Daknya Bam',
+    imgSrc: '/media/coordinators/daknya.jpg',
+    roles: ['Designer', 'UI/UX', 'Frontend', 'Coordinator']
+  },
+  {
     name: 'Pursottam Sah',
     imgSrc: '/media/coordinators/pursottam.jpg',
     roles: ['Developer', 'Event Coordinator', 'Backend']
@@ -54,7 +59,7 @@ export const mainCoordinators = [
   {
     name: 'Mekruk Waii',
     imgSrc: '/media/coordinators/mekruk.jpg',
-    roles: ['Event Coordinator', 'Designing Team']
+    roles: ['Designing coordinator', 'Cultural Vice-Chairmain, SANIT']
   },
   {
     name: 'Likha Tassam',
@@ -69,28 +74,38 @@ export const mainCoordinators = [
   {
     name: 'Joni Nomuk',
     imgSrc: '/media/coordinators/joni.jpg',
-    roles: ['Chief coordinator Atulyam\'23']
+    roles: ['Chief coordinator Atulyam\'23', 'Cultural Secretary, SANIT']
   },
   {
     name: 'Rikto Padu',
     imgSrc: '/media/coordinators/rikto.jpg',
-    roles: ['Sponsor Head']
+    roles: ['Sponsor Head', 'IPR, Chairmain SANIT']
   },
   {
     name: 'Nich Talo',
     imgSrc: '/media/coordinators/talo.jpg',
-    roles: ['Events Coordinator']
+    roles: ['Main Events Coordinator', 'Cultural Chairmain, SANIT']
+  },
+  {
+    name: 'Sanklee Sidisow',
+    imgSrc: '/media/coordinators/sanklee.jpg',
+    roles: ['President, SANIT']
+  },
+  {
+    name: 'Lishi Akhil',
+    imgSrc: '/media/coordinators/akhil.jpg',
+    roles: ['General Secretary, SANIT']
+  },
+  {
+    name: 'Kamin Pajing',
+    imgSrc: '/media/coordinators/kamin.jpg',
+    roles: ['Sponsor Co-Head', 'IPR, Chairmain SANIT']
   },
   {
     name: 'Chandrashekhar Tripathi',
     imgSrc: '/media/coordinators/chandrashekhar.jpg',
     roles: ['Developer', 'UI/UX', 'Full stack']
   },
-  {
-    name: 'Daknya Bam',
-    imgSrc: '/media/coordinators/daknya.jpg',
-    roles: ['Designer', 'UI/UX', 'Frontend', 'Coordinator']
-  }
 ]
 
 export const highlights = ['1', '2', '8', '11', '14', '16'];

@@ -192,6 +192,7 @@ const Register = ({ user }) => {
             <div className={cx(styles['form-section'], {
               [styles.active]: editPersonalDetails
             })}>
+              <p>You can edit by going to the Profile section in the menu</p>
               <div className={styles['form-fields']}>
                 <TextInputField name={'firstName'} placeholder={'First name *'} val={firstName} attrs={{ disabled: true }} />
                 <TextInputField name={'lastName'} placeholder={'Last name *'} val={lastName} attrs={{ disabled: true }} />

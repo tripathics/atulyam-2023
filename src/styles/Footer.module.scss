@@ -6,6 +6,7 @@ footer {
     padding-bottom: 1rem;
     font-family: 'Roboto', sans-serif;
     letter-spacing: -0.15ch;
+    position: relative;
 
     .link {
         color: white;
@@ -131,9 +132,15 @@ footer {
         }
 
         .sponsors {
-            margin-bottom: 2rem;
             height: 2rem;
+            margin: 0.4rem;
             width: auto;
+        }
+
+        .sponsorImgs {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
         }
     }
 }
@@ -229,7 +236,7 @@ footer {
             font-family: 'Open Sans';
         }
 
-        .devteamBtn::after {
+        .devteamBtn::before {
             content: "";
             position: absolute;
             top: 100%;
@@ -240,17 +247,29 @@ footer {
             background-color: currentColor;
             transition: .4s;
             transform-origin: left;
-            background: #222222;
+            background: var(--primary);
         }
-        .devteamBtn:hover::after {
+        .devteamBtn:hover::before {
             transform: scaleX(1);
         }
-        .devteamBtn.on:active::after, .devteamBtn:active::after {
-            transform: scaleX(0);
+        .devteamBtn.on {
+            color: var(--white1);
         }
-        .devteamBtn.on::after {
-            background: #000;
-            transform: scaleX(1);
+        .devteamBtn::after {
+            content: "Team4One";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: .4s;
+        }
+        .devteamBtn.on::before {
+            
+            background: var(--primary);
+            top: 0;
+            height: 100%;
+            transform: scaleX(1) ;
         }
     }
 
@@ -265,7 +284,7 @@ footer {
         position: absolute;
         top: 0;
         left: 0;
-        transform: translate(0, -100%);
+        transform: translate(0, calc(-0.5rem - 100%));
     }
 
     .sep {

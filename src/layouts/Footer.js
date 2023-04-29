@@ -1,6 +1,7 @@
 import styles from '../styles/Footer.module.scss';
 import logo from '../media/logo/atulyamLogo.png'
-import sponsors from '../media/logo/echo_arunachal.png'
+import echoOfArunachal from '../media/logo/echo_arunachal.png'
+import hotelObsidianBlue from '../media/logo/hotel-obsidian-blue.png'
 import bye from '../media/bye.png';
 import cx from 'classnames'
 import { ReactComponent as MailIcon } from '../media/icons/mail.svg';
@@ -26,8 +27,11 @@ const Footer = () => {
           </div>
           <div className={styles['sponsor-wrapper']}>
             <div className={styles.sponsor}>
-              <p style={{ textAlign: "center", fontSize: '1.2rem' }}>Media Partner</p>
-              <img className={styles.sponsors} src={sponsors} alt=""></img>
+              <p style={{ textAlign: "center", fontSize: '1.2rem' }}>Our Sponsors</p>
+              <div className={styles.sponsorImgs}>
+                <img className={styles.sponsors} src={echoOfArunachal} alt=""></img>
+                <img className={styles.sponsors} src={hotelObsidianBlue} alt=""></img>
+              </div>
             </div>
           </div>
         </div>
@@ -66,10 +70,9 @@ const Footer = () => {
             <span>Thank you</span>
             <br />
             <span>for your support</span>
-
           </div>
           <div>
-            <img src={bye} style={{ height: "220px", width: "auto" }} alt=""></img>
+            <img src={bye} style={{ height: "160px", width: "auto" }} alt=""></img>
           </div>
         </div>
       </div>
