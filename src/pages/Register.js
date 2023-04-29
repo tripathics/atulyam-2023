@@ -12,7 +12,7 @@ import cx from 'classnames';
 
 import { eventSlots, events } from '../data/data';
 import { db } from '../config/config'
-import { getDoc, doc, addDoc, collection, deleteDoc } from 'firebase/firestore'
+import { getDoc, doc, addDoc, collection, deleteDoc, where } from 'firebase/firestore'
 import { useFetchCollection } from '../hooks/hooks';
 
 const TextInputField = ({ val = '', title = '', pattern = '.*', setVal, name, placeholder, type = 'text', attrs = {} }) => (
@@ -29,7 +29,7 @@ const Register = ({ user }) => {
   const {
     docs: eventsRegistered,
     fetching,
-  } = useFetchCollection('registrations')
+  } = useFetchCollection('registered', [where('userId', '==', user.user.uid)])
   
   const history = useNavigate();
   
@@ -112,8 +112,8 @@ const Register = ({ user }) => {
     }
 
     try {
-      if (overwriteDoc) await deleteDoc(doc(db, 'registrations', overwriteDoc))
-      await addDoc(collection(db, 'registrations'), userFormData);
+      if (overwriteDoc) await deleteDoc(doc(db, 'registered', overwriteDoc))
+      await addDoc(collection(db, 'registered'), userFormData);
       setSuccessMsg('Congratulations you have been successfully registered for the event!');
       history('/user');
     } catch (error) {

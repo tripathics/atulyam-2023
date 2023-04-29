@@ -83,7 +83,7 @@ const Login = ({ user, loginUser, logoutUser }) => {
 
   const redirect = (user) => {
     if (user.isProfileComplete) {
-      history('/register');
+      history('/user');
     } else {
       history('/update-profile');
     }
