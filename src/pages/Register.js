@@ -214,7 +214,7 @@ const Register = ({ user }) => {
             </div>
 
             {fetching ? <p>Please wait...</p> : (
-              <div className={styles['form-fields']}>
+              <div className={cx(styles['form-fields'], styles['slots-wrapper'])}>
                 <div className={styles['form-field']}>
                   <label htmlFor='events'>Select an event to participate *</label>
                   <ul className={styles['event-slots']}>

@@ -89,9 +89,11 @@
                 .radio-group {
                     display: flex;
                     flex-direction: row;
-                    gap: 2rem;
-                    margin-top: 0.8rem;
+                    gap: 0.8rem 1.6rem;
+                    margin: 1rem 0 1rem;
+                    padding-bottom: 1rem;
                     align-items: center;
+                    flex-wrap: wrap;
 
                     .radio-option {
                         display: flex;
@@ -110,8 +112,10 @@
                         }
                     }
                 }
+
                 .event-slots {
                     list-style-type: none;
+                    width: 100%;
 
                     .slot {
                         display: flex;
@@ -121,6 +125,7 @@
                         border-bottom: 1px solid #cacaca;
 
                         .slot-label {
+                            white-space: nowrap;
                             margin-right: 2rem;
                             font-size: 0.8rem;
                             text-transform: uppercase;
@@ -129,7 +134,8 @@
                         }
 
                         .radio-group {
-                            margin-top: 0;
+                            margin: 0;
+                            padding: 0;
                         }
                     }
                 }
@@ -153,6 +159,18 @@
                         margin-left: 0.5rem;
                     }
 
+                }
+            }
+
+            .slots-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+
+                .form-field {
+                    width: 100%;
+                }
+                .form-link {
+                    margin-left: auto;
                 }
             }
 
