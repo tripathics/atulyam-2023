@@ -134,7 +134,6 @@ export const events = {
     type: 'Contest',
     highlight: true,
     isRegistrationOpen: true,
-    solo: false,
     rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '3': {
@@ -149,7 +148,6 @@ export const events = {
     type: 'Contest',
     highlight: false,
     isRegistrationOpen: true,
-    solo: false,
     rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '4': {
@@ -164,7 +162,7 @@ export const events = {
     type: 'Contest',
     highlight: false,
     isRegistrationOpen: true,
-    solo: true,
+    solo: false,
     rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '5': {
@@ -216,7 +214,7 @@ export const events = {
     type: 'Contest',
     highlight: true,
     isRegistrationOpen: true,
-    solo: false,              // TODO
+    solo: false,
     rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
   '9': {

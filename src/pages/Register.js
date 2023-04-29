@@ -30,11 +30,11 @@ const Register = ({ user }) => {
     docs: eventsRegistered,
     fetching,
   } = useFetchCollection('registered', [where('userId', '==', user.user.uid)])
-  
+
   const history = useNavigate();
-  
+
   const [loading, setLoading] = useState(false);
-  
+
   const [slotsUnavailable, setSlotsUnavailable] = useState([]);
   const [editPersonalDetails, setEditPersonalDetails] = useState(false);
   const [overwriteDoc, setOverwriteDoc] = useState(null);
@@ -45,9 +45,15 @@ const Register = ({ user }) => {
   const [contact, setContact] = useState('');
   const [collegeName, setCollegeName] = useState('');
   const [age, setAge] = useState('');
+  const [sex, setSex] = useState('');
+  const [address, setAddress] = useState('');
+  const [rollNo, setRollNo] = useState('');
+  const [gradYear, setGradYear] = useState('');
+  const [course, setCourse] = useState('');
+
+  const [selectedEvent, setSelectedEvent] = useState('');
   const [teamMemberDetails, setTeamMemberDetails] = useState('');
   const [teamName, setTeamName] = useState('');
-  const [selectedEvent, setSelectedEvent] = useState('');
   const [participatingInTeam, setParticipatingInTeam] = useState(true);
   const [readRules, setReadRules] = useState('');
 
@@ -60,6 +66,7 @@ const Register = ({ user }) => {
     if (!user) return;
     if (!user.user) return;
 
+    setErrorMsg('');
     setLoading(true);
     getDoc(doc(db, 'users', user.user.uid)).then((snap) => {
       if (snap.exists()) {
@@ -67,15 +74,16 @@ const Register = ({ user }) => {
         setFirstName(fetched.firstName ? fetched.firstName : '');
         setLastName(fetched.lastName ? fetched.lastName : '');
         setEmail(fetched.email ? fetched.email : '');
-        setContact(fetched.contact ? fetched.contact : '')
-        setCollegeName(fetched.college ? fetched.college : '')
+        setContact(fetched.contact ? fetched.contact : '');
+        setCollegeName(fetched.college ? fetched.college : '');
+        setRollNo(fetched.rollno ? fetched.rollno : '');
+        setCourse(fetched.course ? fetched.course : '');
+        setGradYear(fetched.graduationYear ? fetched.graduationYear : '')
         setAge(fetched.age ? fetched.age : '')
-        if (fetched.TeamSize !== 'Individual') setParticipatingInTeam(false);
-
-        updateFormData('gender', fetched.gender);
-        updateFormData('address', fetched.address);
-        updateFormData('gender', fetched.gender);
+        setSex(fetched.gender ? fetched.gender : '')
+        setAddress(fetched.address ? fetched.address : '');
       } else {
+        setErrorMsg('Incomplete Profile! Update it from the Profile page before registering');
         console.log('Data does not exist');
       }
     }).catch(err => {
@@ -85,29 +93,27 @@ const Register = ({ user }) => {
     })
   }, [user])
 
-  function updateFormData(ref, val) {
-    document.getElementById(ref).value = val ? val : '';
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     const data = new FormData(e.currentTarget);
     const userFormData = {
       created: new Date().getTime(),
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      email: user.user.email,
-      contact: data.get('contact'),
-      address: data.get('address'),
-      rollno: data.get('rollNo'),
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      contact: contact,
+      address: address,
+      rollno: rollNo,
+      graduationYear: gradYear,
+      course: course,
       eventParticipation: selectedEvent,
-      age: data.get('age'),
-      gender: data.get('gender'),
+      age: age,
+      gender: sex,
       TeamName: data.get('teamName'),
       TeamSize: ((participatingInTeam === true) ? 'Group' : 'Individual'),
       TeamMembers: data.get('teamMemberDetails'),
-      college: data.get('collegeName'),
+      college: collegeName,
       userId: user.user.uid,
     }
 
@@ -197,7 +203,8 @@ const Register = ({ user }) => {
               <div className={styles['form-fields']}>
                 <div className={cx(styles['form-field'])}>
                   <label htmlFor='gender'>Sex *</label>
-                  <select required name="gender" id="gender" disabled>
+                  <select required name="gender" id="gender" disabled value={sex} defaultChecked="">
+                    <option value="">Select sex</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Non-binary">Non-Binary</option>
@@ -209,7 +216,7 @@ const Register = ({ user }) => {
               <TextInputField name={'collegeName'} placeholder={'College Name *'} val={collegeName} attrs={{ disabled: true }} />
               <div className={cx(styles['form-field'])}>
                 <label htmlFor='address'>Address *</label>
-                <textarea disabled placeholder='Enter your address' title='Address' required name='address' id='address' />
+                <textarea value={address} disabled placeholder='Enter your address' title='Address' required name='address' id='address' />
               </div>
             </div>
 
@@ -243,33 +250,40 @@ const Register = ({ user }) => {
               </div>
             )}
 
-            {selectedEvent && !events[selectedEvent].solo && (<>
-              <div className={cx(styles['form-field'])}>
-                <label htmlFor='Individual'>Are you participating in a team? *</label>
-                <div className={styles['radio-group']}>
-                  <div className={styles['radio-option']}>
-                    <input className={styles.radio}
-                      checked={participatingInTeam === true}
-                      onChange={event => setParticipatingInTeam(true)}
-                      id="option-2" type="radio" name="options"
-                    />
-                    <label className={styles['radio-label']} htmlFor='Yes'>Yes</label>
-                  </div>
-                  <div className={styles['radio-option']}>
-                    <input className={styles.radio}
-                      checked={participatingInTeam === false}
-                      onChange={event => setParticipatingInTeam(false)}
-                      id="option-1" type="radio" name="options"
-                    />
-                    <label className={styles['radio-label']} htmlFor='No'>No</label>
+            {selectedEvent && (<>
+              {events[selectedEvent].solo === false && <div className={styles['form-fields']}>
+                <TextInputField name={'teamName'} placeholder={'Team name *'} val={teamName} setVal={setTeamName} />
+                <TextInputField name={'teamMemberDetails'} placeholder={'Other Team members\' names *'} val={teamMemberDetails} setVal={setTeamMemberDetails} />
+              </div>}
+
+              {events[selectedEvent].solo === undefined && (<>
+                <div className={cx(styles['form-field'])}>
+                  <label htmlFor='Individual'>Are you participating in a team? *</label>
+                  <div className={styles['radio-group']}>
+                    <div className={styles['radio-option']}>
+                      <input className={styles.radio}
+                        checked={participatingInTeam === true}
+                        onChange={event => setParticipatingInTeam(true)}
+                        id="option-2" type="radio" name="options"
+                      />
+                      <label className={styles['radio-label']} htmlFor='Yes'>Yes</label>
+                    </div>
+                    <div className={styles['radio-option']}>
+                      <input className={styles.radio}
+                        checked={participatingInTeam === false}
+                        onChange={event => setParticipatingInTeam(false)}
+                        id="option-1" type="radio" name="options"
+                      />
+                      <label className={styles['radio-label']} htmlFor='No'>No</label>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {participatingInTeam &&
-                <div className={styles['form-fields']}>
-                  <TextInputField name={'teamName'} placeholder={'Team name *'} val={teamName} setVal={setTeamName} />
-                  <TextInputField name={'teamMemberDetails'} placeholder={'Team members *'} val={teamMemberDetails} setVal={setTeamMemberDetails} />
-                </div>}
+                {participatingInTeam &&
+                  <div className={styles['form-fields']}>
+                    <TextInputField name={'teamName'} placeholder={'Team name *'} val={teamName} setVal={setTeamName} />
+                    <TextInputField name={'teamMemberDetails'} placeholder={'Other Team members\' names *'} val={teamMemberDetails} setVal={setTeamMemberDetails} />
+                  </div>}
+              </>)}
             </>)}
 
             <div className={styles['form-field']}>
