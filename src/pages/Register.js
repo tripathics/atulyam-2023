@@ -1,18 +1,19 @@
 import React from 'react'
-import "../styles/form.scss"
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router'
-import { getDoc, doc, setDoc } from 'firebase/firestore'
-import { db } from '../config/config'
+import { motion } from 'framer-motion';
 import Alert from '../components/Alert';
 import SupportLink from '../components/SupportLink';
-import { motion } from 'framer-motion';
-import styles from '../styles/Form.module.scss';
-import cx from 'classnames';
-import { events } from '../data/data';
 import { ReactComponent as SpinnerIcon } from '../media/icons/spinner.svg'
 import { ReactComponent as LinkIcon } from '../media/icons/link.svg';
+
+import styles from '../styles/Form.module.scss';
+import cx from 'classnames';
+
+import { eventSlots, events } from '../data/data';
+import { db } from '../config/config'
+import { getDoc, doc, addDoc, collection, deleteDoc } from 'firebase/firestore'
+import { useFetchCollection } from '../hooks/hooks';
 
 const TextInputField = ({ val = '', title = '', pattern = '.*', setVal, name, placeholder, type = 'text', attrs = {} }) => (
   <div className={styles['form-field']}>
@@ -25,9 +26,18 @@ const TextInputField = ({ val = '', title = '', pattern = '.*', setVal, name, pl
 )
 
 const Register = ({ user }) => {
+  const {
+    docs: eventsRegistered,
+    fetching,
+  } = useFetchCollection('registrations')
+  
   const history = useNavigate();
-
+  
   const [loading, setLoading] = useState(false);
+  
+  const [slotsUnavailable, setSlotsUnavailable] = useState([]);
+  const [editPersonalDetails, setEditPersonalDetails] = useState(false);
+  const [overwriteDoc, setOverwriteDoc] = useState(null);
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -42,8 +52,9 @@ const Register = ({ user }) => {
   const [readRules, setReadRules] = useState('');
 
   const [errorMsg, setErrorMsg] = useState('');
+  const [alertMsg, setAlertMsg] = useState('');
+
   const [successMsg, setSuccessMsg] = useState('');
-  const [id, setUid] = useState('')
 
   useEffect(() => {
     if (!user) return;
@@ -53,7 +64,6 @@ const Register = ({ user }) => {
     getDoc(doc(db, 'users', user.user.uid)).then((snap) => {
       if (snap.exists()) {
         const fetched = snap.data();
-        setUid(user.user.uid);
         setFirstName(fetched.firstName ? fetched.firstName : '');
         setLastName(fetched.lastName ? fetched.lastName : '');
         setEmail(fetched.email ? fetched.email : '');
@@ -79,18 +89,19 @@ const Register = ({ user }) => {
     document.getElementById(ref).value = val ? val : '';
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     const data = new FormData(e.currentTarget);
     const userFormData = {
+      created: new Date().getTime(),
       firstName: data.get('firstName'),
       lastName: data.get('lastName'),
       email: user.user.email,
       contact: data.get('contact'),
       address: data.get('address'),
       rollno: data.get('rollNo'),
-      eventParticipation: data.get('events'),
+      eventParticipation: selectedEvent,
       age: data.get('age'),
       gender: data.get('gender'),
       TeamName: data.get('teamName'),
@@ -98,22 +109,36 @@ const Register = ({ user }) => {
       TeamMembers: data.get('teamMemberDetails'),
       college: data.get('collegeName'),
       userId: user.user.uid,
-      isRegister: true,
     }
 
-    console.log(userFormData);
+    try {
+      if (overwriteDoc) await deleteDoc(doc(db, 'registrations', overwriteDoc))
+      await addDoc(collection(db, 'registrations'), userFormData);
+      setSuccessMsg('Congratulations you have been successfully registered for the event!');
+      history('/user');
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
-    setDoc(doc(db, 'registered', id), userFormData)
-      .then(() => {
-        setSuccessMsg('Congratulations you have been successfully registered for the event!');
-        history('/user');
-      })
-      .catch((error) => {
-        setErrorMsg(error.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      })
+  const handleEventSelect = (id, slotId) => {
+    setAlertMsg('');
+    setOverwriteDoc(null);
+    if (slotsUnavailable.includes(slotId)) {
+      let registeredEvent = Object.keys(eventsRegistered).map(id => eventsRegistered[id])
+        .find(evnt => events[evnt.eventParticipation].slotId === slotId)
+
+      if (!registeredEvent) return;
+      setOverwriteDoc(registeredEvent.id);
+      if (registeredEvent.eventParticipation === id) {
+        setAlertMsg(`Selecting this event will overwrite your previous application for ${events[id].title}`);
+      } else {
+        setAlertMsg(`Participating in ${events[id].title} will remove you from ${events[registeredEvent.eventParticipation].title}`);
+      }
+    }
+    setSelectedEvent(id);
   }
 
   useEffect(() => {
@@ -122,12 +147,21 @@ const Register = ({ user }) => {
     }
   }, [])
 
+  useEffect(() => {
+    if (!fetching) {
+      let registereEventdIds = Object.keys(eventsRegistered).map(id => eventsRegistered[id].eventParticipation)
+      let slotsFilled = registereEventdIds.map(id => events[id].slotId)
+      setSlotsUnavailable(slotsFilled);
+    }
+  }, [fetching])
+
   return (
     <motion.div className={cx(styles['form-page'], 'page-transition')}
       initial={{ scaleX: 0 }}
       animate={{ scaleX: 1 }}
       exit={{ scaleX: 0 }}
     >
+      <Alert severity='warning' message={alertMsg} handleDismiss={(e) => { e.preventDefault(); setAlertMsg('') }} />
       <div className='container'>
         <header className={cx('page-header', 'form-header')}>
           <h2 className='heading'>Register for events</h2>
@@ -137,49 +171,78 @@ const Register = ({ user }) => {
           <Alert message={errorMsg} severity='error' handleDismiss={e => { e.preventDefault(); setErrorMsg('') }} />
           <Alert message={successMsg} severity='success' handleDismiss={e => { e.preventDefault(); setSuccessMsg('') }} />
           <form className={styles['login-form']} onSubmit={handleSubmit} autoComplete='off'>
-            <div className={styles['form-fields']}>
-              <TextInputField name={'firstName'} placeholder={'First name *'} val={firstName} setVal={setFirstName} />
-              <TextInputField name={'lastName'} placeholder={'Last name *'} val={lastName} setVal={setLastName} />
+
+
+            <div className={styles['form-section-btn-wrapper']} >
+              <button className='btn secondary' type='button' onClick={(e) => {
+                e.preventDefault();
+                setEditPersonalDetails(!editPersonalDetails);
+              }}>
+                {!editPersonalDetails ? <span className='btn-subtitle'>Personal information</span>
+                  : <span className='btn-subtitle'>Close</span>}
+                <span className='btn-text'></span>
+              </button>
             </div>
-            <div className={styles['form-fields']}>
-              <TextInputField type='email' name={'email'} placeholder={'Email *'} val={email} attrs={{ disabled: true }} />
-              <TextInputField type='tel' pattern="[6-9]{1}[0-9]{9}" title='Enter a 10 digit number' name={'contact'} placeholder={'Whatsapp number *'} val={contact} setVal={setContact} />
-            </div>
-            <div className={styles['form-fields']}>
-              <div className={cx(styles['form-field'])}>
-                <label htmlFor='gender'>Sex *</label>
-                <select required name="gender" id="gender">
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Non-binary">Non-Binary</option>
-                  <option value="Prefer not to answer">Prefer not to answer</option>
-                </select>
+            <div className={cx(styles['form-section'], {
+              [styles.active]: editPersonalDetails
+            })}>
+              <div className={styles['form-fields']}>
+                <TextInputField name={'firstName'} placeholder={'First name *'} val={firstName} attrs={{ disabled: true }} />
+                <TextInputField name={'lastName'} placeholder={'Last name *'} val={lastName} attrs={{ disabled: true }} />
               </div>
-              <TextInputField type='number' name={'age'} attrs={{ min: 15, max: 100 }} placeholder={'Age *'} val={age} setVal={setAge} />
-            </div>
-            <TextInputField name={'collegeName'} placeholder={'College Name *'} val={collegeName} attrs={{ disabled: true }} />
-            <div className={cx(styles['form-field'])}>
-              <label htmlFor='address'>Address *</label>
-              <textarea placeholder='Enter your address' title='Address' required name='address' id='address' />
+              <div className={styles['form-fields']}>
+                <TextInputField type='email' name={'email'} placeholder={'Email *'} val={email} attrs={{ disabled: true }} />
+                <TextInputField type='tel' pattern="[6-9]{1}[0-9]{9}" title='Enter a 10 digit number' name={'contact'} placeholder={'Whatsapp number *'} val={contact} setVal={setContact} />
+              </div>
+              <div className={styles['form-fields']}>
+                <div className={cx(styles['form-field'])}>
+                  <label htmlFor='gender'>Sex *</label>
+                  <select required name="gender" id="gender" disabled>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Non-binary">Non-Binary</option>
+                    <option value="Prefer not to answer">Prefer not to answer</option>
+                  </select>
+                </div>
+                <TextInputField type='number' name={'age'} attrs={{ min: 15, max: 100, disabled: true }} placeholder={'Age *'} val={age} />
+              </div>
+              <TextInputField name={'collegeName'} placeholder={'College Name *'} val={collegeName} attrs={{ disabled: true }} />
+              <div className={cx(styles['form-field'])}>
+                <label htmlFor='address'>Address *</label>
+                <textarea disabled placeholder='Enter your address' title='Address' required name='address' id='address' />
+              </div>
             </div>
 
-            <div className={styles['form-fields']}>
-              <div className={styles['form-field']}>
-                <label htmlFor='events'>Select an event to participate *</label>
-                <select required name="events" id="events" defaultValue={""} defaultChecked onChange={(e) => { setSelectedEvent(e.target.value) }}>
-                  <option disabled="disabled" value="">Select an event to participate</option>
-                  {Object.keys(events).filter(id => events[id].isRegistrationOpen).map(id => (
-                    <option key={id} value={id}>{events[id].title}</option>
-                  ))}
-                </select>
+            {fetching ? <p>Please wait...</p> : (
+              <div className={styles['form-fields']}>
+                <div className={styles['form-field']}>
+                  <label htmlFor='events'>Select an event to participate *</label>
+                  <ul className={styles['event-slots']}>
+                    {Object.keys(eventSlots).sort().map((slotId, i) => <li key={slotId} className={styles.slot}>
+                      <div className={styles['slot-label']}>Time slot {i + 1}</div>
+                      <div className={styles['radio-group']} key={slotId}>
+                        {eventSlots[slotId].map(id => (
+                          <div key={id} className={styles['radio-option']}>
+                            <input className={styles.radio} required
+                              type="radio" name={'events'} value={id}
+                              onChange={e => { handleEventSelect(e.target.value, slotId) }}
+                            />
+                            <label className={styles['radio-label']} htmlFor={'events'}>{events[id].title}</label>
+                          </div>
+                        ))}
+                      </div>
+                    </li>)}
+                  </ul>
+                </div>
+                {selectedEvent && events[selectedEvent].rules && (<div className={styles['form-link']}>
+                  <a className={cx('btn', 'secondary', styles['form-btn'])} target='_blank' rel='noreferrer' href={events[selectedEvent].rules}>
+                    <span className={cx('btn-text', styles['btn-text'])}>View rules</span>
+                    <LinkIcon />
+                  </a>
+                </div>)}
               </div>
-              {selectedEvent && events[selectedEvent].rules && (<div className={styles['form-link']}>
-                <a className={cx('btn', 'secondary', styles['form-btn'])} target='_blank' rel='noreferrer' href={events[selectedEvent].rules}>
-                  <span className={cx('btn-text', styles['btn-text'])}>View rules</span>
-                  <LinkIcon />
-                </a>
-              </div>)}
-            </div>
+            )}
+
             {selectedEvent && !events[selectedEvent].solo && (<>
               <div className={cx(styles['form-field'])}>
                 <label htmlFor='Individual'>Are you participating in a team? *</label>
@@ -209,12 +272,12 @@ const Register = ({ user }) => {
                 </div>}
             </>)}
 
-            {selectedEvent && events[selectedEvent].rules && <div className={styles['form-field']}>
+            <div className={styles['form-field']}>
               <div className={styles['checkbox-input-wrapper']}>
                 <input required type='checkbox' className={styles.checkbox} checked={readRules} onChange={(e) => { setReadRules(!readRules) }} name='Rules' />
-                <label className={styles['checkbox-label']} htmlFor='Rules'>I have followed the event rules carefully to fill this form</label>
+                <label className={styles['checkbox-label']} htmlFor='Rules'>I have read and followed the event guidelines</label>
               </div>
-            </div>}
+            </div>
 
             <div className={styles['btns-wrapper']}>
               <button disabled={loading} className={'btn'} type="submit">

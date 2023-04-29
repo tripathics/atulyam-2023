@@ -10,7 +10,7 @@
  
     display: flex;
     align-items: flex-start;
-    padding: 0.4rem;
+    padding: 1.2rem 0.8rem;
     font-size: 0.875rem;
     border-radius: 0.5rem;
     background-color: var(--white1);
@@ -41,6 +41,7 @@
         width: 24px;
         height: 24px;
         border-radius: 24px;
+        margin-left: 1rem;
         flex-shrink: 0;
         transition: background-color 0.2s ease;
         > svg {

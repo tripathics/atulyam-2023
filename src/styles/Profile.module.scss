@@ -25,7 +25,12 @@
         }
     }
 
-    main {
+    main.main {
+        @media (min-width: 1100px) {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 4rem;
+        }
         .profile-section {
             .heading {
                 font-family: 'Antonio', sans-serif;
@@ -34,20 +39,22 @@
                 margin: 4rem 0 2rem;
             }
 
+            .registrations {
+                display: flex;
+                gap: 1rem;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
             .confirmation {
                 display: flex;
                 flex-direction: column;
                 align-items: stretch;
                 gap: 0.8rem;
+                width: 300px;
                 
                 .event-card {
                     width: 100%;
-                }
-
-                @media screen and (min-width: 999px) {
-                    flex-direction: row;
-                    gap: 1rem;
-                    align-items: flex-end;
                 }
             }
 
@@ -61,7 +68,7 @@
                 max-width: 25rem;
                 list-style-type: none;
                 font-size: 1.25rem;
-                margin: 2rem 0;
+                margin: 0 0;
 
                 li {
                     display: flex;
@@ -70,7 +77,7 @@
 
                     .title {
                         font-weight: 600;
-                        max-width: 8rem;
+                        max-width: 12rem;
                         flex-grow: 1;
                         margin-right: 0.4rem;
                     }
@@ -82,7 +89,15 @@
                 }
             }
 
+            .user {
+                width: fit-content;
+                max-width: 100%;
+            }
+
             .qr {
+                width: fit-content;
+                max-width: 100%;
+                margin: 1rem auto 1.6rem;
                 svg {
                     mix-blend-mode: multiply;
                 }

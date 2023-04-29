@@ -119,6 +119,7 @@
             position: absolute;
             height: calc(1.4 * var(--heading-font-size));
             line-height: 0.8;
+            animation-timing-function: linear;
         }
         .rail:nth-child(1) {
             color: #dadada;

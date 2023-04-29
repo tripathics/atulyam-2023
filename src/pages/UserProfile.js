@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { getDoc, doc } from 'firebase/firestore'
+import { getDoc, doc, where } from 'firebase/firestore'
 import { db } from '../config/config'
 import { useEffect } from 'react'
 import { motion } from 'framer-motion';
@@ -16,21 +16,24 @@ import '../styles/user.scss'
 import cx from 'classnames'
 import { events } from '../data/data'
 import SupportLink from '../components/SupportLink';
+import { useFetchCollection } from '../hooks/hooks';
 
 
 const UserProfile = ({ user, logoutUser }) => {
+  const {
+    docs: registrations,
+    fetching,
+  } = useFetchCollection('registrations', [where('userId', '==', user.user.uid)]);
+
   const [profiledata, setProfileData] = useState('');
-  const [registeredData, setRegisteredData] = useState('')
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [eventRegistered, setEventRegistered] = useState('');
+  const [loading, setLoading] = useState(false);
   const [infoMessage, setInfoMessage] = useState('');
   const [userQrValue, setUserQrValue] = useState('');
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!user) return;
     if (!user.user) return;
-
+    setLoading(true);
     getDoc(doc(db, 'users', user.user.uid)).then((snap) => {
       if (snap.exists()) {
         const fetched = snap.data();
@@ -40,20 +43,9 @@ const UserProfile = ({ user, logoutUser }) => {
       }
     }).catch(err => {
       console.log('An error occured', err)
+    }).finally(() => {
+      setLoading(false);
     })
-
-    getDoc(doc(db, 'registered', user.user.uid)).then((snap) => {
-      if (snap.exists()) {
-        const data = snap.data();
-        setRegisteredData(data);
-        setEventRegistered(data.eventParticipation);
-        setIsRegistered(true);
-      } else {
-        setInfoMessage('You have not registered in any events yet!')
-      }
-    })
-      .catch(err => console.log('An error occured', err))
-      .finally(() => { setLoading(false) })
   }, [user])
 
   useEffect(() => {
@@ -64,8 +56,9 @@ const UserProfile = ({ user, logoutUser }) => {
   }, [infoMessage])
 
   useEffect(() => {
-    if (profiledata && eventRegistered) {
-      const qrStr = `Name ${profiledata.firstName} ${profiledata.lastName}, Registration Id ${user.user.uid} College ${profiledata.college} Event Registered ${events[eventRegistered]}`
+    if (profiledata && !fetching) {
+      const qrStr = `Name ${profiledata.firstName} ${profiledata.lastName}, Registration Id ${user.user.uid} College ${profiledata.college} Event Registered [${Object.keys(registrations).map(id => registrations[id])
+        .map(id => events[id]).join(',')}]`
       setUserQrValue(qrStr);
     }
   }, [profiledata])
@@ -101,29 +94,20 @@ const UserProfile = ({ user, logoutUser }) => {
             </div>
           </div>
         </header>
-        <main>
+        <main className={styles.main}>
           <section className={styles['profile-section']}>
-            <h2 className={styles.heading}>Registration details</h2>
-
-            {loading ? <p>Please wait...</p> : user.isProfileComplete && isRegistered ? (
-              <div className={styles.confirmation}>
-                {eventRegistered && events[eventRegistered].figureSrc && (
-                  <EventFigure figureSrc={events[eventRegistered].figureSrc} title={events[eventRegistered].title} />
-                )}
-                <div className={styles.user}>
-                  <h3>Participant Details</h3>
-                  <ul className={styles['registration-details']}>
-                    <li> <span className={cx(styles.title, styles.id)}> {user.user.uid} </span></li>
-                    <li> <span className={styles.title}>Name</span> <span> {`${profiledata.firstName} ${profiledata.lastName}`}</span></li>
-                    <li> <span className={styles.title}>Sex</span> <span> {profiledata.gender}</span></li>
-                    <li> <span className={styles.title}>Whatsapp#</span> <span>  {profiledata.contact}</span></li>
-                    <li> <span className={styles.title}>Address</span> <span> {profiledata.address}</span></li>
-                    {registeredData.TeamName && <>
-                      <li> <span className={styles.title}>Team Name</span> <span> {registeredData.TeamName}</span></li>
-                      <li> <span className={styles.title}>Team Members</span> <span> {registeredData.TeamMembers}</span></li>
-                    </>}
-                  </ul>
-                </div>
+            <h2 className={styles.heading}>Personal Details</h2>
+            {loading ? <p>Please wait...</p> : (<>
+              <div className={styles.user}>
+                <ul className={styles['registration-details']}>
+                  <li> <span className={cx(styles.title, styles.id)}>{user.user.uid}</span></li>
+                  <li> <span className={styles.title}>Name</span><span>{`${profiledata.firstName} ${profiledata.lastName}`}</span></li>
+                  <li> <span className={styles.title}>Age</span><span>{profiledata.age}</span></li>
+                  <li> <span className={styles.title}>Sex</span><span>{profiledata.gender}</span></li>
+                  <li> <span className={styles.title}>Whatsapp#</span><span>{profiledata.contact}</span></li>
+                  <li> <span className={styles.title}>Address</span><span>{profiledata.address}</span></li>
+                  {!fetching && <li> <span className={styles.title}>Events registered</span><span>{Object.keys(registrations).length}</span></li>}
+                </ul>
                 <div className={styles.qr}>
                   <QrCode value={userQrValue} />
                   <div className={styles.ftr}>
@@ -131,13 +115,36 @@ const UserProfile = ({ user, logoutUser }) => {
                     <p>Save the screenshot of registration confirmation</p>
                   </div>
                 </div>
-
               </div>
-            ) : (<h3>Unregistered</h3>)}
+            </>)}
+          </section>
+          <section className={styles['profile-section']}>
+            {!fetching && (Object.keys(registrations).length > 0 ? <>
+              <h2 className={styles.heading}>Your registrations</h2>
+              <div className={styles.registrations}>
+                {Object.keys(registrations).map((id, i) => {
+                  const { TeamName, TeamMembers, contact, eventParticipation } = registrations[id];
+                  return <div key={id} className={styles.confirmation}>
+                    {events[eventParticipation].figureSrc && (
+                      <EventFigure figureSrc={events[eventParticipation].figureSrc} title={events[eventParticipation].title} />
+                    )}
+                    <div className={styles.user}>
+                      <ul className={styles['registration-details']}>
+                        <li> <span className={styles.title}>Whatsapp#</span> <span>  {contact}</span></li>
+                        {TeamName && <>
+                          <li> <span className={styles.title}>Team Name</span> <span> {TeamName}</span></li>
+                          <li> <span className={styles.title}>Team Members</span> <span> {TeamMembers}</span></li>
+                        </>}
+                      </ul>
+                    </div>
+                  </div>
+                })}
+              </div>
+            </> : <h3>Unregistered</h3>)}
 
             <div className={styles['btns-wrapper']}>
               <div className={styles['btn-wrapper']}>
-                <NavLink to='/events' className={cx('btn', { secondary: !(user.isProfileComplete && isRegistered) })}>
+                <NavLink to='/events' className='btn secondary'>
                   <span className='btn-subtitle'>Events</span>
                   <span className='btn-text'>Full Event<br />Schedule</span>
                   <ScheduleIcon />
@@ -145,9 +152,8 @@ const UserProfile = ({ user, logoutUser }) => {
               </div>
 
               <div className={styles['btn-wrapper']}>
-                <NavLink to='/register' className={cx('btn', { secondary: user.isProfileComplete && isRegistered })}>
-                  {!isRegistered && <span className='btn-subtitle'>You haven't registered yet</span>}
-                  {isRegistered && <span className='btn-subtitle'>Deregister from this event and register for another</span>}
+                <NavLink to='/register' className='btn'>
+                  <span className='btn-subtitle'>Registrations are open</span>
                   <span className='btn-text'>Register</span>
                   <RegisterIcon />
                 </NavLink>
@@ -157,7 +163,7 @@ const UserProfile = ({ user, logoutUser }) => {
           </section>
         </main>
       </div>
-    </motion.div>
+    </motion.div >
   )
 }
 

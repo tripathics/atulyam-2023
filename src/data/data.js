@@ -109,6 +109,7 @@ export const events = {
   },
   '17': {
     id: '17',
+    slotId: '0',
     title: 'Traditional Dance',
     figureSrc: '/media/events/traditional-dance.jpg',
     day: 0,
@@ -123,6 +124,7 @@ export const events = {
   },
   '2': {
     id: '2',
+    slotId: '0',
     title: 'Short Film Shooting',
     figureSrc: '/media/events/film-making.jpeg',
     day: 0,
@@ -137,6 +139,7 @@ export const events = {
   },
   '3': {
     id: '3',
+    slotId: '1',
     title: 'Quiz',
     figureSrc: '/media/events/quiz.jpg',
     day: 0,
@@ -151,6 +154,7 @@ export const events = {
   },
   '4': {
     id: '4',
+    slotId: '1',
     title: 'Face Painting',
     figureSrc: '/media/events/face.jpg',
     day: 0,
@@ -187,6 +191,7 @@ export const events = {
   },
   '7': {
     id: '7',
+    slotId: '2',
     title: 'Poetry Slam',
     figureSrc: '/media/events/poetry.jpg',
     day: 1,
@@ -201,6 +206,7 @@ export const events = {
   },
   '1': {
     id: '1',
+    slotId: '2',
     title: 'Modern Dance',
     figureSrc: '/media/events/dance.jpeg',
     day: 1,
@@ -215,6 +221,7 @@ export const events = {
   },
   '9': {
     id: '9',
+    slotId: '2',
     title: 'Essay',
     figureSrc: '/media/events/essay.jpg',
     day: 1,
@@ -229,6 +236,7 @@ export const events = {
   },
   '10': {
     id: '10',
+    slotId: '3',
     title: 'Sketching',
     figureSrc: '/media/events/sketch.jpg',
     day: 1,
@@ -243,6 +251,7 @@ export const events = {
   },
   '11': {
     id: '11',
+    slotId: '3',
     title: 'Cosplay contest',
     figureSrc: '/media/events/cosplay.jpeg',
     day: 1,
@@ -279,6 +288,7 @@ export const events = {
   },
   '8': {
     id: '8',
+    slotId: '5',
     title: 'Solo Song',
     figureSrc: '/media/events/singing.jpeg',
     day: 2,
@@ -293,6 +303,7 @@ export const events = {
   },
   '14': {
     id: '14',
+    slotId: '4',
     title: 'Mr. and Ms. Atulyam',
     figureSrc: '/media/events/peasantry.jpeg',
     day: 2,
@@ -327,4 +338,13 @@ export const events = {
     type: 'Event',
     highlight: true
   },
+}
+
+export const eventSlots = {
+  '0': ['2', '17'],
+  '1': ['3', '4'],
+  '2': ['7', '1', '9'],
+  '3': ['10', '11'],
+  '4': ['14'],
+  '5': ['8'],
 }
