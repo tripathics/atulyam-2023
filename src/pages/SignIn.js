@@ -44,7 +44,9 @@ const Login = ({ user, logoutUser, updateAuthUserAttr }) => {
             updateAuthUserAttr({ user: user, isProfileComplete: true });
             history('/register');
           } else {
-            return setDoc(doc(db, 'users', user.uid), user).then(() => {
+            return setDoc(doc(db, 'users', user.uid), {
+              email: user.email
+            }).then(() => {
               setErrorMsg('');
               history('/update-profile');
             })
