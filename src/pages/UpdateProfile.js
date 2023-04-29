@@ -132,7 +132,8 @@ const UpdateProfile = ({ user, updateProfile }) => {
             <div className={styles['form-fields']}>
               <div className={cx(styles['form-field'])}>
                 <label htmlFor='gender'>Sex *</label>
-                <select required name="gender" id="gender">
+                <select required name="gender" id="gender" defaultChecked="">
+                  <option value="" disabled>Select sex</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                   <option value="Non-binary">Non-Binary</option>

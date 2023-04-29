@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { NavLink } from 'react-router-dom'
 import { auth, db } from '../config/config'
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth'
 
 import { ReactComponent as SpinnerIcon } from '../media/icons/spinner.svg'
@@ -15,7 +15,7 @@ import cx from 'classnames'
 import Alert from '../components/Alert';
 import SupportLink from '../components/SupportLink';
 
-const SignIn = ({ user }) => {
+const SignIn = ({ user, updateAuthUserAttr }) => {
   const history = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -45,7 +45,6 @@ const SignIn = ({ user }) => {
           admin: false,
           isProfileComplete: false
         }
-        // loginUser(authUser);
         return setDoc(doc(db, 'users', authUser.user.uid), {
           email: email
         })
@@ -55,11 +54,10 @@ const SignIn = ({ user }) => {
         resetForm();
         setErrorMsg('');
         setTimeout(() => {
-          history('/update-profile', {
-            state: { to: '/register' }
-          });
+          history('/update-profile');
         }, 500);
-      }).catch((error) => {
+      })
+      .catch((error) => {
         setLoading(false);
         setErrorMsg(error.message);
         console.error(error);
@@ -69,27 +67,43 @@ const SignIn = ({ user }) => {
       })
   }
 
-  const SignUpWithGoogle = () => {
+  const handleGoogleAuth = (e) => {
+    e.preventDefault();
     setLoading(true);
+    setErrorMsg('');
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        return setDoc(doc(db, 'users', result.user.uid), {
-          email: result.user.email
-        }, { merge: true });
-      }).then(() => {
-        setSuccessMsg('Signup Successful');
+        return result.user
+      })
+      .then(user => {
+        getDoc(doc(db, 'users', user.uid)).then(snap => {
+          if (snap.exists() && snap.data().isProfileComplete) {
+            console.log('Profile already complete, redirecting to register');
+            updateAuthUserAttr({ user: user, isProfileComplete: true });
+            history('/register');
+          } else {
+            return setDoc(doc(db, 'users', user.uid), {
+              email: user.email,
+            }).then(() => {
+              setErrorMsg('');
+              history('/update-profile');
+            })
+          }
+        })
+          .catch(error => {
+            setLoading(false);
+            setErrorMsg(error.message);
+            resetForm();
+          })
+          .finally(() => {
+            setLoading(false);
+          })
+      })
+      .catch(err => {
         resetForm();
-        setErrorMsg('');
-        setTimeout(() => {
-          history('/update-profile')
-        }, 500);
-      }).catch((err) => {
-        setLoading(false);
         setErrorMsg(err.message);
-        resetForm();
-      }).finally(() => {
         setLoading(false);
       })
   }
@@ -145,7 +159,7 @@ const SignIn = ({ user }) => {
               </NavLink>
             </div>
             <div className={styles['btn-wrapper']}>
-              <button onClick={SignUpWithGoogle} value='google' type='button' className='btn secondary'>
+              <button onClick={handleGoogleAuth} value='google' type='button' className='btn secondary'>
                 <span className='btn-subtitle'></span>
                 <span className='btn-text'>Continue with Google</span>
                 <GoogleIcon />

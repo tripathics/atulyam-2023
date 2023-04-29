@@ -10,8 +10,9 @@ import UpdateProfile from "./UpdateProfile";
 import UserProfile from "./UserProfile";
 
 import { AnimatePresence } from 'framer-motion';
+import Admin from "./Admin";
 
-function AnimatedRoutes({ authUser, updateAuthUserAttr, handleLogout }) {
+function AnimatedRoutes({ authUser, updateAuthUserAttr, handleLogout, checkingStatus }) {
   const location = useLocation();
 
   return (
@@ -21,20 +22,28 @@ function AnimatedRoutes({ authUser, updateAuthUserAttr, handleLogout }) {
         <Route path="/events" element={<Events user={authUser.user} />} />
         <Route path="/register"
           element={<ProtectedComponent
+            authUser={authUser}
+            checkingStatus={checkingStatus}
             isAdmin={false}
             children={<Register user={authUser} />}
           />}
         />
         <Route path="/update-profile"
           element={<ProtectedComponent
+            authUser={authUser}
+            checkingStatus={checkingStatus}
             isAdmin={false}
             children={<UpdateProfile updateProfile={updateAuthUserAttr} user={authUser} />}
           />}
         />
-        <Route path="/signin" element={<SignIn user={authUser} logoutUser={handleLogout} />} />
+        <Route path="/signin" element={<SignIn user={authUser} logoutUser={handleLogout} updateAuthUserAttr={updateAuthUserAttr} />} />
         <Route path="/signup" element={<SignUp user={authUser} logoutUser={handleLogout} />} />
         <Route path="/user" element={
-          <ProtectedComponent isAdmin={false} children={<UserProfile user={authUser} logoutUser={handleLogout} />} />
+          <ProtectedComponent authUser={authUser} checkingStatus={checkingStatus} isAdmin={false} children={<UserProfile user={authUser} logoutUser={handleLogout} />} />
+        } />
+
+        <Route path="/admin" element={
+          <ProtectedComponent authUser={authUser} checkingStatus={checkingStatus} isAdmin={true} children={<Admin user={authUser} />} />
         } />
       </Routes>
     </AnimatePresence>

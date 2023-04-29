@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { LoadingPage } from './Loading';
-import { useAuthStatus } from '../hooks/hooks';
 
 const UnauthorizedComponent = () => (
   <div className='container'>
@@ -10,8 +9,7 @@ const UnauthorizedComponent = () => (
   </div>
 )
 
-const ProtectedComponent = ({ children, isAdmin }) => {
-  const { checkingStatus, authUser } = useAuthStatus();
+const ProtectedComponent = ({ children, isAdmin, checkingStatus, authUser }) => {
   const history = useNavigate();
   const location = useLocation();
 

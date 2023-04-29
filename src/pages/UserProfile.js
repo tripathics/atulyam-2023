@@ -37,7 +37,7 @@ const UserProfile = ({ user, logoutUser }) => {
     getDoc(doc(db, 'users', user.user.uid)).then((snap) => {
       if (snap.exists()) {
         const fetched = snap.data();
-        setProfileData(fetched); 
+        setProfileData(fetched);
       } else {
         setProfileData(null);
         console.log('Data does not exist');
@@ -96,9 +96,9 @@ const UserProfile = ({ user, logoutUser }) => {
           </div>
         </header>
         <main className={styles.main}>
-        {loading ? <p>Please wait...</p> : (profiledata && profiledata.firstName &&  <>
-          <section className={styles['profile-section']}>
-            <h2 className={styles.heading}>Personal Details</h2>
+          {loading ? <p>Please wait...</p> : (profiledata && profiledata.firstName && <>
+            <section className={styles['profile-section']}>
+              <h2 className={styles.heading}>Personal Details</h2>
               <div className={styles.user}>
                 <ul className={styles['registration-details']}>
                   <li> <span className={cx(styles.title, styles.id)}>{user.user.uid}</span></li>
@@ -109,7 +109,6 @@ const UserProfile = ({ user, logoutUser }) => {
                   <li> <span className={styles.title}>Address</span><span>{profiledata.address}</span></li>
                   {!fetching && <li> <span className={styles.title}>Events registered</span><span>{Object.keys(registrations).length}</span></li>}
                 </ul>
-
                 {!fetching && (Object.keys(registrations).length > 0) && (
                   <div className={styles.qr}>
                     <QrCode value={userQrValue} />
@@ -120,7 +119,7 @@ const UserProfile = ({ user, logoutUser }) => {
                   </div>
                 )}
               </div>
-          </section>
+            </section>
           </>)}
           <section className={styles['profile-section']}>
             <h2 className={styles.heading}>Your registrations</h2>

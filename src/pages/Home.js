@@ -89,14 +89,14 @@ const Home = ({ user }) => {
             <span style={{ marginRight: '3ch' }}>Our</span>
             <span className={styles._ar}>Team</span>
           </h2>
-          <p className={cx(styles.subtitle, 'container')} id='coordinatorsList'>
+          <div className={cx(styles.subtitle, 'container')} id='coordinatorsList'>
             <ul>
               {coordinators.filter((val, i) => i <= 22).map(val => <li key={val.name}> {val.name}</li>)}
             </ul>
             <ul>
               {coordinators.filter((val, i) => i > 22).map(val => <li key={val.name}> {val.name}</li>)}
             </ul>
-          </p>
+          </div>
         </header>
         <main>
           <Carousel cardsList={mainCoordinators} />

@@ -64,7 +64,7 @@ export const mainCoordinators = [
   {
     name: 'Gamjum Laye',
     imgSrc: '/media/coordinators/gamjum.jpg',
-    roles: ['Coordinator', 'Mr. and Mrs. Atulyam']
+    roles: ['Coordinator', 'Mr. and Ms. Atulyam']
   },
   {
     name: 'Joni Nomuk',

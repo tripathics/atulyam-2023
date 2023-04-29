@@ -54,12 +54,12 @@ const Events = ({ user }) => {
   }, [currentDay])
 
   return (
-    <motion.div className={cx(styles.events, 'page-transition')}
+    <motion.div className={cx(styles.events, 'page-transition', 'container')}
       initial={{ scaleX: 0 }}
       animate={{ scaleX: 1 }}
       exit={{ scaleX: 0 }}
     >
-      <header className={cx('page-header', 'container', styles['page-header'])}>
+      <header className={cx('page-header', styles['page-header'])}>
         <h1 className='heading'>
           <span>Event</span>
           <span>Schedule</span>
@@ -82,7 +82,7 @@ const Events = ({ user }) => {
           <div>2023</div>
         </div>
       </header>
-      <main className={cx(styles['main-content'], 'container')}>
+      <main className={cx(styles['main-content'])}>
         <nav className={styles['schedule-nav']}>
           <ul className={styles.tabs}>
             {['Thu.', 'Fri.', 'Sat.'].map((day, i) => (

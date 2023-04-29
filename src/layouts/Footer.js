@@ -5,8 +5,11 @@ import bye from '../media/bye.png';
 import cx from 'classnames'
 import { ReactComponent as MailIcon } from '../media/icons/mail.svg';
 import { ReactComponent as WAIcon } from '../media/icons/wa.svg';
+import { useState } from 'react';
 
 const Footer = () => {
+  const [devTeam, setDevTeam] = useState(false);
+
   return (
     <footer className='container'>
       <div className={styles.MainFooterContent}>
@@ -71,11 +74,25 @@ const Footer = () => {
         </div>
       </div>
       <div className={styles.copyright}>
-        <p>Handcrafted with 🖤 by  <a className={cx('link', styles.ln)} target='_blank' rel='noreferrer' href="https://github.com/tripathics">
-            @tripathics</a>, <a className={cx('link', styles.ln)} target='_blank' rel='noreferrer' href="https://github.com/pursottam6003">
-            @pursottam6003</a> & <a className={cx('link', styles.ln)} target='_blank' rel='noreferrer' href="https://github.com/daknya">@daknya</a>
-        </p>
-        <p>&copy; 2023 Atulyam NIT Arunachal Pradesh </p>
+        <div className={styles.team}>
+          <span>
+            Handcrafted with 🖤 by
+            <button className={cx(styles.devteamBtn, {
+              [styles.on]: devTeam
+            })} onClick={(e) => { e.preventDefault(); setDevTeam(!devTeam) }}>
+              Team4One
+            </button>
+          </span>
+          <span className={styles.sep}>~</span>
+          <span>&copy; 2023 Atulyam NIT Arunachal Pradesh</span>
+          {devTeam && (
+            <ul className={styles.devteam}>
+              <li><a className={cx('link', styles.ln)} target='_blank' rel='noreferrer' href="https://github.com/tripathics">@tripathics</a></li>
+              <li><a className={cx('link', styles.ln)} target='_blank' rel='noreferrer' href="https://github.com/pursottam6003">@pursottam6003</a></li>
+              <li><a className={cx('link', styles.ln)} target='_blank' rel='noreferrer' href="https://github.com/daknya">@daknya</a></li>
+            </ul>
+          )}
+        </div>
       </div>
     </footer>
   )

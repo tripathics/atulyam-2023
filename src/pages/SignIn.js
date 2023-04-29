@@ -19,7 +19,7 @@ import { motion } from 'framer-motion'
 import SupportLink from '../components/SupportLink';
 
 
-const Login = ({ user, loginUser, logoutUser }) => {
+const Login = ({ user, logoutUser, updateAuthUserAttr }) => {
   const history = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -30,22 +30,38 @@ const Login = ({ user, loginUser, logoutUser }) => {
   const handleGoogleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
+    setErrorMsg('');
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        return setDoc(doc(db, 'users', result.user.uid), { email: result.user.email }, { merge: true });
-      }).then(() => {
+        return result.user
+      })
+      .then(user => {
+        getDoc(doc(db, 'users', user.uid)).then(snap => {
+          if (snap.exists() && snap.data().isProfileComplete) {
+            console.log('Profile already complete, redirecting to register');
+            updateAuthUserAttr({ user: user, isProfileComplete: true });
+            history('/register');
+          } else {
+            return setDoc(doc(db, 'users', user.uid), user).then(() => {
+              setErrorMsg('');
+              history('/update-profile');
+            })
+          }
+        })
+          .catch(error => {
+            setLoading(false);
+            setErrorMsg(error.message);
+            resetForm();
+          })
+          .finally(() => {
+            setLoading(false);
+          })
+      })
+      .catch(err => {
         resetForm();
-        setErrorMsg('');
-        setTimeout(() => {
-          history('/update-profile')
-        }, 500);
-      }).catch((err) => {
-        setLoading(false);
         setErrorMsg(err.message);
-        resetForm();
-      }).finally(() => {
         setLoading(false);
       })
   }
@@ -63,7 +79,7 @@ const Login = ({ user, loginUser, logoutUser }) => {
           isProfileComplete: docSnap.data().isProfileComplete === true,
           admin: false
         }
-        redirect(authUser);  
+        redirect(authUser);
       }
       else {
         signOut(auth);
@@ -115,7 +131,7 @@ const Login = ({ user, loginUser, logoutUser }) => {
           <h1 className='heading'>Login</h1>
         </header>
         <div className={styles['form-box']}>
-          <Alert severity='error' message={errorMsg} handleDismiss={(e) => {e.preventDefault(); setErrorMsg('')}} />
+          <Alert severity='error' message={errorMsg} handleDismiss={(e) => { e.preventDefault(); setErrorMsg('') }} />
           <form className={styles['login-form']} onSubmit={handleLogin}>
             <div className={cx(styles['login-field'], styles.email)}>
               <input type='email' required placeholder='Your Email' onChange={(e) => setEmail(e.target.value)} value={email} ></input>
