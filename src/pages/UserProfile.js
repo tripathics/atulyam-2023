@@ -124,7 +124,7 @@ const UserProfile = ({ user, logoutUser }) => {
           </>)}
           <section className={styles['profile-section']}>
             <h2 className={styles.heading}>Your registrations</h2>
-            {!fetching && (Object.keys(registrations).length > 0 ? <>
+            {!fetching && (profiledata && profiledata.firstName) && (Object.keys(registrations).length > 0 ? <>
               <div className={styles.registrations}>
                 {Object.keys(registrations).map((id, i) => {
                   const { TeamName, TeamMembers, contact, eventParticipation } = registrations[id];

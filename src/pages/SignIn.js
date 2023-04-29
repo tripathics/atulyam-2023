@@ -34,9 +34,7 @@ const Login = ({ user, loginUser, logoutUser }) => {
 
     signInWithPopup(auth, provider)
       .then((result) => {
-        return setDoc(doc(db, 'users', result.user.uid), {
-          email: result.user.email
-        });
+        return setDoc(doc(db, 'users', result.user.uid), { email: result.user.email }, { merge: true });
       }).then(() => {
         resetForm();
         setErrorMsg('');

@@ -77,7 +77,7 @@ const SignIn = ({ user }) => {
       .then((result) => {
         return setDoc(doc(db, 'users', result.user.uid), {
           email: result.user.email
-        });
+        }, { merge: true });
       }).then(() => {
         setSuccessMsg('Signup Successful');
         resetForm();
