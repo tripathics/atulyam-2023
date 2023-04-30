@@ -126,7 +126,7 @@ const UserProfile = ({ user, logoutUser }) => {
             </div>
           </div>
         </header>
-
+        
         {!fetching && !loading ? (
           <main className={styles.main}>
             {loading ? (
@@ -253,10 +253,7 @@ const UserProfile = ({ user, logoutUser }) => {
                       })}
                     </div>
                   </>
-                ) : (
-                  <h3>Unregistered</h3>
-                ))}
-
+                ) : <h4>You have not registered yet</h4>)}
               <div className={styles["btns-wrapper"]}>
                 <div className={styles["btn-wrapper"]}>
                   <NavLink to="/events" className="btn secondary">
@@ -269,7 +266,6 @@ const UserProfile = ({ user, logoutUser }) => {
                     <ScheduleIcon />
                   </NavLink>
                 </div>
-
                 <div className={styles["btn-wrapper"]}>
                   <NavLink to="/register" className="btn">
                     <span className="btn-subtitle">Registrations are open</span>
@@ -278,13 +274,12 @@ const UserProfile = ({ user, logoutUser }) => {
                   </NavLink>
                 </div>
               </div>
+              <p>Register for multiple events by filling the registration form back to back</p>
               <SupportLink />
             </section>
           </main>
         ) : (
-          <p>
-            <SpinnerIcon /> Please wait
-          </p>
+          <p><SpinnerIcon /> Please wait</p>
         )}
       </div>
     </motion.div>
