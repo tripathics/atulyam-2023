@@ -1,41 +1,52 @@
 import { useState, useEffect } from "react";
 import { auth, db } from "../config/config";
-import { doc, getDoc } from 'firebase/firestore'
-import { query, collection, getDocs } from 'firebase/firestore'
-
+import { doc, getDoc } from "firebase/firestore";
+import { query, collection, getDocs } from "firebase/firestore";
 
 function useAuthStatus() {
-  const [authUser, setAuthUser] = useState({ user: null, isProfileComplete: false, admin: false });
+  const [authUser, setAuthUser] = useState({
+    user: null,
+    isProfileComplete: false,
+    admin: false,
+  });
   const [checkingStatus, setCheckingStatus] = useState(true);
 
   const setUserAttr = (attr) => {
     setAuthUser({ ...authUser, ...attr });
-  }
+  };
 
   const checkAuth = async (user) => {
     const update = { user: null, isProfileComplete: false, admin: false };
     if (user) {
       update.user = user;
-      const docRef = doc(db, 'users', user.uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists() && docSnap.data().isProfileComplete === true) {
-        update.isProfileComplete = true;
-        if (docSnap.data().admin) {
-          update.admin = true;
+      const docRef = doc(db, "users", user.uid);
+
+      try {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists() && docSnap.data().isProfileComplete === true) {
+          update.isProfileComplete = true;
+          if (docSnap.data().admin) {
+            update.admin = true;
+          }
         }
-        console.log(update);
+      } catch (error) {
+        console.log(error);
       }
     }
     const result = { ...authUser, ...update };
     setAuthUser(result);
     setCheckingStatus(false);
-  }
+  };
 
   useEffect(() => {
     auth.onAuthStateChanged(checkAuth);
   }, []);
 
-  return { checkingStatus, authUser, updateAuthUserAttr: setUserAttr };
+  return {
+    checkingStatus,
+    authUser,
+    updateAuthUserAttr: setUserAttr,
+  };
 }
 
 function useAuthStatusOld() {
@@ -50,7 +61,7 @@ function useAuthStatusOld() {
         setCheckingStatus(false);
 
         // const docRef = doc(db, 'users', user.uid);
-        // const docSnap = await getDoc(docRef);   
+        // const docSnap = await getDoc(docRef);
         // console.log(docSnap)
 
         // if (docSnap.exists()) {
@@ -60,16 +71,15 @@ function useAuthStatusOld() {
         //     console.log("No such document!");
         //   }
       } else {
-        setCheckingStatus(false)
+        setCheckingStatus(false);
       }
-    })
+    });
   }, []);
 
   return { loggedIn, checkingStatus, admin };
 }
 
-
-/** 
+/**
  * Get submissions from firestore
  * @param {string} collectionName
  * @param {Array} filter
@@ -77,27 +87,46 @@ function useAuthStatusOld() {
 function useFetchCollection(collectionName, filter = []) {
   const [fetching, setFetching] = useState(true);
   const [docs, setDocs] = useState({});
+  const [error, setError] = useState("");
 
-  const fetchDocs = () => {
+  const handleError = (err) => {
+    if (err.message) {
+      setError(err.message);
+    } else {
+      setError(err);
+    }
+  };
+
+  const fetchDocs = async () => {
     setFetching(true);
     const q = query(collection(db, collectionName), ...filter);
 
-    getDocs(q).then(snapshot => {
+    try {
       const ls = {};
-      snapshot.forEach(doc => {
+      const snapshot = await getDocs(q);
+      snapshot.forEach((doc) => {
         ls[doc.id] = { ...doc.data(), id: doc.id };
       });
       const ls_l = ls;
       setDocs(ls_l);
+    } catch (err) {
+      handleError(err);
+    } finally {
       setFetching(false);
-    });
+    }
   };
 
   useEffect(() => {
     fetchDocs();
   }, []);
 
-  return { docs, setDocs, fetching, refetch: fetchDocs };
+  return {
+    docs,
+    setDocs,
+    fetching,
+    refetch: fetchDocs,
+    fetchCollectionError: error,
+  };
 }
 
 export { useAuthStatusOld, useAuthStatus, useFetchCollection };

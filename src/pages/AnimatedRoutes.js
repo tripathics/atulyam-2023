@@ -8,9 +8,9 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import UpdateProfile from "./UpdateProfile";
 import UserProfile from "./UserProfile";
+import Admin from "./Admin";
 
 import { AnimatePresence } from 'framer-motion';
-import Admin from "./Admin";
 
 function AnimatedRoutes({ authUser, updateAuthUserAttr, handleLogout, checkingStatus }) {
   const location = useLocation();
@@ -39,11 +39,14 @@ function AnimatedRoutes({ authUser, updateAuthUserAttr, handleLogout, checkingSt
         <Route path="/signin" element={<SignIn user={authUser} logoutUser={handleLogout} updateAuthUserAttr={updateAuthUserAttr} />} />
         <Route path="/signup" element={<SignUp user={authUser} logoutUser={handleLogout} updateAuthUserAttr={updateAuthUserAttr} />} />
         <Route path="/user" element={
-          <ProtectedComponent authUser={authUser} checkingStatus={checkingStatus} isAdmin={false} children={<UserProfile user={authUser} logoutUser={handleLogout} />} />
+          <ProtectedComponent authUser={authUser} checkingStatus={checkingStatus} isAdmin={false} children={
+            <UserProfile user={authUser} logoutUser={handleLogout} />
+          } />
         } />
-
         <Route path="/admin" element={
-          <ProtectedComponent authUser={authUser} checkingStatus={checkingStatus} isAdmin={true} children={<Admin user={authUser} />} />
+          <ProtectedComponent authUser={authUser} checkingStatus={checkingStatus} isAdmin={true} children={
+            <Admin user={authUser} />
+          } />
         } />
       </Routes>
     </AnimatePresence>

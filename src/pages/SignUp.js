@@ -15,7 +15,7 @@ import cx from 'classnames'
 import Alert from '../components/Alert';
 import SupportLink from '../components/SupportLink';
 
-const SignIn = ({ user, updateAuthUserAttr }) => {
+const Signup = ({ user, updateAuthUserAttr, logoutUser }) => {
   const history = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -74,33 +74,27 @@ const SignIn = ({ user, updateAuthUserAttr }) => {
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
-      .then((result) => {
-        return result.user
-      })
-      .then(user => {
-        getDoc(doc(db, 'users', user.uid)).then(snap => {
-          if (snap.exists() && snap.data().isProfileComplete) {
-            const update = { user: user, isProfileComplete: true };
-            if (snap.data().admin) update.admin = true;
-            updateAuthUserAttr(update);
-            history('/register');
-          } else {
-            return setDoc(doc(db, 'users', user.uid), {
-              email: user.email,
-            }).then(() => {
-              setErrorMsg('');
-              history('/update-profile');
-            })
-          }
-        })
-          .catch(error => {
+      .then(async(result) => {
+        const user = result.user;
+        const snap = await getDoc(doc(db, 'users', user.uid))
+        if (snap.exists() && snap.data().isProfileComplete) {
+          const update = { user: user, isProfileComplete: true };
+          if (snap.data().admin) update.admin = true;
+          updateAuthUserAttr(update);
+          history('/register');
+        } else {
+          setDoc(doc(db, 'users', user.uid), {
+            email: user.email
+          }).then(() => {
+            setErrorMsg('');
+            history('/update-profile');
+          })
+          .catch(err => {
             setLoading(false);
-            setErrorMsg(error.message);
             resetForm();
+            logoutUser(err.message, 'error')
           })
-          .finally(() => {
-            setLoading(false);
-          })
+        }
       })
       .catch(err => {
         resetForm();
@@ -174,4 +168,4 @@ const SignIn = ({ user, updateAuthUserAttr }) => {
   )
 }
 
-export default SignIn
+export default Signup

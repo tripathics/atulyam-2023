@@ -34,34 +34,54 @@ const Login = ({ user, logoutUser, updateAuthUserAttr }) => {
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
-      .then((result) => {
-        return result.user
-      })
-      .then(user => {
-        getDoc(doc(db, 'users', user.uid)).then(snap => {
-          if (snap.exists() && snap.data().isProfileComplete) {
-            const update = { user: user, isProfileComplete: true };
-            if (snap.data().admin) update.admin = true;
-            updateAuthUserAttr(update);
-            history('/register');
-          } else {
-            return setDoc(doc(db, 'users', user.uid), {
-              email: user.email
-            }).then(() => {
-              setErrorMsg('');
-              history('/update-profile');
-            })
-          }
-        })
-          .catch(error => {
+      .then(async(result) => {
+        // return result.user
+        const user = result.user;
+        const snap = await getDoc(doc(db, 'users', user.uid))
+        if (snap.exists() && snap.data().isProfileComplete) {
+          const update = { user: user, isProfileComplete: true };
+          if (snap.data().admin) update.admin = true;
+          updateAuthUserAttr(update);
+          history('/register');
+        } else {
+          setDoc(doc(db, 'users', user.uid), {
+            email: user.email
+          }).then(() => {
+            setErrorMsg('');
+            history('/update-profile');
+          })
+          .catch(err => {
+            setErrorMsg(err.message);
             setLoading(false);
-            setErrorMsg(error.message);
             resetForm();
           })
-          .finally(() => {
-            setLoading(false);
-          })
+        }
       })
+      // .then(user => {
+      //   getDoc(doc(db, 'users', user.uid)).then(snap => {
+      //     if (snap.exists() && snap.data().isProfileComplete) {
+      //       const update = { user: user, isProfileComplete: true };
+      //       if (snap.data().admin) update.admin = true;
+      //       updateAuthUserAttr(update);
+      //       history('/register');
+      //     } else {
+      //       return setDoc(doc(db, 'users', user.uid), {
+      //         email: user.email
+      //       }).then(() => {
+      //         setErrorMsg('');
+      //         history('/update-profile');
+      //       })
+      //     }
+      //   })
+      //     .catch(error => {
+      //       setLoading(false);
+      //       setErrorMsg(error.message);
+      //       resetForm();
+      //     })
+      //     .finally(() => {
+      //       setLoading(false);
+      //     })
+      // })
       .catch(err => {
         resetForm();
         setErrorMsg(err.message);

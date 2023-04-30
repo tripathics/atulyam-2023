@@ -33,6 +33,7 @@
         text-transform: uppercase;
         width: 100%;
         max-width: fit-content;
+        transform: translateX(-0.15ch);
     }
 
     @media screen and (max-width: 999px) {

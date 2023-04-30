@@ -47,7 +47,7 @@ body {
     margin-left: auto;
     margin-right: auto;
 
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 699px) {
         padding-left: 0.8rem;
         padding-right: 0.8rem;        
     }
@@ -90,6 +90,7 @@ header.page-header {
         width: 100%;
         max-width: fit-content;
         margin: 2rem 0;
+        transform: translateX(-0.15ch);
     }
 
     .subtitle {

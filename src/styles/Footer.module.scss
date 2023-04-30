@@ -17,14 +17,6 @@ footer {
     }
 }
 
-.growIcon {
-    transition: all .2s ease-in-out;
-}
-
-.growIcon:hover {
-    transform: scale(1.2);
-}
-
 .footerItems {
     display: flex;
     flex-grow: 1;
@@ -188,6 +180,13 @@ footer {
                 width: 40%;
                 height: 40%;
                 fill: var(--text-FooterColor);
+                transition: 0.2s ease;
+            }
+        }
+        .handle:hover {
+            > svg {
+                width: 50%;
+                height: 50%;
             }
         }
     }

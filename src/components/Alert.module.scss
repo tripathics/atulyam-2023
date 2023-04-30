@@ -14,10 +14,12 @@
     font-size: 0.875rem;
     border-radius: 0.5rem;
     background-color: var(--white1);
+    background-color: white;
     font-family: "Open Sans", sans-serif;
-    transform: translate3d(-50%, -101%, 0);
-    border: solid 1px;
-    transition: 0.3s all cubic-bezier(.86,0,.07,.995);
+    transform: translate3d(-50%, 0, 0);
+    // border: solid 1px;
+
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15);
 
     .icon {
         display: flex;
@@ -65,19 +67,29 @@
 }
 .alert.info {
     color: rgb(1, 67, 97);
-    border: 1px solid #03a9f4;
+    .icon svg {
+        fill: #5200ea;
+    }
 }
 .alert.success {
-    color: rgb(30, 70, 32);
-    border: 1px solid #4caf50;    
+    color: rgb(30, 70, 32); 
+    .icon svg {
+        fill: #00d464;
+    }
 }
 .alert.warning {
     color: rgb(102, 60, 0);
-    border: 1px solid #ff9800;
+    // border: 1px solid #ff9800;
+    .icon svg {
+        fill: #ff9811;
+    }
 }
 .alert.error {
     color: rgb(95, 33, 32);
-    border: 1px solid #ef5350;
+    // border: 1px solid #ef5350;
+    .icon svg {
+        fill: #ff004c;
+    }
 }
 
 .alert.active {

@@ -150,6 +150,9 @@
 }
 
 @media screen and (max-width: 699px) {
+    .nav {
+        padding: 0 0.8rem;
+    }
     .mobile-hamburger-btn {
         display: block;
     }
