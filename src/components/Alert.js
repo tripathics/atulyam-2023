@@ -5,6 +5,7 @@ import { ReactComponent as SuccessIcon } from '../media/icons/success.svg';
 import { ReactComponent as CloseIcon } from '../media/icons/cross.svg';
 import styles from './Alert.module.scss';
 import cx from 'classnames';
+import { useEffect, useState } from 'react';
 
 const Icon = ({ severity }) => {
   if (severity === 'success') return <SuccessIcon />
@@ -14,6 +15,18 @@ const Icon = ({ severity }) => {
 }
 
 const Alert = ({ severity='info', message='', handleDismiss=null }) => {
+  const [alertMsg, setAlertMsg] = useState(message);
+
+  useEffect(() => {
+    if (!message) {
+      setTimeout(() => {
+        setAlertMsg(message);
+      }, 1000)
+      return;
+    }
+    setAlertMsg(message);
+  }, [message])
+
   return (
     <div className={cx(
       styles.alert, 
@@ -24,7 +37,7 @@ const Alert = ({ severity='info', message='', handleDismiss=null }) => {
         <Icon severity={severity} />
       </div>
       <div className={styles.message}>
-        {message}
+        {alertMsg}
       </div>
       {handleDismiss && <button type='button' className={styles.dismiss} onClick={handleDismiss}>
         <CloseIcon />

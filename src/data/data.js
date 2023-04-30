@@ -234,11 +234,11 @@ export const events = {
   },
   '9': {
     id: '9',
-    slotId: '2',
+    slotId: '3',
     title: 'Essay',
     figureSrc: '/media/events/essay.jpg',
     day: 1,
-    time: '11:15 - 13:00',
+    time: '11:30 - 13:00',
     venue: 'Mechanical Block 2nd floor',
     desc: '',
     type: 'Contest',
@@ -249,7 +249,7 @@ export const events = {
   },
   '10': {
     id: '10',
-    slotId: '3',
+    slotId: '4',
     title: 'Sketching',
     figureSrc: '/media/events/sketch.jpg',
     day: 1,
@@ -264,7 +264,7 @@ export const events = {
   },
   '11': {
     id: '11',
-    slotId: '3',
+    slotId: '4',
     title: 'Cosplay contest',
     figureSrc: '/media/events/cosplay.jpeg',
     day: 1,
@@ -301,7 +301,7 @@ export const events = {
   },
   '8': {
     id: '8',
-    slotId: '5',
+    slotId: '6',
     title: 'Solo Song',
     figureSrc: '/media/events/singing.jpeg',
     day: 2,
@@ -316,7 +316,7 @@ export const events = {
   },
   '14': {
     id: '14',
-    slotId: '4',
+    slotId: '5',
     title: 'Mr. and Ms. Atulyam',
     figureSrc: '/media/events/peasantry.jpeg',
     day: 2,
@@ -356,8 +356,9 @@ export const events = {
 export const eventSlots = {
   '0': ['2', '17'],
   '1': ['3', '4'],
-  '2': ['7', '1', '9'],
-  '3': ['10', '11'],
-  '4': ['14'],
-  '5': ['8'],
+  '2': ['7', '1'],
+  '3': ['9'],
+  '4': ['10', '11'],
+  '5': ['14'],
+  '6': ['8'],
 }
