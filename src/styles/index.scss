@@ -123,7 +123,7 @@ header.page-header {
         height: 60vh;
     }
 }
-.page-header.form-header {
+.page-header.form-header, .page-header.small-header {
     height: unset;
     --heading-font-size: 10vw;
 

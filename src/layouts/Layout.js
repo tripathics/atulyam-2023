@@ -3,7 +3,7 @@ import Footer from "./Footer";
 
 const Layout = ({ children, user }) => (
   <div className="__layout">
-    <Navigation user={user.user} />
+    <Navigation user={user.user} admin={user.admin} />
     <main className="page">
       {children}
     </main>

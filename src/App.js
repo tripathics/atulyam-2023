@@ -5,7 +5,6 @@ import Alert from './components/Alert';
 
 import { auth } from "./config/config";
 import { useAuthStatus } from "./hooks/hooks";
-import ScrollToTop from "./utils/helper";
 import AnimatedRoutes from "./pages/AnimatedRoutes";
 
 function App() {

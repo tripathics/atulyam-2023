@@ -184,7 +184,7 @@ const Register = ({ user }) => {
                 e.preventDefault();
                 setEditPersonalDetails(!editPersonalDetails);
               }}>
-                {!editPersonalDetails ? <span className='btn-subtitle'>Personal information</span>
+                {!editPersonalDetails ? <span className='btn-subtitle'>Personal information from profile</span>
                   : <span className='btn-subtitle'>Close</span>}
                 <span className='btn-text'></span>
               </button>

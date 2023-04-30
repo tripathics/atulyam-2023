@@ -6,7 +6,7 @@ const links = [
   { link: '/', name: 'Home', onlyMobile: true },
   { link: '/events', name: 'What\'s on' },
   { link: '/register', name: 'Register', auth: true },
-  { link: '/user', name: 'Profile', auth: true }
+  { link: '/user', name: 'Profile', auth: true },
 ]
 
 const NavItem = ({ name, link, handleClick }) => (
@@ -18,7 +18,7 @@ const NavItem = ({ name, link, handleClick }) => (
   </NavLink>
 )
 
-const Navigation = ({ user }) => {
+const Navigation = ({ user, admin }) => {
   const toggleMobileNav = () => {
     const mobileNav = document.querySelector(`.${styles.mobile}`);
     const mobileNavBtns = document.querySelectorAll(`.${styles['mobile-hamburger-btn']}`);
@@ -44,6 +44,9 @@ const Navigation = ({ user }) => {
           {!user && (
             <NavItem link={'/signup'} name={'Register'} />
           )}
+          {user && admin && (
+            <NavItem link={'/admin'} name={'Admin'} />
+          )}
         </div>
         <button aria-label="Menu" className={styles['mobile-hamburger-btn']} type='button'
           onClick={(e) => { e.preventDefault(); toggleMobileNav(); }}>
@@ -62,6 +65,10 @@ const Navigation = ({ user }) => {
           {!user && (
             <li key={'noauth'}><NavItem handleClick={toggleMobileNav}
               {...{ link: '/signup', name: 'Register' }} /></li>
+          )}
+          {user && admin && (
+            <li key={'noauth'}><NavItem handleClick={toggleMobileNav}
+              {...{ link: '/admin', name: 'Admin' }} /></li>
           )}
         </ul>
         <div className={styles['nav-footer']}>

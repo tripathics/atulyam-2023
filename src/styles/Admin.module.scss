@@ -1,0 +1,85 @@
+.main {
+    padding: 4rem 0;
+}
+
+.filter-nav {
+    margin-bottom: 2.5rem;
+    
+    label {
+        margin-right: 2rem;
+    }
+}
+
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+
+    table.list-table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+
+        thead th {
+            text-align: left;
+            padding: 0.5rem;
+            font-size: 0.8rem;
+            color: rgb(65, 65, 65);
+        }
+
+        tr {
+            font-family: 'Open sans', sans-serif;
+            // font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+
+            td {
+                vertical-align: initial;
+                padding: 0.5rem;
+                font-family: inherit;
+                font-weight: 400;
+                font-size: 0.9rem;
+                text-align: left;
+                border-bottom: 1px solid #dedede;
+            }
+
+            td.rm-td {
+                text-align: right;
+            }
+        }
+
+        td.tr-number {
+            font-weight: 600;
+        }
+
+        .rm {
+            position: relative;
+            height: 1.8rem;
+            width: 1.8rem;
+            background-color: transparent;
+            border: none;
+            border-radius: 50%;
+            transition: background-color 0.15s ease, color 0.3s ease;
+
+            svg {
+                fill: black;
+                height: 60%;
+                width: 60%;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                position: absolute;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .rm:hover {
+            background-color: rgba(95, 99, 104, 0.157);
+        }
+
+        .rm:active {
+            background-color: rgb(247, 164, 164);
+        }
+    }
+}

@@ -3,7 +3,12 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { LoadingPage } from './Loading';
 
 const UnauthorizedComponent = () => (
-  <div className='container'>
+  <div className='container' style={{
+    marginTop: 'var(--nav-height)',
+    fontFamily: '\'Antonio\'',
+    fontSize: '6vw',
+    textAlign: 'center'
+  }}>
     <h1>401</h1>
     <h2>Unauthorized</h2>
   </div>
@@ -15,7 +20,7 @@ const ProtectedComponent = ({ children, isAdmin, checkingStatus, authUser }) => 
 
   useEffect(() => {
     if (!checkingStatus && !authUser.user) {
-      return history('/signin', {state: {from: location.pathname}});
+      return history('/signin', { state: { from: location.pathname } });
     }
   })
 
