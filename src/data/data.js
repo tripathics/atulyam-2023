@@ -99,7 +99,7 @@ export const mainCoordinators = [
   {
     name: 'Kamin Pajing',
     imgSrc: '/media/coordinators/kamin.jpg',
-    roles: ['Sponsor Co-Head', 'IPR, Chairmain SANIT']
+    roles: ['Manager', 'IPR, Chairmain SANIT']
   },
   {
     name: 'Chandrashekhar Tripathi',
