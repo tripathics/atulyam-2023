@@ -37,7 +37,7 @@ function AnimatedRoutes({ authUser, updateAuthUserAttr, handleLogout, checkingSt
           />}
         />
         <Route path="/signin" element={<SignIn user={authUser} logoutUser={handleLogout} updateAuthUserAttr={updateAuthUserAttr} />} />
-        <Route path="/signup" element={<SignUp user={authUser} logoutUser={handleLogout} />} />
+        <Route path="/signup" element={<SignUp user={authUser} logoutUser={handleLogout} updateAuthUserAttr={updateAuthUserAttr} />} />
         <Route path="/user" element={
           <ProtectedComponent authUser={authUser} checkingStatus={checkingStatus} isAdmin={false} children={<UserProfile user={authUser} logoutUser={handleLogout} />} />
         } />
