@@ -20,15 +20,14 @@ function useAuthStatus() {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists() && docSnap.data().isProfileComplete === true) {
         update.isProfileComplete = true;
-
-        if (docSnap.data().admin === true) {
+        if (docSnap.data().admin) {
           update.admin = true;
         }
+        console.log(update);
       }
     }
     const result = { ...authUser, ...update };
     setAuthUser(result);
-    console.log(result)
     setCheckingStatus(false);
   }
 

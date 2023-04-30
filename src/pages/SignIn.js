@@ -40,8 +40,9 @@ const Login = ({ user, logoutUser, updateAuthUserAttr }) => {
       .then(user => {
         getDoc(doc(db, 'users', user.uid)).then(snap => {
           if (snap.exists() && snap.data().isProfileComplete) {
-            console.log('Profile already complete, redirecting to register');
-            updateAuthUserAttr({ user: user, isProfileComplete: true });
+            const update = { user: user, isProfileComplete: true };
+            if (snap.data().admin) update.admin = true;
+            updateAuthUserAttr(update);
             history('/register');
           } else {
             return setDoc(doc(db, 'users', user.uid), {

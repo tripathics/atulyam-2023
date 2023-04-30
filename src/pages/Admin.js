@@ -44,22 +44,24 @@ const AdminNew = ({ user }) => {
           <div className={styles['table-wrapper']}>
             <table className={styles['list-table']}>
               <thead>
-                <th>Name</th>
-                <th>Sex</th>
-                <th>College</th>
-                <th>Roll no. (if NITAPian)</th>
-                {eventFilter && events[eventFilter].solo === false && (<>
-                  <th>Team name</th>
-                  <th>Team member details</th>
-                </>)}
-                {/* <th>age</th> */}
-                <th>Whatsapp number</th>
-                <th>Email</th>
-                {!eventFilter && (
-                  <th>Event</th>
-                )}
-                <th>Doc ID</th>
-                <th>userId</th>
+                <tr>
+                  <th>Name</th>
+                  <th>Sex</th>
+                  <th>College</th>
+                  <th>Roll no. (if NITAPian)</th>
+                  {eventFilter && events[eventFilter].solo === false && (<>
+                    <th>Team name</th>
+                    <th>Team member details</th>
+                  </>)}
+                  {/* <th>age</th> */}
+                  <th>Whatsapp number</th>
+                  <th>Email</th>
+                  {!eventFilter && (
+                    <th>Event</th>
+                  )}
+                  <th>Doc ID</th>
+                  <th>userId</th>
+                </tr>
               </thead>
               <tbody>
                 {Object.keys(docs).filter(id => docs[id].eventParticipation === eventFilter || !eventFilter).map(id => {
