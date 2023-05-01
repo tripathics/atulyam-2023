@@ -120,22 +120,21 @@
             position: absolute;
             height: calc(1.4 * var(--heading-font-size));
             line-height: 0.8;
-            animation-timing-function: linear;
         }
         .rail:nth-child(1) {
             color: #dadada;
             top: calc(-0.045 * var(--heading-font-size));
-            animation: 140s infinite marquee;
+            animation: 140s infinite linear marquee;
         }
         .rail:nth-child(2) {
             color: #eaeaea;
             top: 25%;
-            animation: 120s infinite marquee;    
+            animation: 120s infinite linear marquee;    
         }
         .rail:nth-child(3) {
             color: #efefef;
             top: 50%;
-            animation: 100s infinite marquee;
+            animation: 100s infinite linear marquee;
         }
 
         @keyframes marquee {
