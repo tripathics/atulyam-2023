@@ -87,19 +87,19 @@ export const mainCoordinators = [
     roles: ['Main Events Coordinator', 'Cultural Chairmain, SANIT']
   },
   {
-    name: 'Sanklee Sidisow',
+    name: 'Sangklee Sidisow',
     imgSrc: '/media/coordinators/sanklee.jpg',
-    roles: ['President, SANIT']
+    roles: ['Advisory', 'President, SANIT']
   },
   {
     name: 'Lishi Akhil',
     imgSrc: '/media/coordinators/akhil.jpg',
-    roles: ['General Secretary, SANIT']
+    roles: ['Advisory', 'General Secretary, SANIT']
   },
   {
     name: 'Kamin Pajing',
     imgSrc: '/media/coordinators/kamin.jpg',
-    roles: ['Manager', 'IPR, Chairmain SANIT']
+    roles: ['Co-Manager', 'IPR, Chairmain SANIT']
   },
   {
     name: 'Chandrashekhar Tripathi',

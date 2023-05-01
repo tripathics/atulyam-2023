@@ -73,7 +73,7 @@ const Register = ({ user }) => {
         const fetched = snap.data();
         setFirstName(fetched.firstName ? fetched.firstName : '');
         setLastName(fetched.lastName ? fetched.lastName : '');
-        setEmail(fetched.email ? fetched.email : '');
+        setEmail(user.user.email);
         setContact(fetched.contact ? fetched.contact : '');
         setCollegeName(fetched.college ? fetched.college : '');
         setRollNo(fetched.rollno ? fetched.rollno : '');
@@ -192,7 +192,7 @@ const Register = ({ user }) => {
             <div className={cx(styles['form-section'], {
               [styles.active]: editPersonalDetails
             })}>
-              <p>You can edit by going to the Profile section in the menu</p>
+              <h5 style={{ marginBottom: '0.8rem' }}>You can edit by going to the Profile section in the menu</h5>
               <div className={styles['form-fields']}>
                 <TextInputField name={'firstName'} placeholder={'First name *'} val={firstName} attrs={{ disabled: true }} />
                 <TextInputField name={'lastName'} placeholder={'Last name *'} val={lastName} attrs={{ disabled: true }} />

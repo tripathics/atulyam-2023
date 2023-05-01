@@ -6,11 +6,10 @@ import "../styles/admin.scss";
 import { useFetchCollection } from "../hooks/hooks";
 import { events } from "../data/data";
 import Alert from "../components/Alert";
+import { orderBy } from "firebase/firestore";
 
 const AdminNew = () => {
-  const { docs, refetch, fetchCollectionError, fetching } =
-    useFetchCollection("registered");
-
+  const { docs, refetch, fetchCollectionError, fetching } = useFetchCollection("registered");
   const [eventFilter, setEventFilter] = useState("");
 
   return (
@@ -80,19 +79,17 @@ const AdminNew = () => {
                   <thead>
                     <tr>
                       <th>Time submitted</th>
+                      {!eventFilter && <th>Event</th>}
                       <th>Name</th>
                       <th>Sex</th>
                       <th>College</th>
                       <th>Roll no. (if NITAPian)</th>
-                      {eventFilter && events[eventFilter].solo === false && (
-                        <>
-                          <th>Team name</th>
-                          <th>Team member details</th>
-                        </>
-                      )}
+                      {(!eventFilter || (eventFilter && events[eventFilter].solo === false)) && (<>
+                        <th>Team name</th>
+                        <th>Team member details</th>
+                      </>)}
                       <th>Whatsapp number</th>
                       <th>Email</th>
-                      {!eventFilter && <th>Event</th>}
                       <th>Doc ID</th>
                       <th>userId</th>
                     </tr>
@@ -123,35 +120,34 @@ const AdminNew = () => {
                         } = docs[id];
                         return (
                           <tr key={id}>
-                            <td>
+                            <td style={{ whiteSpace: "nowrap" }}>
                               {created
                                 ? new Date(created).toLocaleString("en-IN", {
-                                    dateStyle: "medium",
-                                    timeStyle: "medium",
+                                    dateStyle: "short",
+                                    timeStyle: "short",
                                   })
                                 : ""}
                             </td>
+                            {!eventFilter && (
+                              <td style={{ whiteSpace: "nowrap" }}>
+                                {events[eventParticipation] &&
+                                  events[eventParticipation].title}
+                              </td>
+                            )}
                             <td>
                               {firstName} {lastName}
                             </td>
                             <td>{gender}</td>
                             <td>{college}</td>
                             <td>{rollno}</td>
-                            {eventFilter &&
-                              events[eventFilter].solo === false && (
-                                <>
-                                  <td>{TeamMembers}</td>
-                                  <td>{TeamName}</td>
-                                </>
-                              )}
+                            {(!eventFilter ||
+                              (eventFilter &&
+                                events[eventFilter].solo === false)) && (<>
+                                <td>{TeamMembers}</td>
+                                <td>{TeamName}</td>
+                            </>)}
                             <td>{contact}</td>
                             <td>{email}</td>
-                            {!eventFilter && (
-                              <td>
-                                {events[eventParticipation] &&
-                                  events[eventParticipation].title}
-                              </td>
-                            )}
                             <td>{id}</td>
                             <td>{userId}</td>
                           </tr>

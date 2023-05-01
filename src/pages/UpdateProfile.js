@@ -164,15 +164,19 @@ const UpdateProfile = ({ user, updateProfile }) => {
                 <div className={cx(styles['form-field'])}>
                   <label htmlFor='Course'>Course Details *</label>
                   <select required name="gender" id="gender">
-                    <option value="BTech">Bechlors of Technology (B Tech)</option>
-                    <option value="BSc">Bechlors of Science (BSc)</option>
-                    <option value="BA">Bechlors of Arts (BA)</option>
-                    <option value="Bcom">Bechlors of Commerce (BCom)e</option>
+                    <option value="BTech">Bachelors of Technology (B Tech)</option>
+                    <option value="BSc">Bachelors of Science (BSc)</option>
+                    <option value="BA">Bachelors of Arts (BA)</option>
+                    <option value="Bcom">Bachelors of Commerce (BCom)e</option>
                     <option value="MTech">Masters of Technology (M Tech)</option>
                     <option value="MSc">Masters of Science (M Sc)</option>
                     <option value="MA"> Masters of Arts (MA)</option>
                     <option value="LLB"> Bachelor of Laws (L.L,B)</option>
                     <option value="PhD">Doctorate of Philosophy (PhD)</option>
+                    <option value="bA">Bachelors of Arts (B.A.)</option>
+                    <option value="MA">Masters of Arts (M.A.)</option>
+                    <option value="MBBS">MBBS</option>
+                    <option value="other">Other</option>
                   </select>
                 </div>
                 <TextInputField type='number' name={'graduationYear'} attrs={{ min: 2010, max: 2030 }} placeholder={'Graduation Year *'} val={gradYear} setVal={setGradYear} />
