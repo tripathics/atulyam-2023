@@ -1,31 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import cx from "classnames";
 import styles from "../styles/Admin.module.scss";
 import "../styles/admin.scss";
 import { events } from "../data/data";
-import { registered, users } from "../data/data2";
+import { useFetchCollection } from "../hooks/hooks";
 
 const Admin = () => {
-  useEffect(() => {
-    if (registered && users) {
-      
-    }
-  }, [registered, users])
+  const { docs, fetching } = useFetchCollection('registered');
+  const [eventFilter, setEventFilter] = useState("");
 
   const compareTime = (a, b) => {
-    if (registered[a].created && registered[b].created) {
-      if (registered[a].created < registered[b].created) return 1; 
-      else if (registered[a].created > registered[b].created) return -1;
-      else return 0; 
-    } else {
-      if (new Date(users[registered[a].userId].created).getTime() < new Date(users[registered[b].userId].created).getTime()) return 1; 
-      else if (new Date(users[registered[a].userId].created).getTime() > new Date(users[registered[b].userId].created).getTime()) return -1;
-      else return 0; 
-    }
+    if (docs[a].created < docs[b].created) return 1;
+    else if (docs[a].created > docs[b].created) return -1;
+    else return 0;
   }
-
-  const [eventFilter, setEventFilter] = useState("");
 
   return (
     <motion.div
@@ -61,17 +50,11 @@ const Admin = () => {
             </select>
           </nav>
 
-          {registered && users && (
+          {fetching ? <p>Please wait...</p> : docs && (
             <>
               <div className={styles.count}>
                 {eventFilter ? events[eventFilter].title : "All"} :{" "}
-                {
-                  Object.keys(registered).filter(
-                    (id) =>
-                      registered[id].eventParticipation === eventFilter ||
-                      !eventFilter
-                  ).length
-                }
+                {Object.keys(docs).filter(id => docs[id].eventParticipation === eventFilter || !eventFilter).length}
               </div>
 
               <div className={styles["table-wrapper"]}>
@@ -90,58 +73,37 @@ const Admin = () => {
                       </>)}
                       <th>Whatsapp number</th>
                       <th>Email</th>
+                      <th>docId</th>
+                      <th>uid</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.keys(registered)
-                      .sort(compareTime)
-                      .filter(
-                        (id) =>
-                          registered[id].eventParticipation === eventFilter ||
-                          !eventFilter
-                      )
-                      .map((id) => {
-                        const {
-                          TeamMembers,
-                          TeamName,
-                          eventParticipation,
-                          contact,
-                          userId,
-                          created,
-                        } = registered[id];
+                    {Object.keys(docs).sort(compareTime)
+                      .filter(id => docs[id].eventParticipation === eventFilter || !eventFilter)
+                      .map(id => {
+                        const { firstName, lastName, email, contact, gender,
+                          college, rollno, TeamMembers, TeamName,
+                          eventParticipation, created, userId } = docs[id];
                         return (
                           <tr key={id}>
                             <td style={{ whiteSpace: "nowrap" }}>
-                              {created
-                                ? new Date(created).toLocaleString("en-IN", {
-                                  dateStyle: "short",
-                                  timeStyle: "short",
-                                })
-                                : new Date(users[userId].created).toLocaleString("en-IN", {
-                                  dateStyle: "short",
-                                  timeStyle: "short"
-                                })}
+                              {new Date(created).toLocaleString('en-IN', { dateStyle: "short", timeStyle: "short" })}
                             </td>
                             {!eventFilter && (
-                              <td style={{ whiteSpace: "nowrap" }}>
-                                {events[eventParticipation] &&
-                                  events[eventParticipation].title}
-                              </td>
+                              <td style={{ whiteSpace: "nowrap" }}>{events[eventParticipation] && events[eventParticipation].title}</td>
                             )}
-                            <td>
-                              {users[userId].firstName} {users[userId].lastName}
-                            </td>
-                            <td>{users[userId].gender}</td>
-                            <td>{users[userId].college}</td>
-                            <td>{users[userId].rollno}</td>
-                            {(!eventFilter ||
-                              (eventFilter &&
-                                events[eventFilter].solo === false)) && (<>
-                                  <td>{TeamMembers}</td>
-                                  <td>{TeamName}</td>
-                                </>)}
+                            <td>{firstName} {lastName}</td>
+                            <td>{gender}</td>
+                            <td>{college}</td>
+                            <td>{rollno}</td>
+                            {(!eventFilter || (eventFilter && events[eventFilter].solo === false)) && (<>
+                              <td>{TeamName}</td>
+                              <td>{TeamMembers}</td>
+                            </>)}
                             <td>{contact}</td>
-                            <td>{users[userId].email}</td>
+                            <td>{email}</td>
+                            <td>{id}</td>
+                            <td>{userId}</td>
                           </tr>
                         );
                       })}
