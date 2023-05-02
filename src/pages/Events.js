@@ -132,7 +132,7 @@ const EventLI = ({ id, title, type, isRegistrationOpen, venue, time, handleHover
       >
         <div className={styles.title}>
           {type === 'Contest'
-            ? <p>{isRegistrationOpen ? 'Registrations open!' : 'Contest'}</p>
+            ? <p className={cx({ [styles.closed]: !isRegistrationOpen })}>{isRegistrationOpen ? 'Registrations open!' : 'Registrations closed!'}</p>
             : <p>{type} </p>}
           <h4>{title}</h4>
         </div>

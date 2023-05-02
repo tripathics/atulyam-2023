@@ -233,6 +233,8 @@ const Register = ({ user }) => {
                           <div key={id} className={styles['radio-option']}>
                             <input className={styles.radio} required
                               type="radio" name={'events'} value={id}
+                              disabled={!events[id].isRegistrationOpen}
+                              title={!events[id].isRegistrationOpen ? 'Registration closed' : ''}
                               onChange={e => { handleEventSelect(e.target.value, slotId) }}
                             />
                             <label className={styles['radio-label']} htmlFor={'events'}>{events[id].title}</label>
@@ -290,7 +292,7 @@ const Register = ({ user }) => {
             <div className={styles['form-field']}>
               <div className={styles['checkbox-input-wrapper']}>
                 <input required type='checkbox' className={styles.checkbox} checked={readRules} onChange={(e) => { setReadRules(!readRules) }} name='Rules' />
-                <label className={styles['checkbox-label']} htmlFor='Rules'>I have read and followed the event guidelines</label>
+                <label className={styles['checkbox-label']} htmlFor='Rules'>I have read and followed the event rules and guidelines (Applications not complying with the rules will be rejected)</label>
               </div>
             </div>
 
