@@ -3,6 +3,7 @@ import CountdownTimer from "./CountdownTimer";
 import { eventStartDate } from "../data/data";
 import { ReactComponent as ScrollDownIcon } from '../media/icons/down.svg';
 import HeroVideo from '../media/medium.mp4';
+import HeroImage from '../media/hero-image.png';
 import styles from './Hero.module.scss';
 
 const Hero = () => {
@@ -55,15 +56,9 @@ const Hero = () => {
 
   return (
     <div className={styles.hero} id="hero">
+      <img className={styles['hero-bg']} src={HeroImage} alt="" />
       <div className={styles.grain}></div>
-      <video style={{
-        position: 'absolute',
-        bottom: 0,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        minHeight: '100%',
-        minWidth: '100%'
-      }} autoPlay={true} muted={true} loop={true}>
+      <video className={styles['hero-bg']}  autoPlay={true} muted={true} loop={true}>
         <source src={HeroVideo} />
       </video>
       <div className={styles.content}>

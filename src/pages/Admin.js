@@ -3,13 +3,28 @@ import { motion } from "framer-motion";
 import cx from "classnames";
 import styles from "../styles/Admin.module.scss";
 import "../styles/admin.scss";
-import { useFetchCollection } from "../hooks/hooks";
 import { events } from "../data/data";
-import Alert from "../components/Alert";
-import { orderBy } from "firebase/firestore";
+import { registered, users } from "../data/data2";
 
-const AdminNew = () => {
-  const { docs, refetch, fetchCollectionError, fetching } = useFetchCollection("registered");
+const Admin = () => {
+  useEffect(() => {
+    if (registered && users) {
+      
+    }
+  }, [registered, users])
+
+  const compareTime = (a, b) => {
+    if (registered[a].created && registered[b].created) {
+      if (registered[a].created < registered[b].created) return 1; 
+      else if (registered[a].created > registered[b].created) return -1;
+      else return 0; 
+    } else {
+      if (new Date(users[registered[a].userId].created).getTime() < new Date(users[registered[b].userId].created).getTime()) return 1; 
+      else if (new Date(users[registered[a].userId].created).getTime() > new Date(users[registered[b].userId].created).getTime()) return -1;
+      else return 0; 
+    }
+  }
+
   const [eventFilter, setEventFilter] = useState("");
 
   return (
@@ -19,14 +34,11 @@ const AdminNew = () => {
       animate={{ scaleX: 1 }}
       exit={{ scaleX: 0 }}
     >
-      <Alert message={fetchCollectionError} severity="error" />
       <div className="container">
         <header className={cx("page-header form-header")}>
           <h2 className="heading">Admin</h2>
         </header>
         <main className={styles.main}>
-          <div className={styles.filter}></div>
-
           <nav className={styles["filter-nav"]}>
             <label htmlFor="eventFilter">Filter by events</label>
             <select
@@ -47,28 +59,16 @@ const AdminNew = () => {
                   </option>
                 ))}
             </select>
-
-            <button
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                refetch();
-              }}
-            >
-              Refresh
-            </button>
           </nav>
 
-          {fetching ? (
-            <p>Please wait...</p>
-          ) : (
+          {registered && users && (
             <>
               <div className={styles.count}>
                 {eventFilter ? events[eventFilter].title : "All"} :{" "}
                 {
-                  Object.keys(docs).filter(
+                  Object.keys(registered).filter(
                     (id) =>
-                      docs[id].eventParticipation === eventFilter ||
+                      registered[id].eventParticipation === eventFilter ||
                       !eventFilter
                   ).length
                 }
@@ -90,43 +90,37 @@ const AdminNew = () => {
                       </>)}
                       <th>Whatsapp number</th>
                       <th>Email</th>
-                      <th>Doc ID</th>
-                      <th>userId</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.keys(docs)
+                    {Object.keys(registered)
+                      .sort(compareTime)
                       .filter(
                         (id) =>
-                          docs[id].eventParticipation === eventFilter ||
+                          registered[id].eventParticipation === eventFilter ||
                           !eventFilter
                       )
                       .map((id) => {
                         const {
                           TeamMembers,
                           TeamName,
-                          TeamSize,
-                          age,
-                          college,
-                          email,
                           eventParticipation,
-                          firstName,
-                          gender,
-                          lastName,
-                          rollno,
                           contact,
                           userId,
                           created,
-                        } = docs[id];
+                        } = registered[id];
                         return (
                           <tr key={id}>
                             <td style={{ whiteSpace: "nowrap" }}>
                               {created
                                 ? new Date(created).toLocaleString("en-IN", {
-                                    dateStyle: "short",
-                                    timeStyle: "short",
-                                  })
-                                : ""}
+                                  dateStyle: "short",
+                                  timeStyle: "short",
+                                })
+                                : new Date(users[userId].created).toLocaleString("en-IN", {
+                                  dateStyle: "short",
+                                  timeStyle: "short"
+                                })}
                             </td>
                             {!eventFilter && (
                               <td style={{ whiteSpace: "nowrap" }}>
@@ -135,21 +129,19 @@ const AdminNew = () => {
                               </td>
                             )}
                             <td>
-                              {firstName} {lastName}
+                              {users[userId].firstName} {users[userId].lastName}
                             </td>
-                            <td>{gender}</td>
-                            <td>{college}</td>
-                            <td>{rollno}</td>
+                            <td>{users[userId].gender}</td>
+                            <td>{users[userId].college}</td>
+                            <td>{users[userId].rollno}</td>
                             {(!eventFilter ||
                               (eventFilter &&
                                 events[eventFilter].solo === false)) && (<>
-                                <td>{TeamMembers}</td>
-                                <td>{TeamName}</td>
-                            </>)}
+                                  <td>{TeamMembers}</td>
+                                  <td>{TeamName}</td>
+                                </>)}
                             <td>{contact}</td>
-                            <td>{email}</td>
-                            <td>{id}</td>
-                            <td>{userId}</td>
+                            <td>{users[userId].email}</td>
                           </tr>
                         );
                       })}
@@ -164,82 +156,5 @@ const AdminNew = () => {
   );
 };
 
-const SubmissionRow = () => {};
 
-export default AdminNew;
-
-const Admin = ({ user }) => {
-  const { docs, fetching, refetch } = useFetchCollection("registered");
-  const [filter, setFilter] = useState("All");
-
-  useEffect(() => {
-    if (fetching) return;
-    console.log(docs);
-  }, [fetching]);
-
-  const handlechange = (e) => {
-    console.log(e.target.value);
-  };
-
-  return (
-    <>
-      <section
-        className={cx(
-          "container",
-          styles["intro-section"],
-          styles["home-section"]
-        )}
-      >
-        <header className={cx(styles.introContent, styles.sectionHeader)}>
-          <h2 className={styles.heading}>
-            <span style={{ marginRight: "3ch" }}>Atulyam</span>
-            <span className={styles._ar}>Admin</span>
-          </h2>
-          <p className={styles.subtitle}>
-            The Admin Portal for ATULYAM 2023 Atulyam is the annual cultural
-            festival of NIT Arunachal Pradesh. <br />
-            After three years, we return with great evnets and hoping for great
-            success.
-          </p>
-        </header>
-      </section>
-
-      <div className="container">
-        <div className="FormLabel">
-          <div className="event">
-            <label htmlFor="events">Event Details</label>
-            <br />
-            <select
-              required
-              className="halfInput"
-              onChange={(e) => {
-                handlechange(e);
-              }}
-              style={{ padding: "4px 12px" }}
-              name="events"
-              id="events"
-            >
-              <option defaultValue={"allEvents"} value="allEvents">
-                All Events{" "}
-              </option>
-              <option value="Modern Dance">Modern Dance</option>
-              <option value="Quize">Quize </option>
-              <option value="Poetry Slam">Poetry Slam</option>
-              <option value="Painting">Painting</option>
-              <option value="Short Film Making">Short Film Making</option>
-              <option value="Essay">Essay</option>
-              <option value="Solo Song"> Solo Song</option>
-            </select>
-          </div>
-          <div>
-            {/* {!fetching && docs && (
-              
-            )} */}
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-// export default Admin
+export default Admin;

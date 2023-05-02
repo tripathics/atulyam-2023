@@ -3,8 +3,13 @@
 }
 
 .filter-nav {
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: .625rem;
     margin-bottom: 2.5rem;
-    
+
     label {
         margin-right: 2rem;
     }
@@ -14,6 +19,7 @@
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
+    margin: 1.2rem 0;
 
     table.list-table {
         border-collapse: collapse;
