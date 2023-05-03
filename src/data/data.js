@@ -59,7 +59,7 @@ export const mainCoordinators = [
   {
     name: 'Mekruk Waii',
     imgSrc: '/media/coordinators/mekruk.jpg',
-    roles: ['Designing coordinator', 'Cultural Vice-Chairmain, SANIT']
+    roles: ['Designing coordinator', 'Cultural Vice-Chairman, SANIT']
   },
   {
     name: 'Likha Tassam',
@@ -79,27 +79,27 @@ export const mainCoordinators = [
   {
     name: 'Rikto Padu',
     imgSrc: '/media/coordinators/rikto.jpg',
-    roles: ['Sponsor Head', 'IPR, Chairmain SANIT']
+    roles: ['Sponsor Head', 'IPR Chairman, SANIT']
   },
   {
     name: 'Nich Talo',
     imgSrc: '/media/coordinators/talo.jpg',
-    roles: ['Main Events Coordinator', 'Cultural Chairmain, SANIT']
+    roles: ['Main Events Coordinator', 'Cultural Chairman, SANIT']
   },
   {
     name: 'Sangklee Sidisow',
     imgSrc: '/media/coordinators/sanklee.jpg',
-    roles: ['Advisory', 'President, SANIT']
+    roles: ['Advisory, Atulyam\'23', 'President, SANIT']
   },
   {
     name: 'Lishi Akhil',
     imgSrc: '/media/coordinators/akhil.jpg',
-    roles: ['Advisory', 'General Secretary, SANIT']
+    roles: ['Advisory, Atulyam\'23', 'General Secretary, SANIT']
   },
   {
     name: 'Kamin Pajing',
     imgSrc: '/media/coordinators/kamin.jpg',
-    roles: ['Co-Manager', 'IPR, Chairmain SANIT']
+    roles: ['Co-Manager', 'IPR Chairman, SANIT']
   },
   {
     name: 'Chandrashekhar Tripathi',
@@ -228,7 +228,7 @@ export const events = {
     desc: '',
     type: 'Contest',
     highlight: true,
-    isRegistrationOpen: true,
+    isRegistrationOpen: false,
     solo: false,
     rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
