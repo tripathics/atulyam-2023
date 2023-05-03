@@ -194,7 +194,7 @@ export const events = {
   '6': {
     id: '6',
     title: 'Chorun Mugli & The Band',
-    figureSrc: '/media/events/band.jpg',
+    figureSrc: '/media/events/band1.jpg',
     day: 0,
     time: '19:00',
     venue: 'Main Stage',
@@ -291,7 +291,7 @@ export const events = {
   '13': {
     id: '13',
     title: 'David Angu & The Tribe',
-    figureSrc: '/media/events/tribe.jpg',
+    figureSrc: '/media/events/tribe1.jpg',
     day: 1,
     time: '19:00',
     venue: 'Main Stage',
