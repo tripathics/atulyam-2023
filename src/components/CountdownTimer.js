@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from './CountdownTimer.module.scss';
 
-const CountdownTimer = ({countdownDate: toDate}) => {
+const CountdownTimer = ({countdownDate: toDate, handleTimerComplete}) => {
   const [seconds, setSeconds] = useState(6);
   const [minutes, setMinutes] = useState(69);
   const [hours, setHours] = useState(49);
@@ -13,6 +13,7 @@ const CountdownTimer = ({countdownDate: toDate}) => {
       if (!toDate) return;
       const now = new Date().getTime();
       const distance = countdownDate - now;
+      if (distance <= 0) handleTimerComplete(true);
       const newSeconds = Math.floor((distance % (1000 * 60)) / 1000);
       const newMinutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const newHours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));

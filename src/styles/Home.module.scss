@@ -98,7 +98,7 @@
         height: calc(0.8 * var(--heading-font-size));
         width: calc(1.15 * var(--heading-font-size));
         position: absolute;
-        right: 0;
+        right: calc(0.05 * var(--heading-font-size));
         bottom: calc(0.9 * var(--heading-font-size))
     }
 
@@ -169,7 +169,7 @@
 
         .header-btn-wrapper {
             top: calc(0.09 * var(--heading-font-size));
-            left: calc(2.45 * var(--heading-font-size));
+            left: calc(2.4 * var(--heading-font-size));
             bottom: unset;
         }
     }

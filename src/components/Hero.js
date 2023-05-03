@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CountdownTimer from "./CountdownTimer";
 import { eventStartDate } from "../data/data";
 import { ReactComponent as ScrollDownIcon } from '../media/icons/down.svg';
@@ -7,6 +7,8 @@ import HeroImage from '../media/hero-image.png';
 import styles from './Hero.module.scss';
 
 const Hero = () => {
+  const [isLive, setIsLive] = useState(false);
+
   useEffect(() => {
     const navEl = document.getElementById('nav');
     const heroEl = document.getElementById('hero');
@@ -72,8 +74,10 @@ const Hero = () => {
           <span className='shouldAnimate'>m</span>
         </h1>
         <div className={styles.timeline}>
-          <p>The countdown begins!</p>
-          <CountdownTimer countdownDate={eventStartDate} />
+          {!isLive ? (<>
+            <p>The countdown begins!</p>
+            <CountdownTimer countdownDate={eventStartDate} handleTimerComplete={setIsLive} />
+          </>) : <p>We are LIVE!</p>}
         </div>
       </div>
       <div className={styles.scrollDown} aria-hidden='true'>
