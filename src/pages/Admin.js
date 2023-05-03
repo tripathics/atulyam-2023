@@ -4,25 +4,13 @@ import cx from "classnames";
 import styles from "../styles/Admin.module.scss";
 import "../styles/admin.scss";
 import { events } from "../data/data";
-import { registered, users } from "../data/data2";
+import { registered } from "../data/data2";
 
 const Admin = () => {
-  useEffect(() => {
-    if (registered && users) {
-      
-    }
-  }, [registered, users])
-
   const compareTime = (a, b) => {
-    if (registered[a].created && registered[b].created) {
-      if (registered[a].created < registered[b].created) return 1; 
-      else if (registered[a].created > registered[b].created) return -1;
-      else return 0; 
-    } else {
-      if (new Date(users[registered[a].userId].created).getTime() < new Date(users[registered[b].userId].created).getTime()) return 1; 
-      else if (new Date(users[registered[a].userId].created).getTime() > new Date(users[registered[b].userId].created).getTime()) return -1;
-      else return 0; 
-    }
+    if (registered[a].created < registered[b].created) return 1;
+    else if (registered[a].created > registered[b].created) return -1;
+    else return 0;
   }
 
   const [eventFilter, setEventFilter] = useState("");
@@ -61,7 +49,7 @@ const Admin = () => {
             </select>
           </nav>
 
-          {registered && users && (
+          {registered && (
             <>
               <div className={styles.count}>
                 {eventFilter ? events[eventFilter].title : "All"} :{" "}
@@ -105,6 +93,12 @@ const Admin = () => {
                           TeamMembers,
                           TeamName,
                           eventParticipation,
+                          firstName,
+                          lastName,
+                          gender,
+                          college,
+                          rollno,
+                          email,
                           contact,
                           userId,
                           created,
@@ -112,15 +106,10 @@ const Admin = () => {
                         return (
                           <tr key={id}>
                             <td style={{ whiteSpace: "nowrap" }}>
-                              {created
-                                ? new Date(created).toLocaleString("en-IN", {
-                                  dateStyle: "short",
-                                  timeStyle: "short",
-                                })
-                                : new Date(users[userId].created).toLocaleString("en-IN", {
-                                  dateStyle: "short",
-                                  timeStyle: "short"
-                                })}
+                              {new Date(created).toLocaleString("en-IN", {
+                                dateStyle: "short",
+                                timeStyle: "short",
+                              })}
                             </td>
                             {!eventFilter && (
                               <td style={{ whiteSpace: "nowrap" }}>
@@ -129,11 +118,11 @@ const Admin = () => {
                               </td>
                             )}
                             <td>
-                              {users[userId].firstName} {users[userId].lastName}
+                              {firstName} {lastName}
                             </td>
-                            <td>{users[userId].gender}</td>
-                            <td>{users[userId].college}</td>
-                            <td>{users[userId].rollno}</td>
+                            <td>{gender}</td>
+                            <td>{college}</td>
+                            <td>{rollno}</td>
                             {(!eventFilter ||
                               (eventFilter &&
                                 events[eventFilter].solo === false)) && (<>
@@ -141,7 +130,7 @@ const Admin = () => {
                                   <td>{TeamName}</td>
                                 </>)}
                             <td>{contact}</td>
-                            <td>{users[userId].email}</td>
+                            <td>{email}</td>
                           </tr>
                         );
                       })}
