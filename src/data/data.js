@@ -258,7 +258,7 @@ export const events = {
     desc: '',
     type: 'Contest',
     highlight: false,
-    isRegistrationOpen: true,
+    isRegistrationOpen: false,
     solo: true,
     rules: 'https://github.com/nit-ap/atulyam/blob/main/README.md'
   },
