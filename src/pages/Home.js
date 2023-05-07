@@ -47,17 +47,11 @@ const Home = ({ user }) => {
             After three years, we return with a more niwe and creative community than ever.
           </p>
           <div className={styles['header-btn-wrapper']}>
-            {user ? (
-              <NavLink to='/register' className={cx('btn', styles['intro-header-btn'])}>
-                <span className={cx('btn-subtitle', styles['intro-btn-subtitle'])}>Events registration open</span>
-                <span className={cx('btn-text', styles['intro-btn-text'])}>Register<br />now!</span>
-                <LinkIcon />
-              </NavLink>
-            ) : <NavLink to='/signup' className={cx('btn', styles['intro-header-btn'])}>
-            <span className={cx('btn-subtitle', styles['intro-btn-subtitle'])}>Events registration open</span>
-            <span className={cx('btn-text', styles['intro-btn-text'])}>Register<br />now!</span>
-            <LinkIcon />
-          </NavLink> }
+            <NavLink to='/gallery' className={cx('btn', styles['intro-header-btn'])}>
+              <span className={cx('btn-subtitle', styles['intro-btn-subtitle'])}>Atulyam'23 in reels</span>
+              <span className={cx('btn-text', styles['intro-btn-text'])}>Gallery</span>
+              <LinkIcon />
+            </NavLink>
           </div>
         </header>
       </section>

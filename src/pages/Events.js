@@ -5,6 +5,7 @@ import { events } from '../data/data';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import SupportLink from '../components/SupportLink';
+import { ReactComponent as LinkIcon } from '../media/icons/link.svg';
 
 const timeCompare = (a, b) => {
   if (events[a].time < events[b].time) {
@@ -65,17 +66,11 @@ const Events = ({ user }) => {
           <span>Schedule</span>
         </h1>
         <div className={cx(styles['header-btn-wrapper'])}>
-          {user ? (
-          <NavLink to='/register' className='btn'>
-            <span className='btn-subtitle'>Events registration open</span>
-            <span className='btn-text'>Register<br />now!</span>
+          <NavLink to='/gallery' className={cx('btn', styles['intro-header-btn'])}>
+            <span className={cx('btn-subtitle', styles['intro-btn-subtitle'])}>Atulyam'23 in reels</span>
+            <span className={cx('btn-text', styles['intro-btn-text'])}>Gallery</span>
+            <LinkIcon />
           </NavLink>
-          ) : (
-            <NavLink to='/signup' className='btn'>
-              <span className='btn-subtitle'>Events registration open</span>
-              <span className='btn-text'>Register<br />now!</span>
-            </NavLink>
-          )}
         </div>
         <div className={cx('subtitle', styles['header-subtitle'])}>
           <h2>May.4-6</h2>

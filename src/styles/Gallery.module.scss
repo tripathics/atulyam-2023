@@ -1,0 +1,45 @@
+.events {
+    --list-width: 100%;
+    --li-title-width: 100%;
+    --li-venue-width: 100%;
+    --li-time-width: 100%;
+
+    .page-header {
+        @media screen and (max-width: 699px) {
+            height: 100vh;
+        }
+    }
+
+    .header-subtitle {
+        color: var(--primary);
+        font-family: 'Antonio', sans-serif;
+        letter-spacing: -0.15ch;
+        line-height: 1;
+        text-transform: uppercase;
+
+        >h2 {
+            font-size: 8.5vw;
+        }
+
+        >div {
+            font-size: 2rem;
+        }
+
+        @media screen and (max-width: 999px) {
+            >h2 {
+                font-size: 12vw;
+            }
+        }
+
+        @media screen and (max-width: 699px) {
+            >h2 {
+                font-size: 16vw;
+            }
+        }
+    }
+
+    .main-content {
+        padding-top: 4rem;
+        padding-bottom: 6rem;
+    }
+}

@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import ProtectedComponent from "../components/ProtectedRoute";
 import Home from "./Home";
 import Events from "./Events";
+import Gallery from "./Gallery";
 import Register from "./Register";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
@@ -20,6 +21,7 @@ function AnimatedRoutes({ authUser, updateAuthUserAttr, handleLogout, checkingSt
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home user={authUser.user} />} />
         <Route path="/events" element={<Events user={authUser.user} />} />
+        <Route path="/gallery" element={<Gallery />} />
         <Route path="/register"
           element={<ProtectedComponent
             authUser={authUser}

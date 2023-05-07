@@ -73,11 +73,12 @@ const Hero = () => {
           <span className='shouldAnimate'>a</span>
           <span className='shouldAnimate'>m</span>
         </h1>
+        
         <div className={styles.timeline}>
-          {!isLive ? (<>
+          {!isLive && (<>
             <p>The countdown begins!</p>
             <CountdownTimer countdownDate={eventStartDate} handleTimerComplete={setIsLive} />
-          </>) : <p>We are LIVE!</p>}
+          </>)}
         </div>
       </div>
       <div className={styles.scrollDown} aria-hidden='true'>
