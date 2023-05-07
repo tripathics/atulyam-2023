@@ -11,7 +11,7 @@ import styles from '../styles/Form.module.scss';
 import cx from 'classnames';
 
 import { eventSlots, events } from '../data/data';
-import { db } from '../config/config'
+import { db } from '../config/config-dev'
 import { getDoc, doc, addDoc, collection, deleteDoc, where } from 'firebase/firestore'
 import { useFetchCollection } from '../hooks/hooks';
 

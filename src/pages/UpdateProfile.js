@@ -6,7 +6,7 @@ import { updateProfile as firebaseUpdateProfile } from 'firebase/auth'
 import { ReactComponent as SpinnerIcon } from '../media/icons/spinner.svg'
 import { motion } from 'framer-motion';
 
-import { db } from "../config/config"
+import { db } from "../config/config-dev"
 import Alert from '../components/Alert'
 
 import styles from '../styles/Form.module.scss';

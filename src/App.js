@@ -3,7 +3,7 @@ import Layout from "./layouts/Layout";
 import "./styles/index.scss";
 import Alert from "./components/Alert";
 
-import { auth } from "./config/config";
+import { auth } from "./config/config-dev";
 import { useAuthStatus } from "./hooks/hooks";
 import AnimatedRoutes from "./pages/AnimatedRoutes";
 
