@@ -7,6 +7,7 @@ import { ReactComponent as SpinnerIcon } from '../media/icons/spinner.svg'
 import { motion } from 'framer-motion';
 
 import { db } from "../config/config-dev"
+// import { db } from "../config/config-prod"
 import Alert from '../components/Alert'
 
 import styles from '../styles/Form.module.scss';

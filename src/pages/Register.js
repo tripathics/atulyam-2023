@@ -12,6 +12,7 @@ import cx from 'classnames';
 
 import { eventSlots, events } from '../data/data';
 import { db } from '../config/config-dev'
+// import { db } from '../config/config-prod'
 import { getDoc, doc, addDoc, collection, deleteDoc, where } from 'firebase/firestore'
 import { useFetchCollection } from '../hooks/hooks';
 

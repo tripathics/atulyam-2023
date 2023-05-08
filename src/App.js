@@ -4,6 +4,7 @@ import "./styles/index.scss";
 import Alert from "./components/Alert";
 
 import { auth } from "./config/config-dev";
+// import { auth } from "./config/config-prod";
 import { useAuthStatus } from "./hooks/hooks";
 import AnimatedRoutes from "./pages/AnimatedRoutes";
 

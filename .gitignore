@@ -25,3 +25,4 @@ yarn-error.log*
 test/
 /src/fonts
 *.zip
+config-prod.js

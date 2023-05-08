@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth, db } from "../config/config-dev";
+// import { auth, db } from "../config/config-prod";
 import { doc, getDoc } from "firebase/firestore";
 import { query, collection, getDocs } from "firebase/firestore";
 

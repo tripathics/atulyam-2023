@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { getDoc, doc, where } from "firebase/firestore";
 import { db } from "../config/config-dev";
+// import { db } from "../config/config-prod";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ReactComponent as LogoutIcon } from "../media/icons/logout.svg";

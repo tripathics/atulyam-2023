@@ -6,7 +6,8 @@ import cx from 'classnames';
 import styles from '../styles/Login.module.scss';
 
 import { signInWithEmailAndPassword, signOut } from '@firebase/auth';
-import { auth, db } from '../config/config-dev';
+import { auth, db } from "../config/config-dev";
+// import { auth, db } from "../config/config-prod";
 
 import { ReactComponent as SpinnerIcon } from '../media/icons/spinner.svg'
 import { ReactComponent as LinkIcon } from '../media/icons/link.svg'
