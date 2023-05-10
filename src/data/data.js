@@ -98,7 +98,7 @@ export const mainCoordinators = [
   },
   {
     name: 'Kamin Pajing',
-    imgSrc: '/media/coordinators/kamin.jpg',
+    imgSrc: '/media/coordinators/kamin1.jpg',
     roles: ['Co-Manager', 'IPR Chairman, SANIT']
   },
   {
