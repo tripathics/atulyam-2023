@@ -1,3 +1,3 @@
 # Atulyam 2023
 
-Atulyam 2023 - A cultural fest of NITAP
+[Website for Atulyam 2023](https://atulyam23.com) - A cultural fest of NITAP.
