@@ -41,5 +41,57 @@
     .main-content {
         padding-top: 4rem;
         padding-bottom: 6rem;
+
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .h1 {
+
+                color: var(--primary);
+                font-family: 'Antonio', sans-serif;
+                letter-spacing: -0.15ch;
+                line-height: 1;
+                height: 20vh;
+                text-align: center;
+                font-size: 5.5vw;
+
+            }
+
+
+
+
+        }
+
+
+
+
+    }
+}
+
+.Video {
+    .container {
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+        height: 50vh;
+
+        .responsive-iframe {
+            left: 15%;
+            top: 18%;
+            height: 60%;
+            width: 90%;
+            position: absolute;
+        }
+
+        @media screen and (max-width: 700px) {
+
+            .responsive-iframe {
+                height: 60%;
+                width: 90%;
+
+            }
+        }
     }
 }
