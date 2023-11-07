@@ -96,6 +96,7 @@ const Register = ({ user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!selectedEvent || selectedEvent === '') return;
     setLoading(true);
     const data = new FormData(e.currentTarget);
     const userFormData = {
@@ -298,7 +299,7 @@ const Register = ({ user }) => {
             </div>
 
             <div className={styles['btns-wrapper']}>
-              <button disabled={loading} className={'btn'} type="submit">
+              <button disabled={loading || !selectedEvent} className={'btn'} type="submit">
                 <span className='btn-subtitle'></span>
                 <span className='btn-text'>Register</span>
                 {loading && <SpinnerIcon />}
